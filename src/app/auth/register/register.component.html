@@ -1,0 +1,33 @@
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-gray-100 p-5 shadow-md rounded-md flex max-w-3xl">
+        <!-- image -->
+        <div class="w-1/2">
+            <img class="rounded-2xl sm:block hidden  object-cover" src="../../../assets/auth-images/register.jpg" alt="register">
+        </div>
+        <!-- form -->
+        <div class="sm:w-1/2 my-auto">
+            <h1 class="font-bold text-3xl text-center">eLearniFy</h1>
+            <p class="font-extralight text-xs text-center ">Online Learning Solution</p>
+            <form action="" class="flex flex-col px-8 gap-4">
+                <input class="p-2 mt-5 rounded-md border border-[#49BBBD]" type="text" placeholder="Name">
+                <input class="p-2 rounded-md border border-[#49BBBD]" type="email" placeholder="Email">
+                <select class="p-2 rounded-md border border-[#49BBBD]" name="" id="">
+                    <option class="text-gray-500" value="Select Role" disabled selected>Select Role</option>
+                    <option value="student">Student</option>
+                    <option value="tutor">Tutor</option>
+                </select>
+                <div class="relative">
+                    <input class="p-2 rounded-md border border-[#49BBBD] w-full" [type]="signUpHide ? 'password' : 'text'"
+                        placeholder="password">
+                    <button type="button" class="absolute top-2 right-2" mat-icon-button matSuffix (click)="signUpHide = !signUpHide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="signUpHide">
+                        <mat-icon>{{signUpHide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </div>
+                <button 
+                    class="bg-[#49BBBD] py-2 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Register</button>
+            </form>
+        </div>
+
+    </div>
+</div>

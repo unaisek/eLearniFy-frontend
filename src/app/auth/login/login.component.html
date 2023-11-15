@@ -1,0 +1,24 @@
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-gray-100 p-5 shadow-md rounded-md flex max-w-3xl">
+      <!-- form -->
+      <div class="sm:w-1/2">
+        <h1 class="font-bold text-3xl text-center">eLearniFy</h1>
+        <p class="font-extralight text-xs text-center ">Online Learning Solution</p>
+        <form action="" class="flex flex-col px-8 gap-4">
+            <input class="p-2 mt-5 rounded-md border border-[#49BBBD]" type="text" placeholder="email">
+            <div class="relative">
+                <input class="p-2 rounded-md border border-[#49BBBD] w-full" [type]="hide ? 'password' : 'text'" placeholder="password">
+                <button  type="button" class="absolute top-2 right-2" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+            </div>
+            <button type="submit" class="bg-[#49BBBD] py-1 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Login</button>
+            <a class="font-thin text-xs text-center" routerLink= "/register">Don't have an account?</a>
+        </form>
+      </div>  
+      <!-- image -->
+      <div class="w-1/2">
+        <img class="rounded-2xl sm:block hidden" src="../../../assets/auth-images/login.jpg" alt="">
+      </div>
+    </div>
+</div>
