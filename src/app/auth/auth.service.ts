@@ -18,4 +18,8 @@ export class AuthService {
   userRegister(user:any):Observable <any>{
     return this.http.post(`${env.apiUrl}/register`, user, httpOptions)
   }
+
+  userVerification(id:string,otp:string):Observable<any>{
+    return this.http.post(`${env.apiUrl}/verification?id=${id}`, otp, httpOptions)
+  }
 }

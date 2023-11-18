@@ -1,0 +1,28 @@
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-gray-100 p-5 shadow-md rounded-md flex">
+        <div>
+            <h1 class="font-extrabold text-3xl text-center">OTP Verification</h1>
+            <p class="font-extralight text-xs text-center ">Please enter the OTP sent to your email</p>
+            <form 
+                class="flex flex-col"
+                [formGroup]="otpVerificationForm"
+                (ngSubmit)="otpSubmit()"
+                >
+                <!-- <ng-otp-input [formCtrl]="" [config]="{length:4,allowNumbersOnly:true}"></ng-otp-input> -->
+                <input class="p-2 mt-5 rounded-md border border-[#49BBBD]" 
+                    type="number"
+                    placeholder="Enter OTP here"
+                    formControlName="otp"                    
+                    >
+                <div class="text-red-600 text-sm" *ngIf="otp.errors?.['required'] && (otp.touched || otp.dirty) ">
+                    otp is required
+                </div>
+                <button type="submit"
+                    [disabled]="!otpVerificationForm.valid"
+                    class="bg-[#49BBBD] m-5 py-2 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Verify</button>
+    
+           </form>
+
+        </div>
+    </div>
+</div>

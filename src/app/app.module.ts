@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from "@angular/common/http";
+import { OtpComponent } from './auth/otp/otp.component';
+import { NgOtpInputModule } from 'ng-otp-input'
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { HttpClientModule } from "@angular/common/http";
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    OtpComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { HttpClientModule } from "@angular/common/http";
     BrowserAnimationsModule,
     MatIconModule,
     ToastrModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    NgOtpInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
