@@ -1,6 +1,6 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
 
 const httpOptions = {
@@ -20,6 +20,16 @@ export class AuthService {
   }
 
   userVerification(id:string,otp:string):Observable<any>{
-    return this.http.post(`${env.apiUrl}/verification?id=${id}`, otp, httpOptions)
+    // return this.http.post(`${env.apiUrl}/verification?id=${id}`, otp, httpOptions)
+    const requestBody = { id:id, otp:otp }; // Construct request body object
+
+    return this.http.post(`${env.apiUrl}/verification`, requestBody, httpOptions)
+      .pipe(
+        catchError((error: any) => {
+          // Handle errors here
+          console.error('Error occurred:', error);
+          throw error; // Rethrow the error or handle as needed
+        })
+      );
   }
 }

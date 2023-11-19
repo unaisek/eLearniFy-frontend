@@ -14,7 +14,7 @@
                     placeholder="Enter OTP here"
                     formControlName="otp"                    
                     >
-                <div class="text-red-600 text-sm" *ngIf="otp.errors?.['required'] && (otp.touched || otp.dirty) ">
+                <div class="text-red-600 text-sm" *ngIf="otpControll.errors?.['required'] && (otpControll.touched || otpControll.dirty) ">
                     otp is required
                 </div>
                 <button type="submit"

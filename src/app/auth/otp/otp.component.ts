@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -18,33 +18,35 @@ export class OtpComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private fb:FormBuilder
   ){}
 
   ngOnInit(): void {
-    this.otpVerificationForm = new FormGroup({
-      otp: new FormControl("",[Validators.required])
+    this.otpVerificationForm =this.fb.group({
+      otp:["",[Validators.required]]
     })
 
   }
 
-  get otp():FormControl{
-    return this.otpVerificationForm.get("otp") as FormControl
+  get otpControll(){
+    return this.otpVerificationForm.get("otp");
   }
 
   otpSubmit(){
 
-    const otp = this.otpVerificationForm.getRawValue();
+    const otp = this.otpVerificationForm.get('otp').value
+    console.log(otp,"otp");
+    
     const id = this.route.snapshot.paramMap.get('id');
-    console.log(otp+"otp" +id+"id");
 
     if(!this.otpVerificationForm.valid){
       this.invalid = true
     } else {
-      this.authService.userVerification(otp,id)
+      this.authService.userVerification(id,otp)
       .subscribe(()=>{
         this.toastr.success("Your email verified successfully ");
-        this.router.navigate(['/'])
+        this.router.navigate(['/login'])
       },(err)=>{
         if(err.error.message){
           this.toastr.error(err.error.message);
