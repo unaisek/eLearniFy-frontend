@@ -26,10 +26,17 @@ export class AuthService {
     return this.http.post(`${env.apiUrl}/verification`, requestBody, httpOptions)
       .pipe(
         catchError((error: any) => {
-          // Handle errors here
           console.error('Error occurred:', error);
-          throw error; // Rethrow the error or handle as needed
+          throw error;
         })
       );
+  }
+
+  userLogin(user:any): Observable<any>{
+    return this.http.post(`${env.apiUrl}/login`,user,httpOptions);
+  }
+
+  userReverification(user:any): Observable<any>{
+    return this.http.post(`${env.apiUrl}/reverification`,user,httpOptions)
   }
 }

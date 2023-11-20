@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { HomeComponent } from './user/home/home.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from "@angular/forms";
@@ -14,14 +13,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
 import { HttpClientModule } from "@angular/common/http";
 import { OtpComponent } from './auth/otp/otp.component';
-import { NgOtpInputModule } from 'ng-otp-input'
+import { NgOtpInputModule } from 'ng-otp-input';
+import { UserModule } from './user/user.module';
+import { TutorModule } from './tutor/tutor.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent,
     OtpComponent,
   ],
   imports: [
@@ -34,7 +35,11 @@ import { NgOtpInputModule } from 'ng-otp-input'
     MatIconModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    NgOtpInputModule
+    NgOtpInputModule,
+    UserModule,
+    TutorModule,
+    AdminModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
