@@ -1,0 +1,78 @@
+<!-- Logo -->
+<div class="logo flex items-center">
+    <a href="https://www.creative-tim.com" class="simple-text flex items-center">
+        <div class="logo-img">
+            <img src="/assets/img/angular2-logo-red.png" alt="Logo" />
+        </div>
+        <span class="ml-2 font-bold">Creative Tim</span>
+    </a>
+</div>
+
+<!-- Sidebar Wrapper -->
+<div class="sidebar-wrapper">
+    <!-- Mobile Menu -->
+    <div *ngIf="isMobileMenu()">
+        <form class="flex items-center">
+            <div class="flex items-center bg-white rounded-full">
+                <input type="text" value="" class="py-1 px-3 rounded-l-full focus:outline-none" placeholder="Search...">
+                <button type="submit" class="bg-blue-500 text-white rounded-r-full px-3 py-1">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-5.2-5.2">
+                        </path>
+                        <circle cx="10" cy="10" r="7"></circle>
+                    </svg>
+                </button>
+            </div>
+        </form>
+        <ul class="nav-mobile-menu">
+            <li class="nav-item">
+                <a href="#" class="nav-link flex items-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2">
+                        <path d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                    </svg>
+                    <span class="hidden lg:inline ml-2">Stats</span>
+                </a>
+            </li>
+            <!-- Dropdown -->
+            <li class="nav-item relative">
+                <a href="#" class="nav-link flex items-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2">
+                        <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
+                        <path d="M12 14l9-5-9-5-9 5 9 5z" stroke-opacity=".25"></path>
+                    </svg>
+                    <span class="hidden lg:inline ml-2">5</span>
+                </a>
+                <ul class="absolute right-0 mt-2 w-48 bg-white rounded shadow-lg p-2 hidden">
+                    <li><a href="#" class="block py-1">Mike John responded to your email</a></li>
+                    <!-- Other dropdown items -->
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link flex items-center">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2">
+                        <path d="M20 12a8 8 0 11-16 0 8 8 0 0116 0z"></path>
+                        <path d="M9 17v-2m3 2v-2m3-6a3 3 0 00-3-3h-4a3 3 0 00-3 3v1"></path>
+                    </svg>
+                    <span class="hidden lg:inline ml-2">Account</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Sidebar Navigation -->
+    <ul class="nav">
+        <li *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link flex items-center" [routerLink]="[menuItem.path]">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-linecap="round"
+                    stroke-linejoin="round" stroke-width="2">
+                    <!-- <path d="{{menuItem.icon}}"></path> -->
+                </svg>
+                <span>{{menuItem.title}}</span>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,39 @@
+<div class="min-h-screen flex items-center justify-center">
+    <div class="bg-gray-100 p-5 shadow-md rounded-md flex max-w-3xl">
+        <!-- form -->
+        <div>
+            <h1 class="font-bold text-3xl text-center">Admin Login</h1>
+            <!-- <p class="font-extralight text-xs text-center ">Online Learning Solution</p> -->
+            <form class="flex flex-col px-8 gap-4" [formGroup] = "adminLoginForm" (ngSubmit)="adminLoginSubmit()">
+                <input class="p-2 mt-5 rounded-md border border-[#49BBBD]" type="email" placeholder="email"
+                    formControlName="email">
+                <div class="text-red-600 text-sm"
+                    *ngIf="emailControll.errors?.['required'] && (emailControll.touched || emailControll.dirty) ">
+                    Email is required
+                </div>
+                <div class="text-red-600 text-sm"
+                    *ngIf="emailControll.errors?.['email'] && (emailControll.touched || emailControll.dirty) ">
+                    Invalid email..! Enter valid mail
+                </div>
+                <div class="relative">
+                    <input class="p-2 rounded-md border border-[#49BBBD] w-full" [type]="hide ? 'password' : 'text'"
+                        placeholder="password" formControlName="password">
+                    <button type="button" class="absolute top-2 right-2" mat-icon-button matSuffix
+                        (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                </div>
+                <div class="text-red-600 text-sm"
+                    *ngIf="passwordControll.errors?.['required'] && (passwordControll.touched || passwordControll.dirty) ">
+                    password is required
+                </div>
+                <div class="text-red-600 text-sm"
+                    *ngIf="passwordControll.errors?.['minlength'] && (passwordControll.touched || passwordControll .dirty) ">
+                    MInimum 5 charecter required
+                </div>
+                <button type="submit"
+                    class="bg-[#49BBBD] py-1 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit{
       password:["",[Validators.required,Validators.minLength(5)]]
     });
 
-    this.jwt = localStorage.getItem('session');
+    this.jwt = localStorage.getItem('authToken');
   }
   
   get emailControll(){
