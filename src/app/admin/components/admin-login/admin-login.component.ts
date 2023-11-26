@@ -14,7 +14,7 @@ import { AdminService } from '../../services/admin.service';
 export class AdminLoginComponent implements OnInit {
   hide = true;
   adminLoginForm!: FormGroup;
-  inavlid :boolean = true;
+  inavlid :boolean = false;
 
   constructor(
     private _fb:FormBuilder,
@@ -44,7 +44,7 @@ export class AdminLoginComponent implements OnInit {
 
     const user = this.adminLoginForm.getRawValue();
     if(!this.adminLoginForm){
-      this.inavlid = false;
+      this.inavlid = true;
     } else {
       this._adminService.adminLogin(user)
       .subscribe((res)=>{
