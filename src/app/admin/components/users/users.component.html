@@ -1,1 +1,25 @@
-<p>users works!</p>
+<div class="flex flex-col items-center justify-between h-96 mb-4 rounded-lg mt-3 bg-white ">
+    <div class="w-full overflow-x-auto rounded-lg ">
+        <table class="min-w-full border-none text-left">
+            <thead>
+                <tr class="border-gray-400 bg-gray-200 font-sans text-sm font-normal text-black">
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Email</th>
+                    <th class="px-4 py-2">Role</th>
+                    <th class="px-4 py-2">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="font-sans text-sm text-black" *ngFor="let user of userList ;let i =index">
+                    <td class="px-4 py-2 ">{{user.name}}</td>
+                    <td class="px-4 py-2 ">{{user.email}}</td>
+                    <td class="px-4 py-2 ">{{user.role}}</td>
+                    <Button class="mt-2 h-8 w-24 rounded-lg text-white font-semibold text-xs transition duration-30" 
+                    [ngClass]="user.is_blocked ? 'bg-red-500':'bg-green-500' "
+                    (click)="onAction(user.is_blocked,i,user._id)">
+                        {{user.is_blocked ? 'Blocked' : 'Active'}}</Button>        
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

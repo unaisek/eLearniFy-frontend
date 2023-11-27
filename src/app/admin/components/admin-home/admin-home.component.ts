@@ -7,9 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AdminHomeComponent {
   profileDropDown : boolean = false;
+  sideBarDropDown : boolean = false;
 
   ProfileToggleDropDown(){
-    this.profileDropDown = !this.profileDropDown
-    
+    this.profileDropDown = !this.profileDropDown    
+  }
+
+  sideBarToggle(){
+    this.sideBarDropDown = !this.sideBarDropDown
   }
 }
