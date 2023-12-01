@@ -1,0 +1,41 @@
+<nav *ngIf="isSideBarShow" class="absolute w-full top-0 left-0 h-screen z-50 flex lg:hidden">
+    <div class="bg-white shadow-2xl w-full md:max-w-sm">
+        <div class="flex justify-end p-6">
+            <svg (click)="closeSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-8 h-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </div>
+        <div>
+            <div>
+             <app-user-auth-links></app-user-auth-links>
+            </div>
+            <div class="mt-10">
+                <app-user-menu></app-user-menu>
+            </div>
+        
+        </div>
+    </div>
+    <div class="bg-gray-800 hidden md:block md:w-full opacity-50"
+    (click)="closeSideBar()">
+    </div>
+</nav>
+<header class="absolute w-full">
+    <div class="{{ismenuScrolled ?'fixed top-0 w-full bg-white shadow-xl ':'pt-8'}}">
+        <div
+            class="flex items-center justify-between  {{ismenuScrolled?'':'border'}} border-emerald-500  border-opacity-30 rounded-md mx-5 md:mx-10 lg:mx-20 py-3 px-3 ">
+            <div class="mt-2">
+                <h1 class="font-extrabold text-lg">eLearniFy</h1>
+            </div>
+            <div class="lg:hidden">
+                <svg (click)="openSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                    class="w-6 h-8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+
+            </div>
+            <app-user-menu class="hidden lg:block"></app-user-menu>
+            <app-user-auth-links class="hidden lg:block"></app-user-auth-links>
+        </div>
+    </div>
+</header>

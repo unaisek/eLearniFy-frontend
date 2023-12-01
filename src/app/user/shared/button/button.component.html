@@ -1,0 +1,38 @@
+<button
+    class="transition-all duration-500 relative group overflow-clip
+    {{
+        shade ==='dark'?
+        'border bg-emerald-600 text-emerald-50  border-emerald-600 hover:text-slate-700' :
+        shade === 'light'?
+        'border bg-emerald-50 text-emerald-600  border-emerald-600 hover:text-emerald-50':
+        shade === 'white' ?
+        'border bg-white text-slate-700 border-emerald-600 hover:text-emerald-50':
+        'text-emerald-600'
+    }}
+    {{size === 'small'?
+    'font-medium text-md px-5 py-2 rounded-md':
+    size === 'medium'?
+    'font-medium text-md px-7 py-3 rounded-md':
+    'font-medium text-md px-9 py-4 rounded-md'
+    }}
+    {{
+        animation === 'fade'&& shade ==='dark'?
+        'hover:bg-emerald-50':
+        animation === 'fade'&& shade === 'light'?
+        ' hover:bg-emerald-600':
+        animation === 'fade'&& shade === 'white'?
+        ' hover:bg-emerald-600':
+        ''
+    }}
+    ">
+<span class="z-30 relative">{{name}}</span>
+<span *ngIf="shade!='NA' && animation==='circle'"
+    class="absolute top-[50%] left-[50%] aspect-square w-[20%] rounded-full
+     -translate-x-[50%] -translate-y-[50%] z-20 transition-all duration-1000 group-hover:w-[200%] opacity-0 hover:opacity-100
+     {{
+        shade === 'dark'?
+        'bg-emerald-50':
+        'bg-emerald-600'
+     }}"
+    ></span>
+</button>
