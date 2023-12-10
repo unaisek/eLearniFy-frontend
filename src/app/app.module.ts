@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,8 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { UserModule } from './user/user.module';
 import { TutorModule } from './tutor/tutor.module';
 import { AdminModule } from './admin/admin.module';
+import { TimeFormatPipe } from './core/pipes/time-format.pipe';
+import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { AdminModule } from './admin/admin.module';
     LoginComponent,
     RegisterComponent,
     OtpComponent,
+    TimeFormatPipe,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { AdminModule } from './admin/admin.module';
     AdminModule,
 
   ],
-  providers: [],
+  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

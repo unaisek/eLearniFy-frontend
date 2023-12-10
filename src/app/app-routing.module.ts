@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'user', pathMatch: 'full' },
   { path:'login', component:LoginComponent,canActivate:[AuthGuard]},
   { path:'register', component:RegisterComponent,canActivate:[AuthGuard]},
-  { path:'verify/:id', component:OtpComponent },
+  { path:'verify/:email', component:OtpComponent },
   { path: 'user', loadChildren: () => import('./user/user.module').then(m => m.UserModule) },
   { path: 'tutor', loadChildren: () => import('./tutor/tutor.module').then(m => m.TutorModule) },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },

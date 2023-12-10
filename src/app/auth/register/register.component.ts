@@ -54,17 +54,17 @@ export class RegisterComponent implements OnInit{
       this.invalid = true;
     } else {
       this.authService.userRegister(user)
-      .subscribe((res)=>{
-        this.router.navigate(['/verify',(res as {_id:string})._id]);
+      .subscribe({next:(res)=>{
+        this.router.navigate(['/verify',(res as {email:string}).email]);
        this.toastr.success("registerd")
         
-      },(err)=>{
+      },error:(err)=>{
         if(err.error.message){
           this.toastr.error(err.error.message)
         } else {
           this.toastr.error("Some thing went wrong")
         }
-      })
+      }})
     }
     
   }

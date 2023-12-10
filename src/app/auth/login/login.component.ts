@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit{
           this.toastr.error("User not verified");
           this.authService.userReverification(user)
           .subscribe((res)=>{
-            this.router.navigate(['/verify',(res as {_id:string})._id]);
+            this.router.navigate(['/verify',(res as {email:string}).email]);
             this.toastr.success("otp send to your email, please verify your email")
           },(err)=>{
             if(err.error.message){

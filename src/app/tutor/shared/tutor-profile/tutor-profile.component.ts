@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tutor-profile',
@@ -7,4 +8,17 @@ import { Component } from '@angular/core';
 })
 export class TutorProfileComponent {
 
+  constructor(private _router:Router) {
+    
+  }
+
+  logout(){
+    const token = localStorage.getItem('tutorAuthToken');
+    if(token){
+      localStorage.removeItem('tutorAuthToken');
+      this._router.navigate(['/login']);
+    } else {
+       this._router.navigate(['/login']);
+    }
+  }
 }

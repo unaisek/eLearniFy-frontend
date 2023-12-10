@@ -1,5 +1,5 @@
-<div class="min-h-screen flex items-center justify-center">
-    <div class="bg-gray-100 p-5 shadow-md rounded-md flex">
+<div class="h-screen flex items-center justify-center">
+    <div class="bg-gray-100 px-10 py-20 shadow-md rounded-md flex ">
         <div>
             <h1 class="font-extrabold text-3xl text-center">OTP Verification</h1>
             <p class="font-extralight text-xs text-center ">Please enter the OTP sent to your email</p>
@@ -22,6 +22,14 @@
                     class="bg-[#49BBBD] m-5 py-2 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Verify</button>
     
            </form>
+
+            <div *ngIf="showResendButton" class="text-center">
+                <button (click)="resendOTP()"
+                    class="bg-[#49BBBD] m-5 py-2 w-fit px-3 mx-auto rounded-2xl hover:scale-105 duration-300">Resend OTP</button>
+            </div>
+            <div>
+                <p *ngIf="timer >0">Your OTP will expire within {{timer | timeFormat}}</p>
+            </div>
 
         </div>
     </div>

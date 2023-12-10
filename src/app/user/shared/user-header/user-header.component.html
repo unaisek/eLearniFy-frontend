@@ -7,7 +7,7 @@
             </svg>
         </div>
         <div>
-            <div>
+            <div *ngIf="!isAuthenticated">
              <app-user-auth-links></app-user-auth-links>
             </div>
             <div class="mt-10">
@@ -35,7 +35,7 @@
 
             </div>
             <app-user-menu class="hidden lg:block"></app-user-menu>
-            <app-user-auth-links class="hidden lg:block"></app-user-auth-links>
+            <app-user-auth-links class="hidden lg:block" *ngIf="!isAuthenticated"></app-user-auth-links>
         </div>
     </div>
 </header>
