@@ -1,0 +1,171 @@
+<div class="">
+    <h1 class="text-center">Add New Course</h1>
+    <form [formGroup]="courseForm" (ngSubmit)="submitCourse()"
+        class="w-full max-w-3xl mx-2 md:mx-auto border border-gray-400 rounded-md mb ">
+        <div class="py-3">
+    
+            <div class="p-4">
+                <div class="mb-6">
+                    <label for="title" class="block mb-2 text-sm text-gray-800 font-medium">Course Title <span class="text-red-500">*</span></label>
+                    <input type="text" id="title" formControlName="title"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div *ngIf="courseForm.get('title').errors?.['required'] && courseForm.get('title').touched "
+                    class="text-red-400">
+                    Course Title is required
+                    </div>
+
+                </div>
+                <div class="mb-6 flex gap-5">
+                    <div class="w-1/2 ">
+                        <label for="category" class="block mb-2 text-sm text-gray-800 font-medium">Category <span class="text-red-500">*</span></label>
+                        <select id="category" formControlName="category"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            <option *ngFor="let category of categories" value="{{category._id}}">{{category.categoryName}}
+                            </option>
+                        </select>
+                        <div *ngIf="courseForm.get('category').errors?.['required'] && courseForm.get('category').touched " class="text-red-400">
+                            Select any category
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="level" class="block mb-2 text-sm text-gray-800 font-medium">Level <span class="text-red-500">*</span></label>
+                        <select id="level" formControlName="level"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="Expert">Expert</option>
+                        </select>
+                        <div *ngIf="courseForm.get('level').errors?.['required'] && courseForm.get('level').touched "
+                            class="text-red-400">
+                            Select any level
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6 flex gap-5">
+                    <div class="w-1/2">
+                        <label for="coursetype" class="block mb-2 text-sm text-gray-800 font-medium">Course <span class="text-red-500">*</span></label>
+                        <select id="paid" formControlName="courseType"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2"
+                            (change)="onCourseTypeChange($event)">
+                            <option value="free">Free</option>
+                            <option value="paid">Paid</option>
+                        </select>
+                        <div *ngIf="courseForm.get('courseType').errors?.['required'] && courseForm.get('courseType').touched " class="text-red-400">
+                            Select any course type
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="price" class="block mb-2 text-sm text-gray-800 font-medium">Price <span class="text-red-500">*</span></label>
+                        <input [readOnly]="courseForm.get('courseType').value === 'free'" type="text" id="price"
+                            formControlName="price" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf=" courseForm.get('price').errors?.['required'] && courseForm.get('price').touched "
+                            class="text-red-400">
+                            Enter the price
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="description" class="block mb-2 text-sm text-gray-800 font-medium">Course Description <span class="text-red-500">*</span></label>
+                    <textarea id="description" formControlName="description"
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 h-32 resize-none"></textarea>
+                        <div *ngIf="courseForm.get('description').errors?.['required'] && courseForm.get('description').touched "
+                            class="text-red-400">
+                            Cousre description is required
+                        </div>
+                </div>
+    
+                <div class="flex gap-5">
+                    <div class="mb-6 w-1/2">
+                        <label for="introductionVideo" class="block mb-2 text-sm text-gray-800 font-medium">Thumbnail Image <span class="text-red-500">*</span></label>
+                        <input type="file" id="introductionVideo" formControlName="thumbnail"
+                            (change)="onFileChangeImage($event)"
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 " accept=".jpg">
+                        <div *ngIf="courseForm.get('thumbnail').errors?.['required'] && courseForm.get('thumbnail').touched "
+                            class="text-red-400" accept=".jpg, .jpeg, .png, .webp">
+                            Upload a image
+                        </div>
+                    </div>
+                    <div class="mb-6 w-1/2">
+                        <label for="introductionVideo" class="block mb-2 text-sm text-gray-800 font-medium">Introduction Video <span class="text-red-500">*</span></label>
+                        <input type="file" id="introductionVideo" formControlName="introductionVideo"
+                            (change)="onFileChangeIntroVideo($event)" accept=".mp4, .avi, .mov, .mkv, .webm"
+                            class="w-full border border-gray-300 rounded-md px-4 py-3 ">
+                        <div *ngIf="courseForm.get('introductionVideo').errors?.['required'] && courseForm.get('introductionVideo').touched "
+                            class="text-red-400">
+                            Upload a introduction video
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div class="p-4">
+                <div class="mb-8 border rounded-md p-4">
+                    <h3 class="text-gray-800 text-lg font-semibold mb-4 text-center">Chapter Details</h3>
+                    <div class="border border-gray-300 p-3 mt-2 relative">
+                        <!-- <div class="absolute right-0 top-0" (click)="removeChapter(i)">
+                            <mat-icon>close</mat-icon>
+                        </div> -->
+                        <div class="flex gap-2">
+                            <div class="mb-4 w-1/2 ">
+                                <label for="chapterTitle" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Title <span class="text-red-500">*</span></label>
+                                <input type="text" id="chapterTitle" formControlName="chapterTitle"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                <div *ngIf="courseForm.get('chapterTitle').errors?.['required'] && courseForm.get('chapterTitle').touched "
+                                    class="text-red-400">
+                                    Chapter title is required
+                                </div>
+                            </div>
+                            <div class="mb-4 w-1/2">
+                                <label for="chapterDescription" class="block mb-2 text-sm text-gray-800 font-medium">Chapter
+                                    Description <span class="text-red-500">*</span></label>
+                                <textarea id="chapterDescription" formControlName="chapterDescription"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2 h-10 resize-y"></textarea>
+                                <div *ngIf="courseForm.get('chapterDescription').errors?.['required'] && courseForm.get('chapterDescription').touched "
+                                    class="text-red-400">
+                                    Chapter description is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="mb-4 w-1/2">
+                                <label for="chapterVideo" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Video <span class="text-red-500">*</span></label>
+                                <input type="file" id="chapterVideo" formControlName="chapterVideo"
+                                    (change)="onChapterVideoChange($event)"  accept=".mp4, .avi, .mov, .mkv, .webm"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                <div *ngIf="courseForm.get('chapterVideo').errors?.['required'] && courseForm.get('chapterVideo').touched"
+                                    class="text-red-400">
+                                    Upload a chapter video 
+                                </div>
+                            </div>
+                            <div class="mb-4 w-1/2">
+                                <label for="chapterMaterial" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Material (PDF,
+                                    etc.) <span class="text-red-500">*</span></label>
+                                <input type="file" id="chapterMaterial" formControlName="chapterMaterial"
+                                    (change)="onChapterMaterialChange($event)"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2" accept=".pdf, .doc, .docx, .txt">
+                                <div *ngIf="courseForm.get('chapterMaterial').errors?.['required'] && courseForm.get('chapterMaterial').touched"
+                                    class="text-red-400">
+                                    Upload material(PDF,etc.)  for chapter
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="text-center">
+                        <button type="button" class="px-4 py-2 bg-emerald-400 text-white rounded-md" (click)="addChapter()">
+                            Add Chapter</button>
+    
+                    </div> -->
+                </div>
+            </div>
+    
+        </div>
+        <div *ngIf="courseForm.invalid" class="text-red-500 text-center"> Please Fill all required fields</div>
+        <div class="text-center mb-5 mt-2"  [ngStyle]="{ 'cursor': courseForm.invalid ? 'not-allowed' : 'pointer' }">
+            <button type="submit" class="px-9 py-3 bg-emerald-500 text-white rounded-md" [ngStyle]="{ 'cursor': courseForm.invalid ? 'not-allowed' : 'pointer' }"
+            
+            [disabled]="courseForm.invalid">add Course</button>
+    
+        </div>
+    </form>
+</div>

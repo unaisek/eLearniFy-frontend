@@ -50,12 +50,13 @@ export class LoginComponent implements OnInit{
     }else {
       this.authService.userLogin(user)
       .subscribe((res)=>{
-        localStorage.setItem('authToken',res.token);
-        // localStorage.setItem('role',res.role);
-
         if(res.role =="student"){
+          localStorage.setItem('authToken', res.token);
+          localStorage.setItem('user', res.user);
           this.router.navigate(['/user']);
         } else {
+          localStorage.setItem('tutorAuthToken', res.token);
+          localStorage.setItem('user', res.user);
           this.router.navigate(['tutor'])
         }        
       },(err)=>{

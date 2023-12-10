@@ -12,12 +12,16 @@ export class AuthGuard{
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    const token = localStorage.getItem('authToken');
+    const userToken = localStorage.getItem('authToken');
+    const tutorToken = localStorage.getItem('tutorAuthToken')
 
-    if (token) {
-      this.router.navigate['/'];
+    if (userToken) {
+      this.router.navigate(['/']);
       return false
-    } else {   
+    } else if(tutorToken){  
+      this.router.navigate(['/tutor']) 
+      return false
+    } else {
       return true
     }
   }
