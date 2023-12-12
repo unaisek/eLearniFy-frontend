@@ -165,7 +165,10 @@
             <button type="submit" class="px-9 py-3 bg-emerald-500 text-white rounded-md" [ngStyle]="{ 'cursor': courseForm.invalid ? 'not-allowed' : 'pointer' }"
             
             [disabled]="courseForm.invalid">add Course</button>
-    
+            
+        </div>
+        <div *ngIf="loading" class="text-center items-center">
+           <p class="mb-7">Uploading... <span class="loading loading-infinity loading-lg"></span></p>
         </div>
     </form>
 </div>

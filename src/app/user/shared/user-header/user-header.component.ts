@@ -9,19 +9,12 @@ export class UserHeaderComponent implements OnInit {
   
   ismenuScrolled = false;
   isSideBarShow = false;
-  isAuthenticated = false ;
   @HostListener('window:scroll',['$event'])
 
   ngOnInit(): void {
-   this.checkAuthenticated()
   }
 
-  checkAuthenticated(){
-    const token = localStorage.getItem('authToken');
-    if(token){
-      this.isAuthenticated = true
-    }
-  }
+ 
   scrollCheck(){
     if(window.scrollY>35){
       this.ismenuScrolled = true;

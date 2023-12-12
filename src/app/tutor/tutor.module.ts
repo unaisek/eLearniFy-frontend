@@ -10,6 +10,7 @@ import { MatIconModule, } from '@angular/material/icon';
 import { TutorMenuComponent } from './shared/tutor-menu/tutor-menu.component';
 import { TutorHeaderComponent } from './shared/tutor-header/tutor-header.component';
 import { TutorProfileComponent } from './shared/tutor-profile/tutor-profile.component';
+import { ViewCourseComponent } from './components/view-course/view-course.component';
 
 
 
@@ -23,6 +24,7 @@ import { TutorProfileComponent } from './shared/tutor-profile/tutor-profile.comp
     TutorMenuComponent,
     TutorHeaderComponent,
     TutorProfileComponent,
+    ViewCourseComponent,
   ],
   imports: [
     CommonModule,

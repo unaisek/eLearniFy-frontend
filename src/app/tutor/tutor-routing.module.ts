@@ -5,6 +5,7 @@ import { TutorLayoutComponent } from './components/tutor-layout/tutor-layout.com
 import { TutorDashboardComponent } from './components/tutor-dashboard/tutor-dashboard.component';
 import { NewCourseComponent } from './components/new-course/new-course.component';
 import { tutorGuard } from '../core/guards/tutor.guard';
+import { ViewCourseComponent } from './components/view-course/view-course.component';
 
 
 const routes: Routes =[
@@ -14,7 +15,8 @@ const routes: Routes =[
       { path:'', redirectTo:'/tutor/home', pathMatch: 'full' },
       { path: 'home', component: TutorHomeComponent },
       { path:'dashboard', component: TutorDashboardComponent },
-      { path:'add-course', component: NewCourseComponent }
+      { path:'add-course', component: NewCourseComponent },
+      {path:'view-course/:id',component:ViewCourseComponent}
    ]
   }
 ]

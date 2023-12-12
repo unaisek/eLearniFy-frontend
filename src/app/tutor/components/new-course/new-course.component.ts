@@ -18,6 +18,7 @@ export class NewCourseComponent implements OnInit {
   courseIntroVideo: File = null;
   chapterVideo: File = null;
   chapterMaterial: File= null;
+  loading:boolean = false
 
 
   constructor(
@@ -96,6 +97,7 @@ export class NewCourseComponent implements OnInit {
   }
 
   submitCourse() {
+    this.loading = true;
     const formData = new FormData();
     formData.append('title', this.courseForm.get('title')?.value);
     formData.append('category', this.courseForm.get('category')?.value);
@@ -126,10 +128,12 @@ export class NewCourseComponent implements OnInit {
     
     this._courseService.addNewCourse(formData).subscribe({next:(res)=>{
       console.log("sucess",res);
+      this.loading = false
       this._toastr.success("course added succesfully")
             
     },error:(err)=>{
       console.log(err.error.message);
+      this.loading = false
       this._toastr.error("failed to course adding")      
     }})
     

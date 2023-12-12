@@ -1,1 +1,19 @@
-<p>tutor-dashboard works!</p>
+<div class="max-w-5xl mx-auto">
+    <h1>My Courses</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3">
+        <div class="card w-80 bg-base-100 shadow-xl " *ngFor="let course of myCourses">
+            <figure><img src={{course.thumbnail}} alt="Shoes" /></figure>
+            <div class="card-body">
+                <h2 class="card-title">
+                    {{course.title}}
+                </h2>
+                <p>{{course.description}}</p>
+                <div class="card-actions justify-end">
+                    <div class="badge badge-outline"><a [routerLink]="['/tutor/view-course',course._id]">View</a> </div>
+                    <div class="badge badge-outline">Edit</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
