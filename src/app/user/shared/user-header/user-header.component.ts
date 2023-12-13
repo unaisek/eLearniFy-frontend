@@ -12,17 +12,21 @@ export class UserHeaderComponent implements OnInit {
   @HostListener('window:scroll',['$event'])
 
   ngOnInit(): void {
+    this.scrollCheck();
   }
 
  
-  scrollCheck(){
-    if(window.scrollY>35){
+  scrollCheck(){    
+    if(window.scrollY > 35){
       this.ismenuScrolled = true;
     } else {
       this.ismenuScrolled = false
-    }   
+    }  
+    console.log(this.ismenuScrolled,"");
+     
   }
 
+  
   openSideBar(){
     this.isSideBarShow = true;
   }

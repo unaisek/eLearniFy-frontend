@@ -21,13 +21,13 @@
     </div>
 </nav>
 <header class="absolute w-full">
-    <div class="{{ismenuScrolled ?'fixed top-0 w-full bg-white shadow-xl ':'pt-8'}}">
+    <div class="{{ismenuScrolled ?'fixed top-0 w-full bg-white shadow-xl z-50 ':'pt-8'}}">
         <div
-            class="flex items-center justify-between  {{ismenuScrolled?'':'border'}} border-emerald-500  border-opacity-30 rounded-md mx-5 md:mx-10 lg:mx-20 py-3 px-3 ">
+            class="py-3 lg:py-5 flex items-center justify-between {{ismenuScrolled ?'':'border mx-2 lg:container'}} border-emerald-500  border-opacity-30 rounded-md ">
             <div class="mt-2">
-                <h1 class="font-extrabold text-lg">eLearniFy</h1>
+                <h1 class="font-extrabold text-lg ps-2">eLearniFy</h1>
             </div>
-            <div class="lg:hidden">
+            <div class="lg:hidden pr-2">
                 <svg (click)="openSideBar()" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                     class="w-6 h-8">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

@@ -9,6 +9,7 @@ import { UserLayoutComponent } from './components/user-layout/user-layout.compon
 import { UserMenuComponent } from './shared/user-menu/user-menu.component';
 import { UserAuthLinksComponent } from './shared/user-auth-links/user-auth-links.component';
 import { ButtonComponent } from './shared/button/button.component';
+import { CardComponent } from './shared/card/card.component';
 
 
 
@@ -21,7 +22,8 @@ import { ButtonComponent } from './shared/button/button.component';
     UserLayoutComponent,
     UserMenuComponent,
     UserAuthLinksComponent,
-    ButtonComponent
+    ButtonComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,

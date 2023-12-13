@@ -4,3 +4,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@layer components{
+    .container{
+        @apply max-w-5xl px-5 mx-auto;
+    }
+}
