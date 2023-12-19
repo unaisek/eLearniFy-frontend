@@ -11,6 +11,9 @@ import { TutorMenuComponent } from './shared/tutor-menu/tutor-menu.component';
 import { TutorHeaderComponent } from './shared/tutor-header/tutor-header.component';
 import { TutorProfileComponent } from './shared/tutor-profile/tutor-profile.component';
 import { ViewCourseComponent } from './components/view-course/view-course.component';
+import { TutorCardComponent } from './shared/tutor-card/tutor-card.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { ChapterModalComponent } from './shared/chapter-modal/chapter-modal.component';
 
 
 
@@ -25,6 +28,9 @@ import { ViewCourseComponent } from './components/view-course/view-course.compon
     TutorHeaderComponent,
     TutorProfileComponent,
     ViewCourseComponent,
+    TutorCardComponent,
+    EditCourseComponent,
+    ChapterModalComponent,
   ],
   imports: [
     CommonModule,

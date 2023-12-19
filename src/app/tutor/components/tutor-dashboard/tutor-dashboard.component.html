@@ -1,19 +1,69 @@
 <div class="max-w-5xl mx-auto">
     <h1>My Courses</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3">
-        <div class="card w-80 bg-base-100 shadow-xl " *ngFor="let course of myCourses">
-            <figure><img src={{course.thumbnail}} alt="Shoes" /></figure>
-            <div class="card-body">
-                <h2 class="card-title">
-                    {{course.title}}
-                </h2>
-                <p>{{course.description}}</p>
-                <div class="card-actions justify-end">
-                    <div class="badge badge-outline"><a [routerLink]="['/tutor/view-course',course._id]">View</a> </div>
-                    <div class="badge badge-outline">Edit</div>
-                </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="border border-emerald-200 rounded-2xl p-5" *ngFor="let course of myCourses">
+            <div class="flex justify-end relative">
+                <div class="dropdown dropdown-end">
+                    <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                        class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                    </svg>
+           
+                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-emerald-50 rounded-box w-24">
+                        <li><a routerLink="/tutor/edit-course/{{course._id}}">Edit</a></li>
+                        <li><a routerLink="/tutor/view-course/{{course._id}}">View</a></li>
+                    </ul>
+                </div>           
             </div>
+            <img class="w-full rounded-xl object-cover" src={{course.thumbnail}} alt="">
+            <div class="flex justify-between mt-5 items-center">
+                <div class="flex items-center gap-2">
+                    <img class="w-12 h-12 rounded-full object-cover" src="../../../../assets/author-01.jpg" alt="">
+                    <p class="text-slate-500 font-light">{{course.tutor.name}}</p>
+                </div>
+                <div>
+                    <button class="bg-emerald-50 rounded-md text-emerald-700 px-5 py-2 text-opacity-80">{{course.category.categoryName}}</button>
+                </div>
+        
+            </div>
+            <p class="pt-5 text-slate-700 transition-all  duration-500 hover:text-emerald-600 text-base leading-5 font-medium">
+                {{course.title}}
+            </p>
+        
+            <div class="mt-3">
+                <!-- <div class="flex justify-between items-center text-slate-500 font-light ">
+                    <div class="flex gap-1 pt-3">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>0
+                        <p class="">09 hr 18 mins</p>
+                    </div>
+                    <div class="flex gap-1 pt-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        <p>16 Lectures</p>            
+                    </div>
+        
+                </div> -->
+                <div class="flex justify-between items-center p-2 bg-emerald-50 rounded-2xl">
+                    <p class="text-base text-emerald-600 font-semibold">{{course.price == 0 ?'Free':course.price}}</p>
+                    <div class="flex gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-5 h-5 text-emerald-600">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                        </svg>
+                        <p>{{course.chapters.length}} Chapters</p>
+                    </div>
+                </div>                              
+            </div>        
         </div>
-
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,BehaviorSubject } from 'rxjs';
 import { ICategory } from '../models/ICategory';
 import { environment } from 'src/environments/environment';
 
@@ -9,9 +9,23 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class TutorService {
-  constructor(private _http: HttpClient) {}
+  private _categorySubject: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
+  categoryList$: Observable<ICategory[]> = this._categorySubject.asObservable();
 
-  getCategory(): Observable<[ICategory]> {
-    return this._http.get<[ICategory]>(`${environment.apiUrl}/tutor/category`)
+  constructor(private _http: HttpClient) {
+    this.getCategory();
+  }
+
+  getCategory(): void {
+    this._http
+      .get<[ICategory]>(`${environment.apiUrl}/tutor/category`)
+      .subscribe({
+        next:(categories) => {
+          this._categorySubject.next(categories);
+        },
+        error:(error) => {
+          console.error('Error fetching categories: ', error);
+        }
+    });
   }
 }

@@ -1,0 +1,78 @@
+<section *ngIf="show"  class="bg-slate-50 shadow-2xl fixed inset-0 flex items-center justify-center z-50 bg-opacity-95">
+    <svg (click)="modalClose()"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        class="w-8 h-8 absolute top-2 right-2 text-slate-800">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <div class="m-auto w-full lg:w-[70%] bg-slate-50 shadow-md">
+            <!-- <div class="mb-8 border rounded-md p-4"> -->
+                <h3 class="text-gray-800 text-lg font-semibold mb-4 text-center">Chapter Details</h3>
+                <div class="border border-gray-500 p-10 mt-2 relative shadow-2xl">
+                    <!-- <div class="absolute right-0 top-0" (click)="removeChapter(i)">
+                                        <mat-icon>close</mat-icon>
+                                    </div> -->
+                    <form [formGroup]="chapterForm" (ngSubmit)="submitChapter()">
+                        <div class="flex gap-2">
+                            <div class="mb-4 w-1/2 ">
+                                <label for="chapterTitle" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Title <span
+                                        class="text-red-500">*</span></label>
+                                <input type="text" id="chapterTitle" formControlName="chapterTitle"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                <div *ngIf="chapterForm.get('chapterTitle')?.errors?.['required'] && chapterForm.get('chapterTitle')?.touched "
+                                    class="text-red-400">
+                                    Chapter title is required
+                                </div>
+                            </div>
+                            <div class="mb-4 w-1/2">
+                                <label for="chapterDescription" class="block mb-2 text-sm text-gray-800 font-medium">Chapter
+                                    Description <span class="text-red-500">*</span></label>
+                                <textarea id="chapterDescription" formControlName="chapterDescription"
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2 h-10 resize-y"></textarea>
+                                <div *ngIf="chapterForm.get('chapterDescription')?.errors?.['required'] && chapterForm.get('chapterDescription')?.touched "
+                                    class="text-red-400">
+                                    Chapter description is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <div class="mb-4 w-1/2">
+                                <div *ngIf="chapterDetails?.chapter.chapterVideo">
+                                    <video controls width="100" height="60">
+                                        <source [src]="chapterDetails?.chapter.chapterVideo" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <label for="chapterVideo" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Video <span
+                                        class="text-red-500">*</span></label>
+                                <input type="file" id="chapterVideo" formControlName="chapterVideo" (change)="onChapterVideoChange($event)"
+                                    accept=".mp4, .avi, .mov, .mkv, .webm" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                <div *ngIf="chapterForm.get('chapterVideo')?.errors?.['required'] && chapterForm.get('chapterVideo').touched"
+                                    class="text-red-400">
+                                    Upload a chapter video
+                                </div>
+                            </div>
+                            <div class="mb-4 w-1/2">
+                                <div *ngIf="chapterDetails?.chapter.chapterMaterial">
+                                <!-- <embed [src]="chapterDetails?.chapter.chapterMaterial" type="application/pdf/" width="100%" height="30px" /> -->
+
+                                </div>
+                                <label for="chapterMaterial" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Material (PDF,
+                                    etc.) <span class="text-red-500">*</span></label>
+                                <input type="file" id="chapterMaterial" formControlName="chapterMaterial"
+                                    (change)="onChapterMaterialChange($event)" class="w-full border border-gray-300 rounded-md px-3 py-2"
+                                    accept=".pdf, .doc, .docx, .txt">
+                                <div *ngIf="chapterForm.get('chapterMaterial')?.errors?.['required'] && chapterForm.get('chapterMaterial').touched"
+                                    class="text-red-400">
+                                    Upload material(PDF,etc.) for chapter
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2">
+                            <button type="button" type="submit" class="px-4 py-2 bg-emerald-400 hover:bg-emerald-700  text-white rounded-md">
+                                {{buttonChange}}</button>
+                        </div>
+                    </form>
+                </div>
+            <!-- </div> -->
+    </div>
+</section>

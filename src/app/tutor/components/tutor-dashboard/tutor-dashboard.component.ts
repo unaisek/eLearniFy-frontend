@@ -23,9 +23,7 @@ export class TutorDashboardComponent implements OnInit {
   getMyAllCourses(){
     this._courseService.getAllMyCourses()
     .subscribe((res)=>{
-      this.myCourses = res
-      console.log(this.myCourses);
-      
+      this.myCourses = res      
     })
   }
 

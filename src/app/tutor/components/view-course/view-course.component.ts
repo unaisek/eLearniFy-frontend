@@ -22,9 +22,8 @@ export class ViewCourseComponent implements OnInit {
 
   getCourseDetails(){
     const courseId = this._route.snapshot.paramMap.get('id');
-    this._courseService.getCourseDetails(courseId).
+    this._courseService.courseDetails$.
     subscribe((res)=>{
-      console.log(res,"res");
       
     })
   }

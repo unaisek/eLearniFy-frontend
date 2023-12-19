@@ -6,6 +6,7 @@ import { TutorDashboardComponent } from './components/tutor-dashboard/tutor-dash
 import { NewCourseComponent } from './components/new-course/new-course.component';
 import { tutorGuard } from '../core/guards/tutor.guard';
 import { ViewCourseComponent } from './components/view-course/view-course.component';
+import { EditCourseComponent } from './components/edit-course/edit-course.component';
 
 
 const routes: Routes =[
@@ -16,7 +17,8 @@ const routes: Routes =[
       { path: 'home', component: TutorHomeComponent },
       { path:'dashboard', component: TutorDashboardComponent },
       { path:'add-course', component: NewCourseComponent },
-      {path:'view-course/:id',component:ViewCourseComponent}
+      {path:'view-course/:id',component:ViewCourseComponent},
+      {path:'edit-course/:id',component:EditCourseComponent}
    ]
   }
 ]

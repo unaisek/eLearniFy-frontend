@@ -5,6 +5,7 @@ import { CourseService } from '../../services/course.service';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { provideClientHydration } from '@angular/platform-browser';
+import { ICategory } from '../../models/ICategory';
 
 @Component({
   selector: 'app-new-course',
@@ -13,7 +14,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 })
 export class NewCourseComponent implements OnInit {
   courseForm: FormGroup;
-  categories = [];
+  categories =[];
   thumbnailImage: File = null;
   courseIntroVideo: File = null;
   chapterVideo: File = null;
@@ -63,7 +64,7 @@ export class NewCourseComponent implements OnInit {
 
   // fetch course category
   categoryList() {
-    this._tutorService.getCategory().subscribe((res) => {
+    this._tutorService.categoryList$.subscribe((res) => {    
       this.categories = res;
     });
   }
@@ -71,11 +72,6 @@ export class NewCourseComponent implements OnInit {
   get chapterForms() {
     return this.courseForm.get('chapters') as FormArray;
   }
-
-  removeChapter(index: number) {
-    this.chapterForms.removeAt(index);
-  }
-
   onFileChangeImage(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
     this.thumbnailImage = fileInput.files[0];
