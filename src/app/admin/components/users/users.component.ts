@@ -25,6 +25,8 @@ export class UsersComponent implements OnInit{
 
   getAllUser(){
     this._adminService.getAllUsers().subscribe((res)=>{
+      console.log(res);
+      
       this.userList = res     
     },(err)=>{
       this._toastr.error(err.error.message)

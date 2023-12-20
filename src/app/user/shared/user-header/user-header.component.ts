@@ -22,7 +22,6 @@ export class UserHeaderComponent implements OnInit {
     } else {
       this.ismenuScrolled = false
     }  
-    console.log(this.ismenuScrolled,"");
      
   }
 

@@ -10,6 +10,9 @@ import { UserMenuComponent } from './shared/user-menu/user-menu.component';
 import { UserAuthLinksComponent } from './shared/user-auth-links/user-auth-links.component';
 import { ButtonComponent } from './shared/button/button.component';
 import { CardComponent } from './shared/card/card.component';
+import { UserCourseViewComponent } from './components/user-course-view/user-course-view.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { UserChapterComponent } from './components/user-chapter/user-chapter.component';
 
 
 
@@ -23,11 +26,14 @@ import { CardComponent } from './shared/card/card.component';
     UserMenuComponent,
     UserAuthLinksComponent,
     ButtonComponent,
-    CardComponent
+    CardComponent,
+    UserCourseViewComponent,
+    UserChapterComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
+    UserRoutingModule,
+    MatTabsModule
   ]
 })
 export class UserModule { }

@@ -1,20 +1,22 @@
 import { ICategory } from "src/app/admin/models/ICategory";
+import { IUser } from "src/app/models/IUser";
 
 export interface addCourseResponse{
     message:string
 }
 
 export interface ICourse {
+  _id:string;
   title: string;
-  category: string | ICategory;
+  category: ICategory;
   level: string;
   courseType: string;
   price: string;
   description: string;
   thumbnail: string;
   introductionVideo: string;
-  chapters: { chapter: String | IChapter; order: number }[];
-  tutor?: string;
+  chapters: { chapter: IChapter; order: number }[];
+  tutor?: IUser ;
   enrolledStudents: string[];
 }
 

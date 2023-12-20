@@ -1,0 +1,31 @@
+<section class=" bg-emerald-50">
+    <div class="container md:flex pt-48 pb-5">
+        <div class="w-full md:w-1/2">
+            <p class="text-emerald-700 text-4xl font-semibold pt-3 leading-[1.5]">{{courseData?.title}}</p>
+            <p class="text-slate-900 text-lg pt-5">{{courseData?.description}}</p>
+            <p class="text-base">Created by <span class="text-blue-600">{{courseData?.tutor.name}}</span></p>
+            <app-button *ngIf="courseData.courseType ==='free'" name="Enroll Now" size="large" shade="dark" animation="fade" ></app-button>
+            <app-button *ngIf="courseData.courseType ==='paid'"
+             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"
+             
+             ></app-button>
+        </div>
+    
+        <div class="w-full md:w-1/2 flex justify-center items-center">
+            <div class="shadow-2xl">
+                <video controls width="450" height="400">
+                    <source src="{{courseData.introductionVideo}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="p-4 border rounded-lg shadow-lg container">
+    <mat-tab-group class="mt-2">
+        <mat-tab label="Chapters"><app-user-chapter [courseData]="courseData"></app-user-chapter></mat-tab>
+        <mat-tab label="Review"> Content 2 </mat-tab>
+        <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
+    </mat-tab-group>
+</div>
