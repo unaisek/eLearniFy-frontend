@@ -7,6 +7,8 @@ import { NewCourseComponent } from './components/new-course/new-course.component
 import { tutorGuard } from '../core/guards/tutor.guard';
 import { ViewCourseComponent } from './components/view-course/view-course.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
+import { TutorProfileComponent } from './shared/tutor-profile/tutor-profile.component';
+import { TutorProfileViewComponent } from './components/tutor-profile-view/tutor-profile-view.component';
 
 
 const routes: Routes =[
@@ -17,9 +19,10 @@ const routes: Routes =[
       { path: 'home', component: TutorHomeComponent },
       { path:'dashboard', component: TutorDashboardComponent },
       { path:'add-course', component: NewCourseComponent },
-      {path:'view-course/:id',component:ViewCourseComponent},
-      {path:'edit-course/:id',component:EditCourseComponent}
-   ]
+      { path:'view-course/:id',component:ViewCourseComponent },
+      { path:'edit-course/:id',component:EditCourseComponent },
+      { path:'profile', component:TutorProfileViewComponent }
+   ] 
   }
 ]
 

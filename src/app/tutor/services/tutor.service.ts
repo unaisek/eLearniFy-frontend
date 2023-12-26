@@ -3,13 +3,17 @@ import { Injectable } from '@angular/core';
 import { Observable,BehaviorSubject } from 'rxjs';
 import { ICategory } from '../models/ICategory';
 import { environment } from 'src/environments/environment';
+import { IUser } from 'src/app/models/IUser';
+import { _isTestEnvironment } from '@angular/cdk/platform';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class TutorService {
-  private _categorySubject: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
+  private _categorySubject: BehaviorSubject<ICategory[]> = new BehaviorSubject<
+    ICategory[]
+  >([]);
   categoryList$: Observable<ICategory[]> = this._categorySubject.asObservable();
 
   constructor(private _http: HttpClient) {
@@ -20,12 +24,22 @@ export class TutorService {
     this._http
       .get<[ICategory]>(`${environment.apiUrl}/tutor/category`)
       .subscribe({
-        next:(categories) => {
+        next: (categories) => {
           this._categorySubject.next(categories);
         },
-        error:(error) => {
+        error: (error) => {
           console.error('Error fetching categories: ', error);
-        }
-    });
+        },
+      });
+  }
+
+  getTutorData(userId: string): Observable<IUser> {
+    return this._http.get<IUser>(
+      `${environment.apiUrl}/tutor/profile/${userId}`
+    );
+  }
+
+  uploadProfile(formData:FormData):Observable<IUser>{
+    return this._http.put<IUser>(`${environment.apiUrl}/tutor/upload-profile`,formData)
   }
 }

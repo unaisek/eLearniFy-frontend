@@ -1,1 +1,8 @@
-<p>all-courses works!</p>
+<section class="pt-48">
+    <div class="container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+        <app-card *ngFor="let course of courseList" [course]="course"></app-card>
+
+    </div>
+
+</section>

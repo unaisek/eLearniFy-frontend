@@ -1,2 +1,14 @@
-<button (click)="logout()"
-    class="bg-emerald-400 py-1 w-fit px-8 mx-auto rounded-2xl hover:scale-105 hover:bg-emerald-600 duration-300">Logout</button>
+<div class="dropdown dropdown-end">
+    <svg *ngIf="!userDetails?.profileImage || userDetails?.profileImage == ''" tabindex="0"
+        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        data-slot="icon" class="w-9 h-9">
+        <path stroke-linecap="round" stroke-linejoin="round"
+            d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+    </svg>
+    <img *ngIf="userDetails?.profileImage" [src]="userDetails?.profileImage" alt="" tabindex="0"
+        class="w-9 h-9 rounded-full object-cover">
+    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-32">
+        <li class="hover:bg-emerald-200 hover:rounded-md"><a (click)="onclickProfile()">Profile</a></li>
+        <li class="hover:bg-emerald-200 hover:rounded-md"><a (click)="logout()">Log Out</a></li>
+    </ul>
+</div>

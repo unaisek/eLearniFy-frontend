@@ -1,7 +1,7 @@
 import { ICourse } from "../tutor/models/ICourse";
 
 export interface IUser {
-    _ID:string;    
+    _id:string;    
     name: string;
     email: string;
     role: string;

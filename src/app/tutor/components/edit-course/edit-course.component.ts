@@ -16,7 +16,7 @@ export class EditCourseComponent implements OnInit {
   editCourseForm: FormGroup;
   courseId: string;
   categoryList: ICategory[];
-  courseDetails;
+  courseDetails; 
   loading: boolean = false;
   thumbnailImage: File = null;
   courseIntroVideo: File = null;
@@ -134,7 +134,8 @@ export class EditCourseComponent implements OnInit {
       .updateCourse(formData, this.courseId)
       .subscribe({next:(res) => {
        this._toastr.success("Course Updated");
-       window.location.reload();
+       this.getCourseDetails()
+      //  window.location.reload();
       },
       error:(err)=>{
         this._toastr.error("Course Updation Failed")

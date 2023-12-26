@@ -14,6 +14,7 @@ import { ViewCourseComponent } from './components/view-course/view-course.compon
 import { TutorCardComponent } from './shared/tutor-card/tutor-card.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { ChapterModalComponent } from './shared/chapter-modal/chapter-modal.component';
+import { TutorProfileViewComponent } from './components/tutor-profile-view/tutor-profile-view.component';
 
 
 
@@ -31,6 +32,7 @@ import { ChapterModalComponent } from './shared/chapter-modal/chapter-modal.comp
     TutorCardComponent,
     EditCourseComponent,
     ChapterModalComponent,
+    TutorProfileViewComponent,
   ],
   imports: [
     CommonModule,

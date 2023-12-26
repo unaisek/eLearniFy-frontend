@@ -14,7 +14,7 @@ export class OtpComponent implements OnInit,OnDestroy{
   invalid: boolean = false;
   otpVerificationForm!: FormGroup;
   showResendButton = false;
-  timer:number = 120;
+  timer:number = 60;
   intervalId;
 
   constructor(
@@ -43,7 +43,7 @@ export class OtpComponent implements OnInit,OnDestroy{
 
   startTimer(){
     this.showResendButton = false;
-    this.timer = 120;
+    this.timer = 60;
     this.intervalId = setInterval(()=>{
       this.timer --;
       if(this.timer === 0){

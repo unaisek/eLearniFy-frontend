@@ -6,6 +6,8 @@ import { UserLayoutComponent } from './components/user-layout/user-layout.compon
 import { AllCoursesComponent } from './components/all-courses/all-courses.component';
 import { ProgressComponent } from './components/progress/progress.component';
 import { UserCourseViewComponent } from './components/user-course-view/user-course-view.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 
 
 const routes: Routes = [
@@ -16,7 +18,9 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path:'all-courses', component: AllCoursesComponent },
       { path:'progress', component: ProgressComponent },
-      { path:'course-over-view/:id',component: UserCourseViewComponent}
+      { path:'course-over-view/:id',component: UserCourseViewComponent},
+      { path:'payment-success',component:PaymentSuccessComponent },
+      { path:'profile',component:UserProfileComponent }
    ]
   }
   

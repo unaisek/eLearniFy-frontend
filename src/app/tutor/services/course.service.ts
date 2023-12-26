@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { ICategory } from '../models/ICategory';
 import { environment as env } from 'src/environments/environment';
 import { IChapter, ICourse, addCourseResponse } from '../models/ICourse';
@@ -42,16 +42,26 @@ export class CourseService {
   }
 
   updateCourse(formData:FormData,courseId:string):Observable<ICourse>{
-     const headers = new HttpHeaders();
-     headers.append('Content-Type', 'multipart/form-data');
-    return this._http.put<ICourse>(`${env.apiUrl}/tutor/update-course/${courseId}`, formData,{headers});
-    
+    //  const headers = new HttpHeaders();
+    //  headers.append('Content-Type', 'multipart/form-data');
+    return this._http
+      .put<ICourse>(`${env.apiUrl}/tutor/update-course/${courseId}`, formData,)
+      .pipe(
+        tap((updatedCourse) => {
+          // After successful update, emit the updated course details
+          this._courseDetailsSubject.next(updatedCourse);
+          console.log(this.courseDetails$);
+          
+        })
+      );
+
   }
 
   updateChapter(chapterId:string,formData:FormData): Observable <any>{
-    console.log("updateChapter jk");
+
     // const headers = new HttpHeaders().set('Content-Type', 'multipart/form-data');
-    return this._http.put(`${env.apiUrl}/tutor/update-chapter/${chapterId}`,formData);
+    return this._http.put(`${env.apiUrl}/tutor/update-chapter/${chapterId}`, formData)
+     
   }
 
   addNewChapter(formData:FormData,courseId:string):Observable <any>{

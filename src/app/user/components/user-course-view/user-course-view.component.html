@@ -4,20 +4,17 @@
             <p class="text-emerald-700 text-4xl font-semibold pt-3 leading-[1.5]">{{courseData?.title}}</p>
             <p class="text-slate-900 text-lg pt-5">{{courseData?.description}}</p>
             <p class="text-base">Created by <span class="text-blue-600">{{courseData?.tutor.name}}</span></p>
-            <app-button *ngIf="courseData.courseType ==='free'" name="Enroll Now" size="large" shade="dark" animation="fade" ></app-button>
-            <app-button *ngIf="courseData.courseType ==='paid'"
-             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"
-             
-             ></app-button>
-        </div>
-    
+            <p class="text-lg font-semibold text-slate-800 p-2 ">₹{{courseData?.price}}</p>
+            <app-button *ngIf="courseData?.courseType ==='free'" name="Enroll Now" size="large" shade="dark" animation="fade" ></app-button>
+            <app-button (click)="initiatePayment(courseData?._id)" *ngIf="courseData?.courseType ==='paid'"
+             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"></app-button>
+        </div>   
         <div class="w-full md:w-1/2 flex justify-center items-center">
-            <div class="shadow-2xl">
+            <div *ngIf="courseData?.introductionVideo" class="">
                 <video controls width="450" height="400">
-                    <source src="{{courseData.introductionVideo}}" type="video/mp4">
+                    <source [src]="courseData?.introductionVideo" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
-
             </div>
         </div>
     </div>

@@ -13,6 +13,8 @@ import { CardComponent } from './shared/card/card.component';
 import { UserCourseViewComponent } from './components/user-course-view/user-course-view.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { UserChapterComponent } from './components/user-chapter/user-chapter.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 
 
 
@@ -28,7 +30,9 @@ import { UserChapterComponent } from './components/user-chapter/user-chapter.com
     ButtonComponent,
     CardComponent,
     UserCourseViewComponent,
-    UserChapterComponent
+    UserChapterComponent,
+    UserProfileComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     CommonModule,
