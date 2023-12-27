@@ -18,6 +18,7 @@ export interface ICourse {
   chapters: { chapter: IChapter; order: number }[];
   tutor?: IUser ;
   enrolledStudents: string[];
+  status:boolean;
 }
 
 export interface IChapter {
