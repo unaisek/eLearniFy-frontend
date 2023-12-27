@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from 'src/app/models/IUser';
 import { TutorService } from '../../services/tutor.service';
+import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
 
 @Component({
   selector: 'app-tutor-profile',
@@ -13,7 +14,8 @@ export class TutorProfileComponent implements OnInit {
 
   constructor(
     private _router: Router,
-    private _tutorService: TutorService
+    private _tutorService: TutorService,
+    private _dialogService:ConfirmModalService
     ) {}
   ngOnInit(): void {
     this.getUserDetails();
@@ -29,13 +31,22 @@ export class TutorProfileComponent implements OnInit {
   }
 
   logout() {
-    const token = localStorage.getItem('tutorAuthToken');
-    if (token) {
-      localStorage.clear();
-      this._router.navigate(['/login']);
-    } else {
-      this._router.navigate(['/login']);
-    }
+    this._dialogService.confirmModal({
+      title: 'Please confirm action',
+      message: 'Are you sure want to logout!',
+      confirmText: 'Yes',
+      cancelText: 'No',
+    }).subscribe((confirm)=>{
+      if(confirm){
+        const token = localStorage.getItem('tutorAuthToken');
+        if (token) {
+          localStorage.clear();
+          this._router.navigate(['/login']);
+        } else {
+          this._router.navigate(['/login']);
+        }
+      }
+    })   
   }
 
   onclickProfile(){

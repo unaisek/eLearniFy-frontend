@@ -20,6 +20,7 @@ import { TutorModule } from './tutor/tutor.module';
 import { AdminModule } from './admin/admin.module';
 import { TimeFormatPipe } from './core/pipes/time-format.pipe';
 import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
     UserModule,
     TutorModule,
     AdminModule,
+    SharedModule
 
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],

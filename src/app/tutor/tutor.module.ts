@@ -15,6 +15,7 @@ import { TutorCardComponent } from './shared/tutor-card/tutor-card.component';
 import { EditCourseComponent } from './components/edit-course/edit-course.component';
 import { ChapterModalComponent } from './shared/chapter-modal/chapter-modal.component';
 import { TutorProfileViewComponent } from './components/tutor-profile-view/tutor-profile-view.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -33,13 +34,16 @@ import { TutorProfileViewComponent } from './components/tutor-profile-view/tutor
     EditCourseComponent,
     ChapterModalComponent,
     TutorProfileViewComponent,
+
+   
   ],
   imports: [
     CommonModule,
     TutorRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    SharedModule
   ],
 })
 export class TutorModule {}
