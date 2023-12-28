@@ -82,6 +82,11 @@ export class CourseService {
 
   listCourse(courseId:string):Observable<ICourse>{
     const body = {status:true};
-    return this._http.put<ICourse>(`${env.apiUrl}/tutor/list-course/${courseId}`,body)
+    return this._http.put<ICourse>(`${env.apiUrl}/tutor/list-course/${courseId}`,body);
+  }
+
+  deleteChapter(courseId:string,chapterId:string) : Observable <ICourse>{
+    const body = { courseId,chapterId}
+    return this._http.put<ICourse>(`${env.apiUrl}/tutor/delete-chapter`,body);
   }
 }

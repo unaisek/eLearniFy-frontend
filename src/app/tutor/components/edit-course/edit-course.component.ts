@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { IChapter, ICourse } from '../../models/ICourse';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
 
 @Component({
   selector: 'app-edit-course',
@@ -28,7 +29,8 @@ export class EditCourseComponent implements OnInit {
     private _tutorService: TutorService,
     private _route: ActivatedRoute,
     private _courseService: CourseService,
-    private _toastr:ToastrService
+    private _toastr:ToastrService,
+    private _dialogService:ConfirmModalService
   ) {}
 
   ngOnInit(): void {
@@ -145,6 +147,28 @@ export class EditCourseComponent implements OnInit {
   showChapterModal(chapterData) { 
     this.showModal = true;        
     this.chapterDetails = chapterData;   
+  }
+
+  deleteChapter(courseId:string, chapterId:string){
+    this._dialogService.confirmModal({
+      title:"Please confirm action!",
+      message:"Are you sure want delete chapter!",
+      confirmText:"Confirm",
+      cancelText:"Cancel"
+    }).subscribe((confirm)=>{
+      if(confirm){
+        this._courseService.deleteChapter(courseId,chapterId).subscribe({
+          next:(res)=>{
+            this._toastr.success("Chapter Deleted succssfully!")            
+          },
+          error:(error)=>{
+            this._toastr.error("chapter deletion failed");
+            console.log(error);
+            
+          }
+        })
+      }
+    })
   }
   
 }
