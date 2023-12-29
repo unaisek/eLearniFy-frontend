@@ -33,10 +33,10 @@ export class PaymentService {
   makePayment(courseId: string): Observable<any> {
     // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const body = { courseId }; 
-    return this._http.post(`${env.apiUrl}/user/create-checkout-session`, body,);
+    return this._http.post(`${env.apiUrl}/user/create-checkout-session`, body);
   }
 
-  async initiateStripeCheckout(session: string): Promise<void> {
+  async initiateStripeCheckout(session: string): Promise<boolean> {
     try {
       const stripe = await this.stripePromise;
       // const session = await this.makePayment(courseId).toPromise();
@@ -44,12 +44,16 @@ export class PaymentService {
       const result = await stripe.redirectToCheckout({
         sessionId:session
       });
+      
 
       if (result.error) {
         console.error(result.error);
-      }
+        return false
+      } 
+      return true;
     } catch (error) {
       console.error(error);
+      return false
     }
   }
 }

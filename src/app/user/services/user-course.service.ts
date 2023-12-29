@@ -20,4 +20,9 @@ export class UserCourseService {
   getCourseDetails(courseId:string) : Observable<ICourse>{
     return this._http.get<ICourse>(`${env.apiUrl}/user/course-overView/${courseId}`);
   }
+
+  enrollCourse(userId:string, courseId:string):Observable<any>{
+    const body ={userId,courseId}
+    return this._http.post(`${env.apiUrl}/user/enroll-course`,body);
+  }
 }
