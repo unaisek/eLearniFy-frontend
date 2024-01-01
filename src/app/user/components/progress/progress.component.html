@@ -1,5 +1,5 @@
 <div class=" container pt-48">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="border border-emerald-200 rounded-2xl p-5" *ngFor="let course of courseData">
             <img class="w-full rounded-xl" src="{{course?.courseId.thumbnail}}" alt="">
             <div class="flex justify-between mt-5 items-center">
@@ -59,7 +59,12 @@
             <div class="mt-2 text-center">
                 <a routerLink="/user/course-over-view/{{course.courseId._id}}">
                     <app-button name="Start learning" size="small" shade="dark"></app-button>
-                </a>
+                </a> 
+               <button *ngIf="isCourseExpired(course.createdAt) && course.courseId.courseType === 'paid'" 
+                 (click)="cancelCourse(course.courseId._id)" 
+                 class="bg-red-500 text-white px-3 py-2 rounded-md hover:bg-white hover:text-emerald-600 ms-2 transition-all duration-300">
+                 Cancel
+                </button>
             </div>
         
         </div>

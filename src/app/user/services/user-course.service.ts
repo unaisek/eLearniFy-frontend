@@ -26,7 +26,15 @@ export class UserCourseService {
     return this._http.post(`${env.apiUrl}/user/enroll-course`, body);
   }
 
-  getEnrolledCourses(userId:string):Observable<IEnrolledCourse[]>{
-    return this._http.get<IEnrolledCourse[]>(`${env.apiUrl}/user/my-courses/${userId}`)
+  getEnrolledCourses(userId: string): Observable<IEnrolledCourse[]> {
+    return this._http.get<IEnrolledCourse[]>(
+      `${env.apiUrl}/user/my-courses/${userId}`
+    );
+  }
+
+  cancelEnrolledCourse(courseId: string): Observable <IEnrolledCourse>{
+    const userId = localStorage.getItem('user');
+    const body = { courseId, userId };
+    return this._http.post<IEnrolledCourse>(`${env.apiUrl}/user/cancel-course`,body);
   }
 }

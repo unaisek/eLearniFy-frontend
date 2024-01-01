@@ -94,7 +94,7 @@ export class UserCourseViewComponent implements OnInit {
         this._toastr.success("Course enrolled successfully!")
       },
       error:(error)=>{
-        this._toastr.error("course enrollment failed..!");
+        this._toastr.error("course already enrolled!");
         console.log(error.message);
         
       }
@@ -109,7 +109,6 @@ export class UserCourseViewComponent implements OnInit {
     this._paymentService.makePayment(courseId).subscribe(
       (session)=>{
         this._paymentService.initiateStripeCheckout(session)
-        // window.location.href = session
       },
       (error)=>{
         console.log("payment error:",error);

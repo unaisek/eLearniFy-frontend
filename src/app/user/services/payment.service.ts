@@ -32,7 +32,8 @@ export class PaymentService {
 
   makePayment(courseId: string): Observable<any> {
     // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const body = { courseId }; 
+    const userId = localStorage.getItem('user')
+    const body = { courseId,userId }; 
     return this._http.post(`${env.apiUrl}/user/create-checkout-session`, body);
   }
 

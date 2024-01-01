@@ -19,6 +19,7 @@ export interface ICourse {
   tutor?: IUser ;
   enrolledStudents: string[];
   status:boolean;
+  createdAt:string
 }
 
 export interface IChapter {

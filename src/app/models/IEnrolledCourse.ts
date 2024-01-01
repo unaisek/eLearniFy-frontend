@@ -8,6 +8,6 @@ export interface IEnrolledCourse{
     price?:number;
     status?:boolean;
     progression?:IChapter[];
-    createdAt:Date;
+    createdAt:string;
 
 }
