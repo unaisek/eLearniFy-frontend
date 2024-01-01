@@ -2,7 +2,10 @@
     <img class="w-full rounded-xl" src="{{course.thumbnail}}" alt="">
     <div class="flex justify-between mt-5 items-center">
         <div class="flex items-center gap-2">
-            <img class="w-12 h-12 rounded-full " src="../../../../assets/author-01.jpg" alt="">
+            <img *ngIf="!course.tutor.profileImage" class="w-12 h-12 rounded-full "
+                src="../../../../assets/default-user.webp" alt="">
+            <img *ngIf="course.tutor.profileImage" class="w-12 h-12 rounded-full "
+                src="{{course.tutor.profileImage}}" alt="">
             <p class="text-slate-500 font-light">{{course.tutor.name}}</p>
         </div>
         <div>

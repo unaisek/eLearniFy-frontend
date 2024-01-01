@@ -11,5 +11,7 @@ export class CardComponent  {
 
   @Input('course')
   course:ICourse 
+  @Input('enrolled')
+  enrolled:boolean = false;
 
 }
