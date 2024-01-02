@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { IUser } from 'src/app/models/IUser';
 import { ToastrService } from 'ngx-toastr';
+import { IWallet } from 'src/app/models/IWallet';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UserProfileComponent implements OnInit {
   userDetails: IUser;
+  walletDetails: IWallet;
   profileImage: File = null
 
   constructor(private _userService: UserService,
@@ -17,6 +19,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserDetails();
+    this.getWalletDetails();
   }
   getUserDetails() {
     const userId = localStorage.getItem('user');
@@ -48,6 +51,15 @@ export class UserProfileComponent implements OnInit {
         console.log(error);
         
       }
+    })
+  }
+
+  getWalletDetails(){
+    const userId = localStorage.getItem('user')
+    this._userService.getWalletData(userId).subscribe((wallet)=>{
+      console.log(wallet);
+      
+      this.walletDetails = wallet
     })
   }
 }

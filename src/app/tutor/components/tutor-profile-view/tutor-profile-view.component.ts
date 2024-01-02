@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IUser } from 'src/app/models/IUser';
 import { TutorService } from '../../services/tutor.service';
 import { ToastrService } from 'ngx-toastr';
+import { IWallet } from 'src/app/models/IWallet';
 
 @Component({
   selector: 'app-tutor-profile-view',
@@ -10,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TutorProfileViewComponent {
   userDetails: IUser;
+  walletDetails: IWallet;
   profileImage: File = null;
 
   constructor(
@@ -19,6 +21,7 @@ export class TutorProfileViewComponent {
 
   ngOnInit(): void {
     this.getUserDetails();
+    this.getWalletData();
   }
   getUserDetails() {
     const userId = localStorage.getItem('user');
@@ -53,5 +56,14 @@ export class TutorProfileViewComponent {
         console.log(error);
       },
     });
+  }
+
+  getWalletData(){
+    const tutorId = localStorage.getItem('user');
+    this._tutorService.getWalletData(tutorId).subscribe((wallet)=>{
+      console.log(wallet,"wallet");
+      
+      this.walletDetails = wallet;
+    })
   }
 }
