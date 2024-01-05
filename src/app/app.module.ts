@@ -21,6 +21,7 @@ import { AdminModule } from './admin/admin.module';
 import { TimeFormatPipe } from './core/pipes/time-format.pipe';
 import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
 import { SharedModule } from './shared/shared.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { SharedModule } from './shared/shared.module';
     UserModule,
     TutorModule,
     AdminModule,
-    SharedModule
+    SharedModule,
+    MatProgressBarModule
 
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],

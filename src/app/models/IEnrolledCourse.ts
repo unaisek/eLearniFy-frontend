@@ -7,7 +7,7 @@ export interface IEnrolledCourse{
     courseId?:ICourse;
     price?:number;
     status?:boolean;
-    progression?:IChapter[];
+    progression?:string[];
     createdAt:string;
 
 }

@@ -13,6 +13,7 @@ export class UserProfileComponent implements OnInit {
   userDetails: IUser;
   walletDetails: IWallet;
   profileImage: File = null
+  Date: any;
 
   constructor(private _userService: UserService,
     private _toastr:ToastrService) {}

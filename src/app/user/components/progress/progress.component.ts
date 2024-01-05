@@ -13,6 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ProgressComponent implements OnInit {
   courseData: IEnrolledCourse[];
 
+
   constructor(
     private _userCourseService: UserCourseService,
     private _conirmModalService: ConfirmModalService,
@@ -56,5 +57,13 @@ export class ProgressComponent implements OnInit {
         })
       }
     })
+  }
+
+  calculateProgression(course:IEnrolledCourse): number {
+    const totalChapter = course.courseId.chapters.length;
+    const completeChapter = course.progression.length;
+
+    const percentage = Math.floor((completeChapter/totalChapter)*100)
+    return percentage
   }
 }

@@ -8,6 +8,7 @@ import { ProgressComponent } from './components/progress/progress.component';
 import { UserCourseViewComponent } from './components/user-course-view/user-course-view.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { EnrolledCourseViewComponent } from './components/enrolled-course-view/enrolled-course-view.component';
 
 
 const routes: Routes = [
@@ -19,8 +20,9 @@ const routes: Routes = [
       { path:'all-courses', component: AllCoursesComponent },
       { path:'progress', component: ProgressComponent },
       { path:'course-over-view/:id',component: UserCourseViewComponent},
-      { path:'payment-success',component:PaymentSuccessComponent },
-      { path:'profile',component:UserProfileComponent }
+      { path:'payment-success', component: PaymentSuccessComponent },
+      { path:'profile', component: UserProfileComponent },
+      { path: 'enrolled-course-overView/:id', component: EnrolledCourseViewComponent }
    ]
   }
   

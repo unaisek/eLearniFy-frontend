@@ -15,6 +15,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { UserChapterComponent } from './components/user-chapter/user-chapter.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
+import { EnrolledCourseViewComponent } from './components/enrolled-course-view/enrolled-course-view.component';
+import { SharedModule } from '../shared/shared.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -32,12 +35,15 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
     UserCourseViewComponent,
     UserChapterComponent,
     UserProfileComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    EnrolledCourseViewComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    MatTabsModule
+    MatTabsModule,
+    SharedModule,
+    MatProgressBarModule
   ]
 })
 export class UserModule { }

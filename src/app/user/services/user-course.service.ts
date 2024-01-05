@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
 import { ICourse } from 'src/app/tutor/models/ICourse';
 import { environment as env } from 'src/environments/environment';
@@ -9,6 +9,8 @@ import { environment as env } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class UserCourseService {
+  enrolledCourseData$ = new Subject<IEnrolledCourse>();
+
   constructor(private _http: HttpClient) {}
 
   getAllCoursesForStudent(): Observable<ICourse[]> {
@@ -32,9 +34,44 @@ export class UserCourseService {
     );
   }
 
-  cancelEnrolledCourse(courseId: string): Observable <IEnrolledCourse>{
+  cancelEnrolledCourse(courseId: string): Observable<IEnrolledCourse> {
     const userId = localStorage.getItem('user');
     const body = { courseId, userId };
-    return this._http.post<IEnrolledCourse>(`${env.apiUrl}/user/cancel-course`,body);
+    return this._http.post<IEnrolledCourse>(
+      `${env.apiUrl}/user/cancel-course`,
+      body
+    );
+  }
+
+  // getEnrolledCourseData(
+  //   courseId: string,
+  //   userId: string
+  // ): Observable<IEnrolledCourse> {
+  //   return this._http.get<IEnrolledCourse>(
+  //     `${env.apiUrl}/user/enrolled-course?courseId=${courseId}&userId=${userId}`
+  //   );
+  // }
+
+  getEnrolledCourseData(
+    courseId: string,
+    userId: string
+  ): void {
+    this._http.get<IEnrolledCourse>(
+      `${env.apiUrl}/user/enrolled-course?courseId=${courseId}&userId=${userId}`).
+      subscribe((data)=>{
+        this.enrolledCourseData$.next(data)
+      })
+  }
+
+  updateEnrolledCourseProgression(
+    courseId: string,
+    chapterId: string
+  ): Observable<IEnrolledCourse> {
+    const userId = localStorage.getItem('user');
+    const body = { userId, courseId, chapterId };
+    return this._http.put<IEnrolledCourse>(
+      `${env.apiUrl}/user/update-progression`,
+      body
+    );
   }
 }
