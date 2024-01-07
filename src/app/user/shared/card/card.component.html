@@ -6,7 +6,7 @@
                 src="../../../../assets/default-user.webp" alt="">
             <img *ngIf="course.tutor.profileImage" class="w-12 h-12 rounded-full "
                 src="{{course.tutor.profileImage}}" alt="">
-            <p class="text-slate-500 font-light">{{course.tutor.name}}</p>
+            <span class="text-slate-500 font-light">{{course.tutor.name}}</span>
         </div>
         <div>
             <button class="bg-emerald-50 rounded-md text-emerald-700 px-5 py-2 text-opacity-80">{{course.category.categoryName}}</button>
@@ -38,10 +38,10 @@
             </div>
 
         </div> -->
-        <div class="flex justify-between items-center p-2 bg-emerald-50 rounded-2xl">
-            <p class="text-base text-emerald-600 font-semibold">{{course.courseType}} 
+        <div class="flex justify-between items-center p-2 bg-emerald-50 rounded-lg">
+            <span class="text-base text-emerald-600 font-semibold">{{course.courseType}} 
                 <span *ngIf="course.courseType =='paid'" class="text-sm text-slate-900">₹{{course.price}}</span>
-            </p>
+            </span>
            
             <div class="flex gap-1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -49,9 +49,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round"
                         d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
                 </svg>
-                <p>{{course.chapters.length}} Modules</p>
+                <span>{{course.chapters.length}} Modules</span>
             </div>
-         </div>
+        </div>
     </div>
     <div class="mt-2 text-center">
         <a routerLink="/user/course-over-view/{{course._id}}">

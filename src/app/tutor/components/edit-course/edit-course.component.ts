@@ -17,20 +17,20 @@ export class EditCourseComponent implements OnInit {
   editCourseForm: FormGroup;
   courseId: string;
   categoryList: ICategory[];
-  courseDetails; 
+  courseDetails;
   loading: boolean = false;
   thumbnailImage: File = null;
   courseIntroVideo: File = null;
   showModal: boolean = false;
-  chapterDetails:{chapter:IChapter,order:number} | null;
+  chapterDetails: { chapter: IChapter; order: number } | null;
 
   constructor(
     private _fb: FormBuilder,
     private _tutorService: TutorService,
     private _route: ActivatedRoute,
     private _courseService: CourseService,
-    private _toastr:ToastrService,
-    private _dialogService:ConfirmModalService
+    private _toastr: ToastrService,
+    private _dialogService: ConfirmModalService
   ) {}
 
   ngOnInit(): void {
@@ -60,13 +60,13 @@ export class EditCourseComponent implements OnInit {
     this._courseService.getCourseDetails(this.courseId);
     this._courseService.courseDetails$.subscribe((res) => {
       this.courseDetails = res;
-      console.log(res,"respones");
+      console.log(res, 'respones');
 
       this.setCourseFormValue();
     });
   }
   setCourseFormValue() {
-    if(this.courseDetails){
+    if (this.courseDetails) {
       this.editCourseForm.patchValue({
         title: this.courseDetails.title,
         category: this.courseDetails.category._id,
@@ -75,7 +75,6 @@ export class EditCourseComponent implements OnInit {
         price: this.courseDetails.price,
         description: this.courseDetails.description,
       });
-      
     }
   }
   onCourseTypeChange(event: Event): void {
@@ -132,43 +131,47 @@ export class EditCourseComponent implements OnInit {
       );
     }
 
-    this._courseService
-      .updateCourse(formData, this.courseId)
-      .subscribe({next:(res) => {
-       this._toastr.success("Course Updated");
-       this.getCourseDetails()
-      //  window.location.reload();
+    this._courseService.updateCourse(formData, this.courseId).subscribe({
+      next: (res) => {
+        this._toastr.success('Course Updated');
+        this.getCourseDetails();
+        //  window.location.reload();
       },
-      error:(err)=>{
-        this._toastr.error("Course Updation Failed")
-      }});
+      error: (err) => {
+        this._toastr.error('Course Updation Failed');
+      },
+    });
   }
 
-  showChapterModal(chapterData) { 
-    this.showModal = true;        
-    this.chapterDetails = chapterData;   
+  showChapterModal(chapterData) {
+    this.showModal = true;
+    this.chapterDetails = chapterData;
   }
 
-  deleteChapter(courseId:string, chapterId:string){
-    this._dialogService.confirmModal({
-      title:"Please confirm action!",
-      message:"Are you sure want delete chapter!",
-      confirmText:"Confirm",
-      cancelText:"Cancel"
-    }).subscribe((confirm)=>{
-      if(confirm){
-        this._courseService.deleteChapter(courseId,chapterId).subscribe({
-          next:(res)=>{
-            this._toastr.success("Chapter Deleted succssfully!")            
-          },
-          error:(error)=>{
-            this._toastr.error("chapter deletion failed");
-            console.log(error);
-            
-          }
-        })
-      }
-    })
+  deleteChapter(courseId: string, chapterId: string) {
+    this._dialogService
+      .confirmModal({
+        title: 'Please confirm action!',
+        message: 'Are you sure want delete chapter!',
+        confirmText: 'Confirm',
+        cancelText: 'Cancel',
+      })
+      .subscribe((confirm) => {
+        if (confirm) {
+          this._courseService.deleteChapter(courseId, chapterId).subscribe({
+            next: (res) => {
+              this._toastr.success('Chapter Deleted succssfully!');
+            },
+            error: (error) => {
+              this._toastr.error('chapter deletion failed');
+              console.log(error);
+            },
+          });
+        }
+      });
   }
-  
+
+  onChapterUpdate() {
+    this.getCourseDetails();
+  }
 }

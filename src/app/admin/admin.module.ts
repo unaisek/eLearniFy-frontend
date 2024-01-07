@@ -10,6 +10,9 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { UsersComponent } from './components/users/users.component';
 import { CategoriesComponent } from './components/categories/categories.component';
+import { CouponComponent } from './components/coupon/coupon.component';
+import { DialogModule } from 'primeng/dialog';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -21,13 +24,16 @@ import { CategoriesComponent } from './components/categories/categories.componen
     SidebarComponent,
     NavbarComponent,
     UsersComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CouponComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     MatIconModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    DialogModule,
+    SharedModule,
+  ],
 })
-export class AdminModule { }
+export class AdminModule {}

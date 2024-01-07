@@ -42,7 +42,7 @@ export class CategoriesComponent implements OnInit {
     this._adminService.addCategory(category)
     .subscribe((res)=>{
       this._toastr.success("category added successfully..!!");
-      window.location.reload();
+      // window.location.reload();
     },(err)=>{
       this._toastr.error(err.error.message)
     })

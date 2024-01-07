@@ -11,7 +11,9 @@ import { VgCoreModule } from '@videogular/ngx-videogular/core';
 import { VgControlsModule } from '@videogular/ngx-videogular/controls';
 import { VgOverlayPlayModule } from '@videogular/ngx-videogular/overlay-play';
 import { VgBufferingModule } from '@videogular/ngx-videogular/buffering';
-import { VgApiService } from '@videogular/ngx-videogular/core';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 // import { VgScrubBarModule } from '@videogular/ngx-videogular/scrub-bar';
 // import { VgMediaModule } from '@videogular/ngx-videogular/controls';
 
@@ -20,9 +22,7 @@ import { VgApiService } from '@videogular/ngx-videogular/core';
 
 
 @NgModule({
-  declarations: [
-    ConfirmModalComponent
-  ],
+  declarations: [ConfirmModalComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -35,19 +35,20 @@ import { VgApiService } from '@videogular/ngx-videogular/core';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-  
-
-
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
-  exports:[
+  exports: [
     // BrowserModule,
     // BrowserAnimationsModule,
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-
-
-  ]
+    MatSelectModule,
+    MatInputModule,
+    MatFormFieldModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

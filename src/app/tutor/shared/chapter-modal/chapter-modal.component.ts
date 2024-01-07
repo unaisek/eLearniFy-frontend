@@ -18,23 +18,24 @@ export class ChapterModalComponent implements OnInit, OnChanges {
   chapterDetails: { chapter: IChapter; order: number } | null;
 
   @Input('courseTitle')
-  courseTitle:string;
+  courseTitle: string;
 
   @Output('close')
   onclose = new EventEmitter();
 
+  @Output() chapterUpdated: EventEmitter<void> = new EventEmitter<void>();
 
   buttonChange: string;
   chapterForm: FormGroup;
-  chapterVideoFile : File = null;
-  chapterMaterialFile : File = null;
+  chapterVideoFile: File = null;
+  chapterMaterialFile: File = null;
 
   constructor(
     private _fb: FormBuilder,
-    private _courseService:CourseService,
+    private _courseService: CourseService,
     private _toastr: ToastrService,
-    private _route: ActivatedRoute,
-    ) {}
+    private _route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.chapterForm = this._fb.group({
@@ -43,9 +44,6 @@ export class ChapterModalComponent implements OnInit, OnChanges {
       chapterVideo: ['', Validators.required],
       chapterMaterial: ['', Validators.required],
     });
-
-    console.log(this.courseTitle,"");
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -58,7 +56,6 @@ export class ChapterModalComponent implements OnInit, OnChanges {
         if (this.chapterForm) {
           this.chapterForm.reset();
         }
-        
       }
     }
   }
@@ -78,73 +75,78 @@ export class ChapterModalComponent implements OnInit, OnChanges {
     this.onclose.emit();
   }
 
-  onChapterVideoChange(event:Event):void {
-     const fileInput = event.target as HTMLInputElement;
-     this.chapterVideoFile = fileInput.files[0];
+  onChapterVideoChange(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    this.chapterVideoFile = fileInput.files[0];
   }
-  onChapterMaterialChange(event:Event):void {
-      const fileInput = event.target as HTMLInputElement;
-      this.chapterMaterialFile = fileInput.files[0];
+  onChapterMaterialChange(event: Event): void {
+    const fileInput = event.target as HTMLInputElement;
+    this.chapterMaterialFile = fileInput.files[0];
   }
-
-
 
   submitChapter() {
-
     const formData = new FormData();
-    formData.append('chapterTitle', this.chapterForm.get('chapterTitle')?.value);
-    formData.append('chapterDescription', this.chapterForm.get('chapterDescription')?.value);
-    formData.append('courseTitle',this.courseTitle);
+    formData.append(
+      'chapterTitle',
+      this.chapterForm.get('chapterTitle')?.value
+    );
+    formData.append(
+      'chapterDescription',
+      this.chapterForm.get('chapterDescription')?.value
+    );
+    formData.append('courseTitle', this.courseTitle);
 
-    if(this.chapterVideoFile){
-      formData.append('chapterVideo',this.chapterVideoFile)
-    } else{
-      formData.append('chapterVideo',this.chapterDetails.chapter.chapterVideo)
+    if (this.chapterVideoFile) {
+      formData.append('chapterVideo', this.chapterVideoFile);
+    } else {
+      formData.append('chapterVideo', this.chapterDetails.chapter.chapterVideo);
     }
 
-    if(this.chapterVideoFile){
-      formData.append('chapterMaterial',this.chapterMaterialFile);
-    } else{
-      formData.append('chapterMaterial',this.chapterDetails.chapter.chapterMaterial);
+    if (this.chapterVideoFile) {
+      formData.append('chapterMaterial', this.chapterMaterialFile);
+    } else {
+      formData.append(
+        'chapterMaterial',
+        this.chapterDetails.chapter.chapterMaterial
+      );
     }
 
-    if(this.chapterDetails){
-
+    if (this.chapterDetails) {
       const chapterId: string = this.chapterDetails.chapter._id;
       console.log(chapterId);
-      
-      
-      this._courseService.updateChapter(chapterId,formData).subscribe((res)=>{
-        console.log(res);
-        this._toastr.success("chapter updated successfully");
-        setTimeout(() => {
-          this.onclose.emit();
-          window.location.reload();     
-          
-        }, 1500);
-      },
-      (err)=>{
-        console.log(err);
-        
-      })
-      
-    } else{
-      const courseId = this._route.snapshot.paramMap.get('id');
-      console.log(courseId,"courseId");
-      
-      this._courseService.addNewChapter(formData,courseId).subscribe({next:(res)=>{
-        this._toastr.success("chapter Added");
-       setTimeout(() => {
-         this.onclose.emit();
-         window.location.reload();
-       }, 1500);       
-      },
-      error:(error)=>{
-        console.log(error);
-        
-      }})
-      
-    }
 
+      this._courseService.updateChapter(chapterId, formData).subscribe({
+        next: (res) => {
+          console.log(res);
+          this._toastr.success('chapter updated successfully');
+          // setTimeout(() => {
+          //   this.onclose.emit();
+          //   window.location.reload();
+
+          // }, 1500);
+          this.chapterUpdated.emit();
+          this.onclose.emit();
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      const courseId = this._route.snapshot.paramMap.get('id');
+      console.log(courseId, 'courseId');
+
+      this._courseService.addNewChapter(formData, courseId).subscribe({
+        next: (res) => {
+          this._toastr.success('chapter Added');
+          setTimeout(() => {
+            this.onclose.emit();
+            window.location.reload();
+          }, 1500);
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
   }
 }

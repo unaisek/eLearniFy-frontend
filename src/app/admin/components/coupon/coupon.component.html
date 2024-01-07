@@ -1,0 +1,188 @@
+<div>
+    <button class="absolute top-24 right-7 bg-emerald-400 text-white hover:bg-emerald-700 px-3 py-2 rounded-md"
+        (click)="addCoupon()">
+        Add Coupon
+    </button>
+
+    <p-dialog [(visible)]="openModalValue" [modal]="openModalValue" [draggable]="false"
+        [resizable]="true" (onHide)="onCloseModal()">
+        <!-- <h1 class="text-center">Add New Coupon</h1> -->
+        <form [formGroup]="couponForm" (ngSubmit)="submitCouponForm()" >
+            <div class="flex flex-col">
+                <div class="w-full flex flex-row gap-3">
+                    <div class="mb-4 w-1/2 ">
+                        <label for="Coupon Code" class="block mb-2 text-sm text-gray-800 font-medium">Coupon Code <span
+                                class="text-red-500">*</span></label>
+                        <input type="text" id="couponCode" formControlName="couponCode"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf="couponForm.get('couponCode')?.errors?.['required'] && couponForm.get('couponCode')?.touched "
+                            class="text-red-400 mt-2">
+                            Coupon Code is required
+                        </div>
+                        <div *ngIf="couponForm.get('couponCode')?.errors?.['emptySpace'] && couponForm.get('couponCode')?.touched "
+                            class="text-red-400 mt-2">
+                            Coupon Code is should be a valid string!Empty Space not allowed
+                        </div>
+                    </div>
+                    <div class="w-1/2 ">
+                        <label for="coupontype" class="block mb-2 text-sm text-gray-800 font-medium">Discount Type <span
+                                class="text-red-500">*</span></label>
+                                <select id="discountType" formControlName="discountType" class="w-full border border-gray-300 rounded-md px-3 py-2" required>
+                                    <option value="fixed">Fixed</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                        <!-- <select id="category" formControlName="category" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            <option>
+                            </option>
+                        </select> -->
+                        <div *ngIf="couponForm.get('discountType')?.errors?.['required'] && couponForm.get('discountType')?.touched "
+                            class="text-red-400 mt-2">
+                            Select any dicount type
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-3">
+                    <div class="w-1/2">
+                        <label for="discount amount" class="block mb-2 text-sm text-gray-800 font-medium">Discount Amount 
+                            <span class="text-red-500">*</span></label>
+                        <input type="text" id="discountAmount" formControlName="discountAmount"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf="couponForm.get('discountAmount')?.errors?.['required'] && couponForm.get('discountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            Discount Amount is required
+                        </div>
+                        <div *ngIf="couponForm.get('discountAmount')?.errors?.['min']&& couponForm.get('discountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            discount amount should be positive number
+                        </div>
+                        <div *ngIf="couponForm.get('discountAmount')?.errors?.['notNumber']&& couponForm.get('discountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            discount amount should be a number
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <label for=" Max discount amount" class="block mb-2 text-sm text-gray-800 font-medium">Max Discount Amount
+                            <span class="text-red-500">*</span></label>
+                        <input type="text" id="chapterTitle" formControlName="maxDiscountAmount"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['required'] && couponForm.get('maxDiscountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                             Maximum Discount Amount is required
+                        </div>
+                        <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['min']&& couponForm.get('maxDiscountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                             Maximum discount amount should be positive number
+                        </div>
+                        <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['notNumber']&& couponForm.get('maxDiscountAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            Maximum discount amount should be a number
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-row gap-3">
+                    <div class="w-1/2">
+                        <label for="Min purchase Amount" class="block mb-2 text-sm text-gray-800 font-medium">Min Purchase Amount
+                            <span class="text-red-500">*</span></label>
+                        <input type="text" id="minPurchaseAmount" formControlName="minPurchaseAmount"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['required'] && couponForm.get('minPurchaseAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            Minimum purchase Amount is required
+                        </div>
+                        <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['min']&& couponForm.get('minPurchaseAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            Minimum purchase amount should be positive number
+                        </div>
+                        <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['notNumber']&& couponForm.get('minPurchaseAmount')?.touched"
+                            class="text-red-400 mt-2">
+                            Minimum purchase amount should be a number
+                        </div>
+                    </div>
+                    <div class="w-1/2">
+                        <label for="Expired date" class="block mb-2 text-sm text-gray-800 font-medium">Expired Date
+                            <span class="text-red-500">*</span></label>
+                        <input type="date" id="expiredDate" formControlName="expiredDate"
+                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        <div *ngIf="couponForm.get('expiredDate')?.errors?.['required'] && couponForm.get('expiredDate')?.touched"
+                            class="text-red-400 mt-1">
+                            Expired date is required
+                        </div>
+                        <div *ngIf="couponForm.get('expiredDate')?.errors?.['expiredDate']&& couponForm.get('expiredDate')?.touched"
+                            class="text-red-400 mt-1">
+                            Expired date should be in the future
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-3">
+                    <button type="submit" [disabled]=""
+                        class="bg-emerald-500 rounded-md px-2 py-3 hover:bg-emerald-700 text-white"
+                    >{{modalButton}}</button>
+                </div>
+            </div>
+        </form>
+    </p-dialog> 
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Coupon Code
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Discount Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Discount Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                       Max Discount Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Min Purchase Amount
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Expired Date
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Action
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b" *ngFor="let coupon of couponDatas">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{coupon?.couponCode}}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{coupon?.discountType}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{coupon?.discountAmount}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{coupon?.maxDiscountAmount}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{coupon?.minPurchaseAmount}}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{coupon?.expiredDate | date}}
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center">
+                            <a class="font-medium text-emerald-400 hover:underline flex items-center" (click)="editCoupon(coupon)">
+                                Edit</a>
+                            <button (click)="listCoupon(coupon?._id)" *ngIf="!coupon?.status" class="bg-emerald-500 text-white rounded-md hover:bg-emerald-700 ms-2 px-3 py-1">
+                                List
+                            </button>
+                            <button (click)="unlistCoupon(coupon?._id)" *ngIf="coupon?.status" class="bg-red-500 text-white rounded-md hover:bg-red-700 ms-2 px-3 py-1">
+                                Unlist
+                            </button>
+                        </div>  
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

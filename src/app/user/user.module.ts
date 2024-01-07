@@ -18,6 +18,8 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
 import { EnrolledCourseViewComponent } from './components/enrolled-course-view/enrolled-course-view.component';
 import { SharedModule } from '../shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { CourseFilterComponent } from './shared/course-filter/course-filter.component';
+import { CheckboxModule } from 'primeng/checkbox';
 
 
 
@@ -37,13 +39,15 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     UserProfileComponent,
     PaymentSuccessComponent,
     EnrolledCourseViewComponent,
+    CourseFilterComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     MatTabsModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    CheckboxModule
   ]
 })
 export class UserModule { }
