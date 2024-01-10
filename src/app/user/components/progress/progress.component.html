@@ -73,7 +73,15 @@
             </div>
             <div class="mt-2 relative">
                 <mat-progress-bar [value]="calculateProgression(course)"></mat-progress-bar>
-                <p class="absolute right-0 text-gray-500">{{calculateProgression(course)}} % complete</p>
+                <div class="flex justify-between">
+                   
+                    <p class=" text-gray-500">{{calculateProgression(course)}} % complete</p>
+                    <!-- <div  class="pt-2 hover:cursor-pointer" (click)="openRatingModal(course?.courseId._id)">
+                        <ngx-stars [readonly]="true" color="#ffa534" ></ngx-stars>
+                        <p>Leave a rating</p>
+                    </div> -->
+
+                </div>
 
             </div>
         
@@ -81,3 +89,25 @@
     </div>
 
 </div>
+<!-- <p-dialog [(visible)]="ratingModal" [modal]="ratingModal" [draggable]="false" [resizable]="true">
+    <div class="w-96">
+        <form [formGroup]="reviewForm" (ngSubmit)="submitReviwCourse()">
+            <div class="text-center flex flex-col align-middle">
+                <h2>Rate the Course</h2>
+                <div class="mx-auto">
+                    <ngx-stars color="#ffa534" [size]="3" [wholeStars]="true" (ratingOutput)="onRatingSet($event)" ></ngx-stars>
+                </div>
+                <textarea formControlName="review" placeholder="Add your review" rows="4" cols="50" class="border border-gray-400 p-2"></textarea> 
+                <div *ngIf="reviewForm.get('review').errors?.['required'] && reviewForm.get('review').touched " class="text-red-400">
+                    please add review note
+                </div>
+            </div>
+           <div class=" mt-2 text-center">
+            <button type="submit" class="bg-emerald-400 rounded-md text-white hover:bg-emerald-700 px-4 py-3">
+                Rate
+            </button>
+            </div>
+        </form>
+    </div>
+</p-dialog> -->
+

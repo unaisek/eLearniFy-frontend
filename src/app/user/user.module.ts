@@ -20,6 +20,8 @@ import { SharedModule } from '../shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { CourseFilterComponent } from './shared/course-filter/course-filter.component';
 import { CheckboxModule } from 'primeng/checkbox';
+import { NgxStarsModule } from 'ngx-stars';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -47,7 +49,9 @@ import { CheckboxModule } from 'primeng/checkbox';
     MatTabsModule,
     SharedModule,
     MatProgressBarModule,
-    CheckboxModule
+    CheckboxModule,
+    NgxStarsModule,
+    ReactiveFormsModule
   ]
 })
 export class UserModule { }

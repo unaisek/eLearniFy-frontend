@@ -22,6 +22,7 @@ import { TimeFormatPipe } from './core/pipes/time-format.pipe';
 import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
 import { SharedModule } from './shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { TimeagoModule } from 'ngx-timeago';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     TutorModule,
     AdminModule,
     SharedModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    TimeagoModule.forRoot()
 
   ],
   providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],

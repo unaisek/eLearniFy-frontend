@@ -25,6 +25,8 @@
     "animated-tailwindcss": "^4.0.0",
     "jwt-decode": "^4.0.0",
     "ng-otp-input": "^1.9.3",
+    "ngx-stars": "^1.6.5",
+    "ngx-timeago": "^3.0.0",
     "ngx-toastr": "^17.0.2",
     "primeng": "^16.9.1",
     "rxjs": "~7.8.0",

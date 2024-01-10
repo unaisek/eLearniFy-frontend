@@ -4,6 +4,7 @@ import { UserCourseService } from '../../services/user-course.service';
 import { ICourse } from 'src/app/tutor/models/ICourse';
 import { PaymentService } from '../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
+import { IReview } from 'src/app/models/IReview';
 
 @Component({
   selector: 'app-user-course-view',
@@ -13,18 +14,20 @@ import { ToastrService } from 'ngx-toastr';
 export class UserCourseViewComponent implements OnInit {
   courseData: ICourse;
   paymentHandler: any = null;
+  reviewsArray:IReview[];
 
   constructor(
     private _route: ActivatedRoute,
     private _userCourseService: UserCourseService,
     private _paymentService: PaymentService,
-    private _router:Router,
-    private _toastr:ToastrService
+    private _router: Router,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.getCourseDetails();
     // this.invokeStripe();
+    this.getAllReviews()
   }
 
   getCourseDetails() {
@@ -35,6 +38,16 @@ export class UserCourseViewComponent implements OnInit {
       },
       error: (error) => {
         console.log(error);
+      },
+    });
+  }
+
+  getAllReviews() {
+    const coursId = this._route.snapshot.paramMap.get('id');
+    this._userCourseService.getAllReview(coursId).subscribe({
+      next: (reviewData) => {
+        this.reviewsArray = reviewData;
+        console.log(this.reviewsArray);
       },
     });
   }
@@ -82,38 +95,36 @@ export class UserCourseViewComponent implements OnInit {
   //   }
   // }
 
-  freeEnroll(courseId:string){
+  freeEnroll(courseId: string) {
     const token = localStorage.getItem('userAuthToken');
-      if(!token){
-        this._router.navigate(['/login'])
-      }
-    
-    const userId = localStorage.getItem('user')
-    this._userCourseService.enrollCourse(userId,courseId).subscribe({
-      next:(res)=>{
-        this._toastr.success("Course enrolled successfully!")
+    if (!token) {
+      this._router.navigate(['/login']);
+    }
+
+    const userId = localStorage.getItem('user');
+    this._userCourseService.enrollCourse(userId, courseId).subscribe({
+      next: (res) => {
+        this._toastr.success('Course enrolled successfully!');
       },
-      error:(error)=>{
-        this._toastr.error("course already enrolled!");
+      error: (error) => {
+        this._toastr.error('course already enrolled!');
         console.log(error.message);
-        
-      }
-    })
+      },
+    });
   }
 
   initiatePayment(courseId: string) {
     const token = localStorage.getItem('userAuthToken');
     if (!token) {
-       this._router.navigate(['/login']);
+      this._router.navigate(['/login']);
     }
     this._paymentService.makePayment(courseId).subscribe(
-      (session)=>{
-        this._paymentService.initiateStripeCheckout(session)
+      (session) => {
+        this._paymentService.initiateStripeCheckout(session);
       },
-      (error)=>{
-        console.log("payment error:",error);
-        
+      (error) => {
+        console.log('payment error:', error);
       }
-    )
+    );
   }
 }

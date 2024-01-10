@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
 import { VgApiService as VgAPI } from '@videogular/ngx-videogular/core';
 import { Subscription } from 'rxjs';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { IReview } from 'src/app/models/IReview';
 
 @Component({
   selector: 'app-enrolled-course-view',
@@ -17,14 +20,25 @@ export class EnrolledCourseViewComponent implements OnInit, OnDestroy {
   @ViewChild('media') media: any;
   api: VgAPI | undefined;
   private _subscription: Subscription | undefined;
+  reviewForm: FormGroup;
+  reviewsArray: IReview[];
+  checkedRate:boolean = false;
 
   constructor(
     private _userCourseService: UserCourseService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private _fb: FormBuilder,
+    private _toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
+    this.reviewForm = this._fb.group({
+      rating: [0,Validators.required],
+      review: ['', Validators.required],
+    });
+
     this.getEnrolledCourseData();
+    this.getAllReviews();
   }
 
   // getEnrolledCourseData(){
@@ -96,8 +110,39 @@ export class EnrolledCourseViewComponent implements OnInit, OnDestroy {
     return this.courseData.progression.includes(chapterId);
   }
 
+  onRatingSet(rating: number) {
+    const ratingControl = this.reviewForm.get('rating') as FormControl;
+    ratingControl.setValue(rating);
+  }
+
+  submitReviwCourse() {
+    const value = this.reviewForm.getRawValue();
+    console.log(value);
+    const courseId = this._route.snapshot.paramMap.get('id');
+    // const courseId = this.ratingCourseId;
+    const userId = localStorage.getItem('user');
+    this._userCourseService.addReview(courseId, userId, value).subscribe({
+      next: (reveiw) => {
+        this._toastr.success('Rating Added');
+        // this.ratingModal = false;
+        this.checkedRate = true;
+        this.getAllReviews();
+      },
+    });
+  }
+
+  getAllReviews() {
+    const coursId = this._route.snapshot.paramMap.get('id');
+    this._userCourseService.getAllReview(coursId).subscribe({
+      next: (reviewData) => {
+        this.reviewsArray = reviewData;
+        console.log(this.reviewsArray);
+      },
+    });
+  }
+
   ngOnDestroy(): void {
-    if(this._subscription){
+    if (this._subscription) {
       this._subscription.unsubscribe();
     }
   }

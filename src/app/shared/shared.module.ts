@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 // import { VgScrubBarModule } from '@videogular/ngx-videogular/scrub-bar';
 // import { VgMediaModule } from '@videogular/ngx-videogular/controls';
+import { TimeagoModule } from 'ngx-timeago';
+import { DialogModule } from 'primeng/dialog';
 
 
 
@@ -38,6 +40,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
+    TimeagoModule
   ],
   exports: [
     // BrowserModule,
@@ -49,6 +52,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSelectModule,
     MatInputModule,
     MatFormFieldModule,
+    TimeagoModule,
+    DialogModule
   ],
 })
 export class SharedModule {}

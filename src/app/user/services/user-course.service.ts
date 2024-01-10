@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
+import { BoundElementProperty } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
+import { IReview } from 'src/app/models/IReview';
 import { ICourse } from 'src/app/tutor/models/ICourse';
 import { environment as env } from 'src/environments/environment';
 
@@ -52,15 +54,14 @@ export class UserCourseService {
   //   );
   // }
 
-  getEnrolledCourseData(
-    courseId: string,
-    userId: string
-  ): void {
-    this._http.get<IEnrolledCourse>(
-      `${env.apiUrl}/user/enrolled-course?courseId=${courseId}&userId=${userId}`).
-      subscribe((data)=>{
-        this.enrolledCourseData$.next(data)
-      })
+  getEnrolledCourseData(courseId: string, userId: string): void {
+    this._http
+      .get<IEnrolledCourse>(
+        `${env.apiUrl}/user/enrolled-course?courseId=${courseId}&userId=${userId}`
+      )
+      .subscribe((data) => {
+        this.enrolledCourseData$.next(data);
+      });
   }
 
   updateEnrolledCourseProgression(
@@ -73,5 +74,23 @@ export class UserCourseService {
       `${env.apiUrl}/user/update-progression`,
       body
     );
+  }
+
+  addReview(
+    courseId: string,
+    userId: string,
+    review: IReview
+  ): Observable<IReview> {
+    const body = { courseId, userId, review };
+    return this._http.post<IReview>(`${env.apiUrl}/user/add-review`, body);
+  }
+
+  getAllReview( courseId: string): Observable<IReview[]>{
+    return this._http.get<IReview[]>(`${env.apiUrl}/user/review/${courseId}`)
+  }
+
+  addRating(courseId:string, userId:string, rating:number): Observable<IReview>{
+    const body = { courseId, userId, rating}
+    return this._http.post<IReview>(`${env.apiUrl}/user/add-rating`,body)
   }
 }

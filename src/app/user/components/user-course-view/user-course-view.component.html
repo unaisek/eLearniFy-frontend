@@ -7,7 +7,8 @@
             <p *ngIf="courseData?.courseType =='paid'" class="text-lg font-semibold text-slate-800 p-2 ">₹{{courseData?.price}}</p>
             <app-button  (click)="freeEnroll(courseData?._id)" *ngIf="courseData?.courseType ==='free'" name="Enroll Now" size="large" shade="dark" animation="fade" ></app-button>
             <app-button (click)="initiatePayment(courseData?._id)" *ngIf="courseData?.courseType ==='paid'"
-             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"></app-button>
+             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"></app-button> 
+            <p class="pt-2 ps-2 text-emerald-400 hover:underline hover:text-blue-600">Apply Coupon</p>
         </div>   
         <div class="w-full md:w-1/2 flex justify-center items-center">
             <div *ngIf="courseData?.introductionVideo" class="">
@@ -22,7 +23,32 @@
 <div class="p-4 border rounded-lg shadow-lg container">
     <mat-tab-group class="mt-2">
         <mat-tab label="Chapters"><app-user-chapter [courseData]="courseData"></app-user-chapter></mat-tab>
-        <mat-tab label="Review"> Content 2 </mat-tab>
+        <mat-tab label="Review"> 
+            <div class="mt-3">
+                <h2>Reviews</h2>
+                <div *ngFor="let review of reviewsArray" class="flex border-b pt-3 border-gray-300">
+                    <div class="w-1/12">
+                        <img *ngIf="!review?.userId.profileImage" class="w-12 h-12 rounded-full "
+                            src="../../../../assets/default-user.webp" alt="">
+                        <img *ngIf="review?.userId.profileImage" class="w-12 h-12 rounded-full "
+                            src="{{review?.userId.profileImage}}" alt="">
+                    </div>
+                    <div class="w-10/12">
+                        <div class="flex">
+                            <p class="font-semibold">{{review?.userId.name}}</p>
+                            <span class="ms-2 text-gray-500">{{review?.createdAt | timeago }}</span>
+            
+                        </div>
+                        <div class="flex">
+                            <ngx-stars *ngIf="review?.rating > 0" [initialStars]="review?.rating" color="#ffa534"
+                                [readonly]="true"></ngx-stars>
+            
+                        </div>
+                        <p class="pt-2">{{review?.review}}</p>
+                    </div>
+                </div>
+            </div>
+        </mat-tab>
         <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
     </mat-tab-group>
 </div>
