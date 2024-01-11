@@ -6,6 +6,7 @@ import { LoginResponse, User } from '../models/IuserLogin';
 import { ICategory } from '../models/ICategory';
 import { IUser } from '../models/Iusesr';
 import { BlockUserResponse } from '../models/IResponse';
+import { IAdminDashboardData } from '../models/IAdminDashboardData';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -65,5 +66,9 @@ export class AdminService {
       `${this.apiUrl}/admin/user-unblock/${id}`,
       httpOptions
     );
+  }
+
+  getAdminDashboard(): Observable <IAdminDashboardData>{
+    return this._http.get<IAdminDashboardData>(`${env.apiUrl}/admin/dashboard`);
   }
 }

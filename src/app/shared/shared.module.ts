@@ -18,6 +18,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 // import { VgMediaModule } from '@videogular/ngx-videogular/controls';
 import { TimeagoModule } from 'ngx-timeago';
 import { DialogModule } from 'primeng/dialog';
+import { NgChartsModule } from 'ng2-charts';
+// import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -53,7 +55,8 @@ import { DialogModule } from 'primeng/dialog';
     MatInputModule,
     MatFormFieldModule,
     TimeagoModule,
-    DialogModule
+    DialogModule,
+    NgChartsModule
   ],
 })
 export class SharedModule {}
