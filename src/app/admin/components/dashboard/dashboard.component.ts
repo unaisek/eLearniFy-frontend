@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   public pieChartLabels = ['Paid course', 'Free courses'];
   public pieChartDatasets = [
     {
-      data: [10, 21],
+      data: [2,1],
     },
   ];
   

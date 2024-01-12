@@ -1,73 +1,220 @@
-<div class="max-w-5xl mx-auto">
-    <h1>My Courses</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="border border-emerald-200 rounded-2xl p-5" *ngFor="let course of myCourses">
-            <div class="flex justify-end relative">
-                <div class="dropdown dropdown-end">
-                    <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round"
-                            d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                    </svg>
-           
-                    <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-emerald-50 rounded-box w-24">
-                        <li><a routerLink="/tutor/edit-course/{{course._id}}">Edit</a></li>
-                        <li><a routerLink="/tutor/view-course/{{course._id}}">View</a></li>
-                        <li *ngIf="course.status"><a (click)="unList(course._id)">Unlist</a></li>
-                        <li *ngIf="!course.status"><a (click)="list(course._id)">List</a></li>
-                    </ul>
-                </div>           
-            </div>
-            <img class="w-full rounded-xl object-cover" src={{course.thumbnail}} alt="">
-            <div class="flex justify-between mt-5 items-center">
-                <div class="flex items-center gap-2">
-                    <img *ngIf="!course?.tutor.profileImage" class="w-12 h-12 rounded-full object-cover" src="../../../../assets/default-user.webp" alt="profile">
-                    <img *ngIf="course?.tutor.profileImage" class="w-12 h-12 rounded-full object-cover"
-                        src={{course.tutor.profileImage}} alt="profile">
-                    <p class="text-slate-500 font-light">{{course.tutor.name}}</p>
-                </div>
-                <div>
-                    <button class="bg-emerald-50 rounded-md text-emerald-700 px-5 py-2 text-opacity-80">{{course.category.categoryName}}</button>
-                </div>
-        
-            </div>
-            <p class="pt-5 text-slate-700 transition-all  duration-500 hover:text-emerald-600 text-base leading-5 font-medium">
-                {{course.title}}
-            </p>
-        
-            <div class="mt-3">
-                <!-- <div class="flex justify-between items-center text-slate-500 font-light ">
-                    <div class="flex gap-1 pt-3">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                class="w-5 h-5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </span>0
-                        <p class="">09 hr 18 mins</p>
-                    </div>
-                    <div class="flex gap-1 pt-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                            class="w-5 h-5">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
-                        </svg>
-                        <p>16 Lectures</p>            
-                    </div>
-        
-                </div> -->
-                <div class="flex justify-between items-center p-2 bg-emerald-50 rounded-2xl">
-                    <p class="text-base text-emerald-600 font-semibold">{{course.price == 0 ?'Free':'₹'+course.price}}</p>
-                    <div class="flex gap-1">
+<div class="">
+    <div class="container">
+        <h1>Dashboard</h1>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.totalTutorRevenue}}
+                    </p>
+                    <div class="absolute right-2 top-2">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                            stroke="currentColor" class="w-5 h-5 text-emerald-600">
+                            stroke="currentColor" class="w-8 h-8 text-emerald-400">
                             <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
-                        <p>{{course.chapters.length}} Chapters</p>
                     </div>
-                </div>                              
-            </div>        
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">My Revenue</div>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.tutorCourseCount}}
+                    </p>
+                    <div class="absolute right-2 top-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-emerald-400">
+                            <path
+                                d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+                            <path
+                                d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
+                            <path
+                                d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">Added Courses</div>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.enrolledStudent}}
+                    </p>
+                    <div class="absolute right-2 top-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-emerald-400">
+                            <path fill-rule="evenodd"
+                                d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+                                clip-rule="evenodd" />
+                            <path
+                                d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+                        </svg>
+
+                    </div>
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">Students Enrollement</div>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.currentMonthRevenue}}
+                    </p>
+                    <div class="absolute right-2 top-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-8 h-8 text-emerald-400">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">Current Month Revenue</div>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.paidCourseCount}}
+                    </p>
+                    <div class="absolute right-2 top-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-emerald-400">
+                            <path
+                                d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+                            <path
+                                d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
+                            <path
+                                d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">Paid Courses</div>
+                </div>
+            </div>
+            <div class="bg-gray-50 border border-gray-300 rounded-lg  h-32 shadow-md relative m-2">
+                <div class="flex">
+                    <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
+                        {{tutorDashboardData?.freeCourseCount}}
+                    </p>
+                    <div class="absolute right-2 top-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-emerald-400">
+                            <path
+                                d="M11.7 2.805a.75.75 0 0 1 .6 0A60.65 60.65 0 0 1 22.83 8.72a.75.75 0 0 1-.231 1.337 49.948 49.948 0 0 0-9.902 3.912l-.003.002c-.114.06-.227.119-.34.18a.75.75 0 0 1-.707 0A50.88 50.88 0 0 0 7.5 12.173v-.224c0-.131.067-.248.172-.311a54.615 54.615 0 0 1 4.653-2.52.75.75 0 0 0-.65-1.352 56.123 56.123 0 0 0-4.78 2.589 1.858 1.858 0 0 0-.859 1.228 49.803 49.803 0 0 0-4.634-1.527.75.75 0 0 1-.231-1.337A60.653 60.653 0 0 1 11.7 2.805Z" />
+                            <path
+                                d="M13.06 15.473a48.45 48.45 0 0 1 7.666-3.282c.134 1.414.22 2.843.255 4.284a.75.75 0 0 1-.46.711 47.87 47.87 0 0 0-8.105 4.342.75.75 0 0 1-.832 0 47.87 47.87 0 0 0-8.104-4.342.75.75 0 0 1-.461-.71c.035-1.442.121-2.87.255-4.286.921.304 1.83.634 2.726.99v1.27a1.5 1.5 0 0 0-.14 2.508c-.09.38-.222.753-.397 1.11.452.213.901.434 1.346.66a6.727 6.727 0 0 0 .551-1.607 1.5 1.5 0 0 0 .14-2.67v-.645a48.549 48.549 0 0 1 3.44 1.667 2.25 2.25 0 0 0 2.12 0Z" />
+                            <path
+                                d="M4.462 19.462c.42-.419.753-.89 1-1.395.453.214.902.435 1.347.662a6.742 6.742 0 0 1-1.286 1.794.75.75 0 0 1-1.06-1.06Z" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- <h2 class="text-gray-500 font-semibold ">Users</h2> -->
+                <div class=" text-gray-600 ms-3 mt-5">
+                    <div class="text-sm md:text-lg">Free Courses</div>
+                </div>
+            </div>    
         </div>
-    </div>
+
+        <div class="mt-10">
+            <h2>Last 30 Days Revenue</h2>
+            <div class="border border-gray-300 ">
+                <canvas
+                    class="md:mx-auto h-auto w-auto md:w-2/3 "
+                    baseChart 
+                    [type]="'line'" 
+                    [data]="lineChartData" 
+                    [options]="lineChartOptions"
+                    [legend]="lineChartLegend">
+                </canvas>
+            </div>
+        </div>
+
+        <div class="mt-10">
+            <h1>My Courses</h1>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="border border-emerald-200 rounded-2xl p-5 bg-gray-50" *ngFor="let course of myCourses">
+                    <div class="flex justify-end relative">
+                        <div class="dropdown dropdown-end">
+                            <svg tabindex="0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M6.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM12.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM18.75 12a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                            </svg>
+            
+                            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-emerald-50 rounded-box w-24">
+                                <li><a routerLink="/tutor/edit-course/{{course._id}}">Edit</a></li>
+                                <li><a routerLink="/tutor/view-course/{{course._id}}">View</a></li>
+                                <li *ngIf="course.status"><a (click)="unList(course._id)">Unlist</a></li>
+                                <li *ngIf="!course.status"><a (click)="list(course._id)">List</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <img class="w-full rounded-xl object-cover" src={{course.thumbnail}} alt="">
+                    <div class="flex justify-between mt-5 items-center">
+                        <div class="flex items-center gap-2">
+                            <img *ngIf="!course?.tutor.profileImage" class="w-12 h-12 rounded-full object-cover"
+                                src="../../../../assets/default-user.webp" alt="profile">
+                            <img *ngIf="course?.tutor.profileImage" class="w-12 h-12 rounded-full object-cover"
+                                src={{course.tutor.profileImage}} alt="profile">
+                            <p class="text-slate-500 font-light">{{course.tutor.name}}</p>
+                        </div>
+                        <div>
+                            <button
+                                class="bg-emerald-50 rounded-md text-emerald-700 px-5 py-2 text-opacity-80">{{course.category.categoryName}}</button>
+                        </div>
+            
+                    </div>
+                    <p
+                        class="pt-5 text-slate-700 transition-all  duration-500 hover:text-emerald-600 text-base leading-5 font-medium">
+                        {{course.title}}
+                    </p>
+            
+                    <div class="mt-3">
+                        <!-- <div class="flex justify-between items-center text-slate-500 font-light ">
+                                        <div class="flex gap-1 pt-3">
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                    class="w-5 h-5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </span>0
+                                            <p class="">09 hr 18 mins</p>
+                                        </div>
+                                        <div class="flex gap-1 pt-3">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                class="w-5 h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                            </svg>
+                                            <p>16 Lectures</p>            
+                                        </div>
+                            
+                                    </div> -->
+                        <div class="flex justify-between items-center p-2 bg-emerald-50 rounded-2xl">
+                            <p class="text-base text-emerald-600 font-semibold">{{course.price == 0 ?'Free':'₹'+course.price}}</p>
+                            <div class="flex gap-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                    stroke="currentColor" class="w-5 h-5 text-emerald-600">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" />
+                                </svg>
+                                <p>{{course.chapters.length}} Chapters</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+    </div>   
 </div>
