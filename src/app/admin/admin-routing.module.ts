@@ -11,8 +11,8 @@ import { CouponComponent } from './components/coupon/coupon.component';
 const routes: Routes = [
   {path:'',component:AdminHomeComponent, canActivate:[adminGuard],
     children:[
-      {path:'', redirectTo:'dashboard',pathMatch:'full'},
-      {path:'dashboard', component: DashboardComponent},
+      { path:'', redirectTo:'dashboard',pathMatch:'full' },
+      { path:'dashboard', component: DashboardComponent },
       { path:'users-list', component:UsersComponent },
       { path:'categories', component: CategoriesComponent },
       { path:'coupons', component: CouponComponent}

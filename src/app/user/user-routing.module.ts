@@ -9,6 +9,8 @@ import { UserCourseViewComponent } from './components/user-course-view/user-cour
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { PaymentSuccessComponent } from './components/payment-success/payment-success.component';
 import { EnrolledCourseViewComponent } from './components/enrolled-course-view/enrolled-course-view.component';
+import { AuthGuard } from '../core/guards/auth-guard.guard';
+import { studentGuard } from '../core/guards/student.guard';
 
 
 const routes: Routes = [
@@ -18,11 +20,11 @@ const routes: Routes = [
       { path:'', redirectTo:'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path:'all-courses', component: AllCoursesComponent },
-      { path:'progress', component: ProgressComponent },
+      { path:'progress', component: ProgressComponent ,canActivate:[studentGuard]},
       { path:'course-over-view/:id',component: UserCourseViewComponent},
-      { path:'payment-success', component: PaymentSuccessComponent },
-      { path:'profile', component: UserProfileComponent },
-      { path: 'enrolled-course-overView/:id', component: EnrolledCourseViewComponent }
+      { path:'payment-success', component: PaymentSuccessComponent,canActivate:[studentGuard]},
+      { path:'profile', component: UserProfileComponent,canActivate:[studentGuard] },
+      { path: 'enrolled-course-overView/:id', component: EnrolledCourseViewComponent,canActivate:[studentGuard]}
    ]
   }
   
