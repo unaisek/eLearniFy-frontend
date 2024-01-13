@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TutorService } from '../../services/tutor.service';
 import { CourseService } from '../../services/course.service';
 import { HttpClient } from '@angular/common/http';
@@ -14,20 +14,19 @@ import { ICategory } from '../../models/ICategory';
 })
 export class NewCourseComponent implements OnInit {
   courseForm: FormGroup;
-  categories =[];
+  categories = [];
   thumbnailImage: File = null;
   courseIntroVideo: File = null;
   chapterVideo: File = null;
-  chapterMaterial: File= null;
-  loading:boolean = false
-
+  chapterMaterial: File = null;
+  loading: boolean = false;
 
   constructor(
     private _fb: FormBuilder,
     private _tutorService: TutorService,
     private _courseService: CourseService,
     private _toastr: ToastrService
-     ) {}
+  ) {}
 
   ngOnInit(): void {
     this.courseForm = this._fb.group({
@@ -35,20 +34,26 @@ export class NewCourseComponent implements OnInit {
       category: ['', Validators.required],
       level: ['', Validators.required],
       courseType: ['', Validators.required],
-      price: [ '',Validators.required],
+      price: ['',[ Validators.required,this.validateNumber]],
       description: ['', Validators.required],
       thumbnail: ['', Validators.required],
       introductionVideo: ['', Validators.required],
       chapterTitle: ['', Validators.required],
       chapterDescription: ['', Validators.required],
       chapterVideo: ['', Validators.required],
-      chapterMaterial:['',Validators.required]
+      chapterMaterial: ['', Validators.required],
     });
 
     this.categoryList();
+  }
 
-    
-    
+  validateNumber(control: FormControl) {
+    const inputValue = control.value;
+    const isNumeric = /^-?\d+$/.test(inputValue);
+    if (!isNumeric) {
+      return { notNumber: true };
+    }
+    return null;
   }
 
   onCourseTypeChange(event: Event): void {
@@ -64,7 +69,7 @@ export class NewCourseComponent implements OnInit {
 
   // fetch course category
   categoryList() {
-    this._tutorService.categoryList$.subscribe((res) => {    
+    this._tutorService.categoryList$.subscribe((res) => {
       this.categories = res;
     });
   }
@@ -89,7 +94,7 @@ export class NewCourseComponent implements OnInit {
 
   onChapterMaterialChange(event: Event): void {
     const fileInput = event.target as HTMLInputElement;
-    this.chapterMaterial= fileInput.files[0];
+    this.chapterMaterial = fileInput.files[0];
   }
 
   submitCourse() {
@@ -101,37 +106,57 @@ export class NewCourseComponent implements OnInit {
     formData.append('courseType', this.courseForm.get('courseType')?.value);
 
     const value = this.courseForm.get('price')?.value;
-    if(value){
-      formData.append('price',value);
+    if (value) {
+      formData.append('price', value);
     } else {
-      formData.append('price','0')
+      formData.append('price', '0');
     }
 
     formData.append('description', this.courseForm.get('description')?.value);
-    formData.append('thumbnail', this.thumbnailImage, this.thumbnailImage?.name || '');
-    formData.append('introductionVideo', this.courseIntroVideo, this.courseIntroVideo?.name || '');
+    formData.append(
+      'thumbnail',
+      this.thumbnailImage,
+      this.thumbnailImage?.name || ''
+    );
+    formData.append(
+      'introductionVideo',
+      this.courseIntroVideo,
+      this.courseIntroVideo?.name || ''
+    );
 
     formData.append('chapterTitle', this.courseForm.get('chapterTitle')?.value);
-    formData.append(`chapterDescription`, this.courseForm.get('chapterDescription')?.value);
-    formData.append(`chapterVideo`, this.chapterVideo, this.chapterVideo?.name || '');
-    formData.append(`chapterMaterial`, this.chapterMaterial, this.chapterMaterial?.name || '')
-    
-    const tutorId = localStorage.getItem('user')
-    formData.append('tutorId',tutorId)
+    formData.append(
+      `chapterDescription`,
+      this.courseForm.get('chapterDescription')?.value
+    );
+    formData.append(
+      `chapterVideo`,
+      this.chapterVideo,
+      this.chapterVideo?.name || ''
+    );
+    formData.append(
+      `chapterMaterial`,
+      this.chapterMaterial,
+      this.chapterMaterial?.name || ''
+    );
+
+    const tutorId = localStorage.getItem('user');
+    formData.append('tutorId', tutorId);
 
     // send course form data to backend
     console.log(formData);
-    
-    this._courseService.addNewCourse(formData).subscribe({next:(res)=>{
-      console.log("sucess",res);
-      this.loading = false
-      this._toastr.success("course added succesfully")
-            
-    },error:(err)=>{
-      console.log(err.error.message);
-      this.loading = false
-      this._toastr.error("failed to course adding")      
-    }})
-    
+
+    this._courseService.addNewCourse(formData).subscribe({
+      next: (res) => {
+        console.log('sucess', res);
+        this.loading = false;
+        this._toastr.success('course added succesfully');
+      },
+      error: (err) => {
+        console.log(err.error.message);
+        this.loading = false;
+        this._toastr.error('failed to course adding');
+      },
+    });
   }
 }

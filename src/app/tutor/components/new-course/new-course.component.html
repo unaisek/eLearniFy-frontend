@@ -8,10 +8,15 @@
                 <div class="mb-6">
                     <label for="title" class="block mb-2 text-sm text-gray-800 font-medium">Course Title <span class="text-red-500">*</span></label>
                     <input type="text" id="title" formControlName="title"
-                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        class="w-full border border-gray-300 rounded-md px-3 py-2"
+                        appNoEmptySpaces>
                     <div *ngIf="courseForm.get('title').errors?.['required'] && courseForm.get('title').touched "
-                    class="text-red-400">
-                    Course Title is required
+                        class="text-red-500 mt-1 text-sm">
+                        Course Title is required
+                    </div>
+                    <div *ngIf="courseForm.get('title').errors?.['noEmptySpace'] && courseForm.get('title').touched "
+                        class="text-red-500 mt-1 text-sm">
+                        Course Title cannopt contain empty spaces
                     </div>
                 </div>
                 <div class="mb-6 flex gap-5">
@@ -22,7 +27,7 @@
                             <option *ngFor="let category of categories" value="{{category._id}}">{{category.categoryName}}
                             </option>
                         </select>
-                        <div *ngIf="courseForm.get('category').errors?.['required'] && courseForm.get('category').touched " class="text-red-400">
+                        <div *ngIf="courseForm.get('category').errors?.['required'] && courseForm.get('category').touched " class="text-red-500 mt-1 text-sm">
                             Select any category
                         </div>
                     </div>
@@ -35,7 +40,7 @@
                             <option value="Expert">Expert</option>
                         </select>
                         <div *ngIf="courseForm.get('level').errors?.['required'] && courseForm.get('level').touched "
-                            class="text-red-400">
+                            class="text-red-500 mt-1 text-sm">
                             Select any level
                         </div>
                     </div>
@@ -49,7 +54,7 @@
                             <option value="free">Free</option>
                             <option value="paid">Paid</option>
                         </select>
-                        <div *ngIf="courseForm.get('courseType').errors?.['required'] && courseForm.get('courseType').touched " class="text-red-400">
+                        <div *ngIf="courseForm.get('courseType').errors?.['required'] && courseForm.get('courseType').touched " class="text-red-500 mt-1 text-sm">
                             Select any course type
                         </div>
                     </div>
@@ -58,19 +63,29 @@
                         <input [readOnly]="courseForm.get('courseType').value === 'free'" type="text" id="price"
                             formControlName="price" class="w-full border border-gray-300 rounded-md px-3 py-2">
                         <div *ngIf=" courseForm.get('price').errors?.['required'] && courseForm.get('price').touched "
-                            class="text-red-400">
+                            class="text-red-500 mt-1 text-sm">
                             Enter the price
+                        </div>
+                        <div *ngIf=" courseForm.get('price').errors?.['notNumber'] && courseForm.get('price').touched "
+                            class="text-red-500 mt-1 text-sm">
+                            Price should be positve number
                         </div>
                     </div>
                 </div>
                 <div class="mb-6">
                     <label for="description" class="block mb-2 text-sm text-gray-800 font-medium">Course Description <span class="text-red-500">*</span></label>
                     <textarea id="description" formControlName="description"
-                        class="w-full border border-gray-300 rounded-md px-3 py-2 h-32 resize-none"></textarea>
-                        <div *ngIf="courseForm.get('description').errors?.['required'] && courseForm.get('description').touched "
-                            class="text-red-400">
-                            Cousre description is required
-                        </div>
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 h-32 resize-none"
+                        appNoEmptySpaces>
+                    </textarea>
+                    <div *ngIf="courseForm.get('description').errors?.['required'] && courseForm.get('description').touched "
+                        class="text-red-500 mt-1 text-sm">
+                        Cousre description is required
+                    </div>
+                    <div *ngIf="courseForm.get('description').errors?.['noEmptySpace'] && courseForm.get('description').touched "
+                        class="text-red-500 mt-1 text-sm">
+                        Cousre description cannot contain empty spaces
+                    </div>
                 </div>
     
                 <div class="flex gap-5">
@@ -80,7 +95,7 @@
                             (change)="onFileChangeImage($event)"
                             class="w-full border border-gray-300 rounded-md px-4 py-3 " accept=".jpg">
                         <div *ngIf="courseForm.get('thumbnail').errors?.['required'] && courseForm.get('thumbnail').touched "
-                            class="text-red-400" accept=".jpg, .jpeg, .png, .webp">
+                            class="text-red-500 mt-1 text-sm" accept=".jpg, .jpeg, .png, .webp">
                             Upload a image
                         </div>
                     </div>
@@ -90,7 +105,7 @@
                             (change)="onFileChangeIntroVideo($event)" accept=".mp4, .avi, .mov, .mkv, .webm"
                             class="w-full border border-gray-300 rounded-md px-4 py-3 ">
                         <div *ngIf="courseForm.get('introductionVideo').errors?.['required'] && courseForm.get('introductionVideo').touched "
-                            class="text-red-400">
+                            class="text-red-500 mt-1 text-sm">
                             Upload a introduction video
                         </div>
                     </div>
@@ -109,20 +124,31 @@
                             <div class="mb-4 w-1/2 ">
                                 <label for="chapterTitle" class="block mb-2 text-sm text-gray-800 font-medium">Chapter Title <span class="text-red-500">*</span></label>
                                 <input type="text" id="chapterTitle" formControlName="chapterTitle"
-                                    class="w-full border border-gray-300 rounded-md px-3 py-2">
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2"
+                                    appNoEmptySpaces>
                                 <div *ngIf="courseForm.get('chapterTitle').errors?.['required'] && courseForm.get('chapterTitle').touched "
-                                    class="text-red-400">
+                                    class="text-red-500 mt-1 text-sm">
                                     Chapter title is required
+                                </div>
+                                <div *ngIf="courseForm.get('chapterTitle').errors?.['noEmptySpace'] && courseForm.get('chapterTitle').touched "
+                                    class="text-red-500 mt-1 text-sm">
+                                    Chapter title cannot contain empty spaces
                                 </div>
                             </div>
                             <div class="mb-4 w-1/2">
                                 <label for="chapterDescription" class="block mb-2 text-sm text-gray-800 font-medium">Chapter
                                     Description <span class="text-red-500">*</span></label>
                                 <textarea id="chapterDescription" formControlName="chapterDescription"
-                                    class="w-full border border-gray-300 rounded-md px-3 py-2 h-10 resize-y"></textarea>
+                                    class="w-full border border-gray-300 rounded-md px-3 py-2 h-10 resize-y"
+                                    appNoEmptySpaces>
+                                </textarea>
                                 <div *ngIf="courseForm.get('chapterDescription').errors?.['required'] && courseForm.get('chapterDescription').touched "
-                                    class="text-red-400">
+                                    class="text-red-500 mt-1 text-sm">
                                     Chapter description is required
+                                </div>
+                                <div *ngIf="courseForm.get('chapterDescription').errors?.['noEmptySpace'] && courseForm.get('chapterDescription').touched "
+                                    class="text-red-500 mt-1 text-sm">
+                                    Chapter description cannot contain empty spaces
                                 </div>
                             </div>
                         </div>
@@ -133,7 +159,7 @@
                                     (change)="onChapterVideoChange($event)"  accept=".mp4, .avi, .mov, .mkv, .webm"
                                     class="w-full border border-gray-300 rounded-md px-3 py-2">
                                 <div *ngIf="courseForm.get('chapterVideo').errors?.['required'] && courseForm.get('chapterVideo').touched"
-                                    class="text-red-400">
+                                    class="text-red-500 mt-1 text-sm">
                                     Upload a chapter video 
                                 </div>
                             </div>
@@ -144,7 +170,7 @@
                                     (change)="onChapterMaterialChange($event)"
                                     class="w-full border border-gray-300 rounded-md px-3 py-2" accept=".pdf, .doc, .docx, .txt">
                                 <div *ngIf="courseForm.get('chapterMaterial').errors?.['required'] && courseForm.get('chapterMaterial').touched"
-                                    class="text-red-400">
+                                    class="text-red-500 mt-1 text-sm">
                                     Upload material(PDF,etc.)  for chapter
                                 </div>
                             </div>

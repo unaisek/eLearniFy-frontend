@@ -47,9 +47,12 @@
                                 class="block mb-2 text-sm font-medium text-gray-900">Name</label>
                             <input type="text" name="name" formControlName="categoryName"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                placeholder="Enter category name" required="">
+                                placeholder="Enter category name" appNoEmptySpaces>
                             <div *ngIf="nameControl.errors?.['required'] && (nameControl.touched || nameControl.dirty) "
-                                class="text-red-500"> category Name is required</div>
+                                class="text-red-500"> category Name is required</div>\
+                            <div *ngIf="nameControl.errors?.['noEmptySpace'] && (nameControl.touched || nameControl.dirty) " class="text-red-500">
+                                category Name cannot contain only spaces
+                            </div>
                         </div>
                         <div class="col-span-2">
                             <label for="description"
@@ -57,9 +60,15 @@
                                 Description</label>
                             <textarea id="description" formControlName="description" rows="4"
                                 class="block p-2.5 w-full text-sm text-gray-900 bg-gra y-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Write category description here"></textarea>
+                                placeholder="Write category description here" appNoEmptySpaces ></textarea>
 
-                            <div *ngIf= "descriptionControl.errors?.['required'] && (descriptionControl.touched || descriptionControl.dirty) " class="text-red-500"> descrption is required</div>
+                            <div *ngIf="descriptionControl.errors?.['required'] && (descriptionControl.touched || descriptionControl.dirty) " class="text-red-500">
+                                 descrption is required
+                            </div>
+                            <div *ngIf="descriptionControl.errors?.['noEmptySpace'] && (descriptionControl.touched || descriptionControl.dirty) "
+                                class="text-red-500">
+                                description cannot contain only spaces.
+                            </div>
                         </div>
                     </div>
                     <button type="submit"

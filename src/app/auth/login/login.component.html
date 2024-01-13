@@ -24,11 +24,8 @@
             <div class="text-red-600 text-sm" *ngIf="passwordControll.errors?.['required'] && (passwordControll.touched || passwordControll.dirty) ">
               password is required
             </div>
-            <div class="text-red-600 text-sm" *ngIf="passwordControll.errors?.['minlength'] && (passwordControll.touched || passwordControll .dirty) ">
-              MInimum 5 charecter required
-            </div>
             <button type="submit" class="bg-[#49BBBD] py-1 w-fit px-8 mx-auto rounded-2xl hover:scale-105 duration-300">Login</button>
-            <a class="font-thin text-xs text-center" routerLink= "/register">Don't have an account?</a>
+            <a class="font-thin text-xs text-center" routerLink= "/register">Don't have an account? <span class="text-blue-500 hover:underline">Register</span></a>
         </form>
       </div>  
       <!-- image -->

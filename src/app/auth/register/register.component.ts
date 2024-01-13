@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component,OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from "@angular/forms";
+import { FormBuilder, Validators, FormGroup, FormControl, ValidationErrors } from "@angular/forms";
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ToastrService } from 'ngx-toastr';
@@ -27,11 +27,20 @@ export class RegisterComponent implements OnInit{
       name:['',Validators.required],
       email: ['',[Validators.required,Validators.email]],
       role: ['',Validators.required],
-      password:['',[Validators.required,Validators.minLength(5)]]
+      password:['',[Validators.required,this.validateStrongPassword]]
     })
   }
 
+  validateStrongPassword(control:FormControl): ValidationErrors | null {
+    const password = control.value
+    const strongPasswordRegex =  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if(password && !strongPasswordRegex.test(password)){
+      return { 'strongPassword': true }
+    }
 
+    return null
+    
+  }
   get name(){
     return this.signUpForm.get('name');
   }

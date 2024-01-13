@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ICategory } from '../../models/ICategory';
 import { TutorService } from '../../services/tutor.service';
 import { ActivatedRoute } from '@angular/router';
@@ -39,7 +39,7 @@ export class EditCourseComponent implements OnInit {
       category: ['', Validators.required],
       level: ['', Validators.required],
       courseType: ['', Validators.required],
-      price: ['', Validators.required],
+      price: ['', [Validators.required,this.validateNumber]],
       description: ['', Validators.required],
       thumbnail: [''],
       introductionVideo: [''],
@@ -47,6 +47,15 @@ export class EditCourseComponent implements OnInit {
 
     this.getCategoryList();
     this.getCourseDetails();
+  }
+
+  validateNumber(control: FormControl) {
+    const inputValue = control.value;
+    const isNumeric = /^-?\d+$/.test(inputValue);
+    if (!isNumeric) {
+      return { notNumber: true };
+    }
+    return null;
   }
 
   getCategoryList() {

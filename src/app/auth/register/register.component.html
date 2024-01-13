@@ -13,9 +13,13 @@
                     type="text" 
                     placeholder="Name"
                     formControlName="name"
+                    appNoEmptySpaces
                 />
                 <div class="text-red-600 text-sm" *ngIf="name.errors?.['required'] && (name.touched || name.dirty) ">
                     Name is required
+                </div>
+                <div class="text-red-600 text-sm" *ngIf="name.errors?.['noEmptySpace'] && (name.touched || name.dirty) ">
+                    Name cannot be empty.
                 </div>
                 <input class="p-2 rounded-md border border-[#49BBBD]" 
                     type="email" 
@@ -28,11 +32,12 @@
                 <div class="text-red-600 text-sm" *ngIf="email.errors?.['email'] && (email.touched || email.dirty) ">
                     Invalid email..! Enter valid mail
                 </div>
+         
                 <select class="p-2 rounded-md border border-[#49BBBD]"
                     formControlName="role" 
                     id=""
                 >
-                    <option class="text-gray-500" disabled selected>Select Role</option>
+                    <option class="text-gray-500" disabled  selected>Select Role</option>
                     <option value="student">Student</option>
                     <option value="tutor">Tutor</option>
                 </select>
@@ -53,8 +58,8 @@
                 <div class="text-red-600 text-sm" *ngIf="password.errors?.['required'] && (password.touched || password.dirty) ">
                     password is required
                 </div>
-                <div class="text-red-600 text-sm" *ngIf="password.errors?.['minlength'] && (password.touched || password.dirty) ">
-                    MInimum 5 charecter required
+                <div class="text-red-600 text-sm" *ngIf="password.errors?.['strongPassword'] && (password.touched || password.dirty) ">
+                    Password must be at least 8 characters, contain uppercase, lowercase, numbers, and special characters.
                 </div>
 
                 <p class="font-thin text-xs text-center">Already have an account?<span class="text-blue-500"><a routerLink="/login"> Login</a></span></p>

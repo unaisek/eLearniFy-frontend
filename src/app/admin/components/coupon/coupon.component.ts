@@ -27,7 +27,7 @@ export class CouponComponent implements OnInit {
 
   ngOnInit(): void {
     this.couponForm = this._fb.group({
-      couponCode: ['', [Validators.required, this.validateEmptySpace]],
+      couponCode: ['', [Validators.required,]],
       discountType: ['', Validators.required],
       discountAmount: [
         '',
@@ -53,18 +53,6 @@ export class CouponComponent implements OnInit {
 
     if (inputDate <= currentDate) {
       return { expiredDate: true };
-    }
-    return null;
-  }
-
-  validateEmptySpace(control: FormControl) {
-    const value = control.value;
-    if (value) {
-      const trimmedValue = value.trim();
-
-      if (trimmedValue === '') {
-        return { emptySpace: true };
-      }
     }
     return null;
   }

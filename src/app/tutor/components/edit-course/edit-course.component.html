@@ -7,18 +7,23 @@
             <div class="p-4">
                 <div class="mb-6">
                     <label for="title" class="block mb-2 text-sm text-gray-800 font-medium">Course Title <span
-                            class="text-red-500">*</span></label>
+                            class="text-red-500 text-sm">*</span></label>
                     <input type="text" id="title" formControlName="title"
-                        class="w-full border border-gray-300 rounded-md px-3 py-2">
+                        class="w-full border border-gray-300 rounded-md px-3 py-2" appNoEmptySpaces>
                     <div *ngIf="editCourseForm.get('title').errors?.['required'] && editCourseForm.get('title').touched "
-                        class="text-red-400">
+                        class="text-red-500 text-sm">
                         Course Title is required
                     </div>
+                    <div *ngIf="editCourseForm.get('title').errors?.['noEmptySpace'] && editCourseForm.get('title').touched "
+                        class="text-red-500 text-sm">
+                        Course Title cannot contain empty spaces
+                    </div>
+
                 </div>
                 <div class="mb-6 flex gap-5">
                     <div class="w-1/2 ">
                         <label for="category" class="block mb-2 text-sm text-gray-800 font-medium">Category <span
-                                class="text-red-500">*</span></label>
+                                class="text-red-500 text-sm">*</span></label>
                         <select id="category" formControlName="category"
                             class="w-full border border-gray-300 rounded-md px-3 py-2">
                             <option *ngFor="let category of categoryList" value="{{category._id}}"
@@ -27,13 +32,13 @@
                             </option>
                         </select>
                         <div *ngIf="editCourseForm.get('category').errors?.['required'] && editCourseForm.get('category').touched "
-                            class="text-red-400">
+                            class="text-red-500 text-sm">
                             Select any category
                         </div>
                     </div>
                     <div class="w-1/2">
                         <label for="level" class="block mb-2 text-sm text-gray-800 font-medium">Level <span
-                                class="text-red-500">*</span></label>
+                                class="text-red-500 text-sm">*</span></label>
                         <select id="level" formControlName="level"
                             class="w-full border border-gray-300 rounded-md px-3 py-2">
                             <option value="beginner">Beginner</option>
@@ -41,7 +46,7 @@
                             <option value="Expert">Expert</option>
                         </select>
                         <div *ngIf="editCourseForm.get('level').errors?.['required'] && editCourseForm.get('level').touched "
-                            class="text-red-400">
+                            class="text-red-500 text-sm">
                             Select any level
                         </div>
                     </div>
@@ -49,7 +54,7 @@
                 <div class="mb-6 flex gap-5">
                     <div class="w-1/2">
                         <label for="coursetype" class="block mb-2 text-sm text-gray-800 font-medium">Course <span
-                                class="text-red-500">*</span></label>
+                                class="text-red-500 text-sm">*</span></label>
                         <select id="paid" formControlName="courseType"
                             class="w-full border border-gray-300 rounded-md px-3 py-2"
                             (change)="onCourseTypeChange($event)">
@@ -57,29 +62,39 @@
                             <option value="paid">Paid</option>
                         </select>
                         <div *ngIf="editCourseForm.get('courseType').errors?.['required'] && editCourseForm.get('courseType').touched "
-                            class="text-red-400">
+                            class="text-red-500 text-sm">
                             Select any course type
                         </div>
                     </div>
                     <div class="w-1/2">
                         <label for="price" class="block mb-2 text-sm text-gray-800 font-medium">Price <span
-                                class="text-red-500">*</span></label>
+                                class="text-red-500 text-sm">*</span></label>
                         <input [readOnly]="editCourseForm.get('courseType').value === 'free'" type="text" id="price"
                             formControlName="price" class="w-full border border-gray-300 rounded-md px-3 py-2">
                         <div *ngIf=" editCourseForm.get('price').errors?.['required'] && editCourseForm.get('price').touched "
-                            class="text-red-400">
+                            class="text-red-500 text-sm">
                             Enter the price
+                        </div>
+                        <div *ngIf=" editCourseForm.get('price').errors?.['notNumber'] && editCourseForm.get('price').touched "
+                            class="text-red-500 text-sm">
+                            Price should be positive numeber
                         </div>
                     </div>
                 </div>
                 <div class="mb-6">
                     <label for="description" class="block mb-2 text-sm text-gray-800 font-medium">Course Description
-                        <span class="text-red-500">*</span></label>
+                        <span class="text-red-500 text-sm">*</span></label>
                     <textarea id="description" formControlName="description"
-                        class="w-full border border-gray-300 rounded-md px-3 py-2 h-32 resize-none"></textarea>
+                        class="w-full border border-gray-300 rounded-md px-3 py-2 h-32 resize-none"
+                        appNoEmptySpaces>
+                    </textarea>
                     <div *ngIf="editCourseForm.get('description').errors?.['required'] && editCourseForm.get('description').touched "
-                        class="text-red-400">
+                        class="text-red-500 text-sm">
                         Cousre description is required
+                    </div>
+                    <div *ngIf="editCourseForm.get('description').errors?.['noEmptySpace'] && editCourseForm.get('description').touched "
+                        class="text-red-500 text-sm">
+                        Cousre description cannot contain empty spaces
                     </div>
                 </div>
 
@@ -89,7 +104,7 @@
                             <img [src]="courseDetails.thumbnail" alt="Thumbnail Preview" class="w-20 h-14 object-">
                         </div>
                         <label for="introductionVideo" class="block mb-2 text-sm text-gray-800 font-medium">Thumbnail
-                            Image <span class="text-red-500">*</span></label>
+                            Image <span class="text-red-500 text-sm">*</span></label>
                         <input type="file" id="introductionVideo" formControlName="thumbnail"
                             (change)="onFileChangeImage($event)"
                             class="w-full border border-gray-300 rounded-md px-4 py-3 " accept=".jpg, .jpeg, .png, .webp">
@@ -102,7 +117,7 @@
                             </video>
                         </div>
                         <label for="introductionVideo" class="block mb-2 text-sm text-gray-800 font-medium">Introduction
-                            Video <span class="text-red-500">*</span></label>
+                            Video <span class="text-red-500 text-sm">*</span></label>
                         <input type="file" id="introductionVideo" formControlName="introductionVideo"
                             (change)="onFileChangeIntroVideo($event)" accept=".mp4, .avi, .mov, .mkv, .webm"
                             class="w-full border border-gray-300 rounded-md px-4 py-3 ">
@@ -138,7 +153,7 @@
                             d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
                     </svg>
                     <svg (click)="deleteChapter(courseDetails._id, chapter?._id)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                        class="w-6 h-6 ms-2 text-red-500 hover:text-slate-900 hover:duration-500 hover:w-7 hover:h-7">
+                        class="w-6 h-6 ms-2 text-red-400 hover:text-slate-900 hover:duration-500 hover:w-7 hover:h-7">
                         <path stroke-linecap="round" stroke-linejoin="round"
                             d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
                     </svg>

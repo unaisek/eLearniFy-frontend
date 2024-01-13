@@ -14,14 +14,14 @@
                         <label for="Coupon Code" class="block mb-2 text-sm text-gray-800 font-medium">Coupon Code <span
                                 class="text-red-500">*</span></label>
                         <input type="text" id="couponCode" formControlName="couponCode"
-                            class="w-full border border-gray-300 rounded-md px-3 py-2">
+                            class="w-full border border-gray-300 rounded-md px-3 py-2" appNoEmptySpaces>
                         <div *ngIf="couponForm.get('couponCode')?.errors?.['required'] && couponForm.get('couponCode')?.touched "
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Coupon Code is required
                         </div>
-                        <div *ngIf="couponForm.get('couponCode')?.errors?.['emptySpace'] && couponForm.get('couponCode')?.touched "
-                            class="text-red-400 mt-2">
-                            Coupon Code is should be a valid string!Empty Space not allowed
+                        <div *ngIf="couponForm.get('couponCode')?.errors?.['noEmptySpace'] && couponForm.get('couponCode')?.touched "
+                            class="text-red-400 mt-2 text-sm">
+                            Copon code cannot conatin only spaces
                         </div>
                     </div>
                     <div class="w-1/2 ">
@@ -36,7 +36,7 @@
                             </option>
                         </select> -->
                         <div *ngIf="couponForm.get('discountType')?.errors?.['required'] && couponForm.get('discountType')?.touched "
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Select any dicount type
                         </div>
                     </div>
@@ -48,15 +48,15 @@
                         <input type="text" id="discountAmount" formControlName="discountAmount"
                             class="w-full border border-gray-300 rounded-md px-3 py-2">
                         <div *ngIf="couponForm.get('discountAmount')?.errors?.['required'] && couponForm.get('discountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Discount Amount is required
                         </div>
                         <div *ngIf="couponForm.get('discountAmount')?.errors?.['min']&& couponForm.get('discountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             discount amount should be positive number
                         </div>
                         <div *ngIf="couponForm.get('discountAmount')?.errors?.['notNumber']&& couponForm.get('discountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             discount amount should be a number
                         </div>
                     </div>
@@ -66,15 +66,15 @@
                         <input type="text" id="chapterTitle" formControlName="maxDiscountAmount"
                             class="w-full border border-gray-300 rounded-md px-3 py-2">
                         <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['required'] && couponForm.get('maxDiscountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                              Maximum Discount Amount is required
                         </div>
                         <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['min']&& couponForm.get('maxDiscountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                              Maximum discount amount should be positive number
                         </div>
                         <div *ngIf="couponForm.get('maxDiscountAmount')?.errors?.['notNumber']&& couponForm.get('maxDiscountAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Maximum discount amount should be a number
                         </div>
                     </div>
@@ -86,15 +86,15 @@
                         <input type="text" id="minPurchaseAmount" formControlName="minPurchaseAmount"
                             class="w-full border border-gray-300 rounded-md px-3 py-2">
                         <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['required'] && couponForm.get('minPurchaseAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Minimum purchase Amount is required
                         </div>
                         <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['min']&& couponForm.get('minPurchaseAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Minimum purchase amount should be positive number
                         </div>
                         <div *ngIf="couponForm.get('minPurchaseAmount')?.errors?.['notNumber']&& couponForm.get('minPurchaseAmount')?.touched"
-                            class="text-red-400 mt-2">
+                            class="text-red-400 mt-2 text-sm">
                             Minimum purchase amount should be a number
                         </div>
                     </div>
