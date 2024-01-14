@@ -1,5 +1,5 @@
-import { ICategory } from "src/app/admin/models/ICategory";
-import { IUser } from "src/app/models/IUser";
+import { ICategory } from "../../admin/models/ICategory";
+import { IUser } from "../../models/IUser";
 
 export interface addCourseResponse{
     message:string

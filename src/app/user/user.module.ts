@@ -51,7 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatProgressBarModule,
     CheckboxModule,
     NgxStarsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class UserModule { }
+export class UserModule {}

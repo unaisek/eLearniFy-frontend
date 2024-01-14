@@ -2,10 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { TutorService } from '../../services/tutor.service';
 import { CourseService } from '../../services/course.service';
-import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { provideClientHydration } from '@angular/platform-browser';
-import { ICategory } from '../../models/ICategory';
+
 
 @Component({
   selector: 'app-new-course',

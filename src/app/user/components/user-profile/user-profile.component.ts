@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { IUser } from 'src/app/models/IUser';
+import { IUser } from '../../../models/IUser';
 import { ToastrService } from 'ngx-toastr';
-import { IWallet } from 'src/app/models/IWallet';
+import { IWallet } from '../../../models/IWallet';
 
 @Component({
   selector: 'app-user-profile',

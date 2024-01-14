@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IUser } from 'src/app/models/IUser';
-import { IWallet } from 'src/app/models/IWallet';
+import { IUser } from '../../models/IUser';
+import { IWallet } from '../../models/IWallet';
 import { environment as env } from 'src/environments/environment';
 
 @Injectable({

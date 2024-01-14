@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CourseService } from '../../services/course.service';
 import { ToastrService } from 'ngx-toastr';
-import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
+import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
 import { TutorService } from '../../services/tutor.service';
 import { ITutorDashboardData } from '../../models/ITutorDashboardData';
 import { ChartConfiguration, ChartOptions } from 'chart.js';

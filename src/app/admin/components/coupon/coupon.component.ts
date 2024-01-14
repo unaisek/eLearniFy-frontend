@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CouponService } from '../../services/coupon.service';
 import { ToastrService } from 'ngx-toastr';
-import { ICoupon } from 'src/app/models/ICoupon';
-import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
+import { ICoupon } from '../../../models/ICoupon';
+import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
 
 @Component({
   selector: 'app-coupon',

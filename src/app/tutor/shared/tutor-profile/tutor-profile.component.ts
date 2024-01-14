@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IUser } from 'src/app/models/IUser';
+import { IUser } from '../../../models/IUser';
 import { TutorService } from '../../services/tutor.service';
-import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
+import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
 
 @Component({
   selector: 'app-tutor-profile',

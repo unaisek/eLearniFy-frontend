@@ -46,16 +46,18 @@ export class AdminLoginComponent implements OnInit {
     if(!this.adminLoginForm){
       this.inavlid = true;
     } else {
-      this._adminService.adminLogin(user)
-      .subscribe((res)=>{
+      this._adminService.adminLogin(user).subscribe({
+        next:(res)=>{
         localStorage.setItem("adminAuthToken",res.token);
         this._router.navigate(['/admin']);
         this._toastr.success("Admin logged successfully")
-      },(err)=>{
+        },
+        error:(err)=>{
         if(err.error.message){
           this._toastr.error(err.error.message)
         } else{
           this._toastr.error("Something went wrong")
+        }
         }
       })
     }

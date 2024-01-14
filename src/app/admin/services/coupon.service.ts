@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ICoupon } from 'src/app/models/ICoupon';
-import { environment as env } from 'src/environments/environment';
+import { ICoupon } from '../../models/ICoupon';
+import { environment as env } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

@@ -13,6 +13,7 @@ import { AuthGuard } from '../core/guards/auth-guard.guard';
 import { studentGuard } from '../core/guards/student.guard';
 
 
+
 const routes: Routes = [
   { path:'',
    component: UserLayoutComponent,

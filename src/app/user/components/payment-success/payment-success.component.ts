@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PaymentService } from '../../services/payment.service';
 import { ActivatedRoute } from '@angular/router';
-import { CourseService } from 'src/app/tutor/services/course.service';
 import { UserCourseService } from '../../services/user-course.service';
 import { ToastrService } from 'ngx-toastr';
 

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ICourse } from 'src/app/tutor/models/ICourse';
+import { ICourse } from '../../../tutor/models/ICourse';
 
 @Component({
   selector: 'app-user-chapter',

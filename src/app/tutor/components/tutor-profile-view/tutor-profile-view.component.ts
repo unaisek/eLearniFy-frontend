@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { IUser } from 'src/app/models/IUser';
+import { IUser } from '../../../models/IUser';
 import { TutorService } from '../../services/tutor.service';
 import { ToastrService } from 'ngx-toastr';
-import { IWallet } from 'src/app/models/IWallet';
+import { IWallet } from '../../../models/IWallet';
 
 @Component({
   selector: 'app-tutor-profile-view',

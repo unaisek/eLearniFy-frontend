@@ -1,13 +1,13 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { IChapter, ICourse } from 'src/app/tutor/models/ICourse';
+import { IChapter, ICourse } from '../../../tutor/models/ICourse';
 import { UserCourseService } from '../../services/user-course.service';
 import { ActivatedRoute } from '@angular/router';
-import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
+import { IEnrolledCourse } from '../../../models/IEnrolledCourse';
 import { VgApiService as VgAPI } from '@videogular/ngx-videogular/core';
 import { Subscription } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { IReview } from 'src/app/models/IReview';
+import { IReview } from '../../../models/IReview';
 
 @Component({
   selector: 'app-enrolled-course-view',

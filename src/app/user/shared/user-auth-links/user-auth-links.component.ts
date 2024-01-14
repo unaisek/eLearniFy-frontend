@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { IUser } from 'src/app/models/IUser';
+import { IUser } from '../../../models/IUser';
 
 @Component({
   selector: 'app-user-auth-links',

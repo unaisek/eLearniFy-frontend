@@ -2,11 +2,11 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,BehaviorSubject, retry } from 'rxjs';
 import { ICategory } from '../models/ICategory';
-import { environment } from 'src/environments/environment';
-import { IUser } from 'src/app/models/IUser';
+import { environment } from '../../../environments/environment';
+import { IUser } from '../../models/IUser';
 import { _isTestEnvironment } from '@angular/cdk/platform';
-import { IWallet } from 'src/app/models/IWallet';
-import { ITutorDashboardData } from '../models/ITutorDashboardData';
+import { IWallet } from '../../models/IWallet';
+
 
 
 @Injectable({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserCourseService } from '../../services/user-course.service';
-import { ICourse } from 'src/app/tutor/models/ICourse';
+import { ICourse } from '../../../tutor/models/ICourse';
 import { PaymentService } from '../../services/payment.service';
 import { ToastrService } from 'ngx-toastr';
-import { IReview } from 'src/app/models/IReview';
+import { IReview } from '../../../models/IReview';
 
 @Component({
   selector: 'app-user-course-view',

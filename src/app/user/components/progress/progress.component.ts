@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ICourse } from 'src/app/tutor/models/ICourse';
 import { UserCourseService } from '../../services/user-course.service';
-import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
-import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
+import { IEnrolledCourse } from '../../../models/IEnrolledCourse';
+import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 

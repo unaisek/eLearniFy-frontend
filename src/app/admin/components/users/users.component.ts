@@ -24,12 +24,13 @@ export class UsersComponent implements OnInit{
   }
 
   getAllUser(){
-    this._adminService.getAllUsers().subscribe((res)=>{
-      console.log(res);
-      
+    this._adminService.getAllUsers().subscribe({
+      next:(res)=>{     
       this.userList = res     
-    },(err)=>{
+      },
+      error:(err)=>{
       this._toastr.error(err.error.message)
+      }
     })
 
   }
@@ -42,10 +43,13 @@ export class UsersComponent implements OnInit{
       })
     } else {
       this.userList[index].is_blocked = true;
-      this._adminService.blockUser(id).subscribe((res)=>{
+      this._adminService.blockUser(id).subscribe({
+        next:(res)=>{
         this._toastr.warning(`${this.userList[index].name} is Blocked`)
-      },(err)=>{
+        },
+        error:(err)=>{
         this._toastr.error(err.error.message)
+        }
       })
     }
 

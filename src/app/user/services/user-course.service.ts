@@ -1,11 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { BoundElementProperty } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
-import { IReview } from 'src/app/models/IReview';
-import { ICourse } from 'src/app/tutor/models/ICourse';
-import { environment as env } from 'src/environments/environment';
+import { IEnrolledCourse } from '../../models/IEnrolledCourse';
+import { IReview } from '../../models/IReview';
+import { ICourse } from '../../tutor/models/ICourse';
+import { environment as env } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

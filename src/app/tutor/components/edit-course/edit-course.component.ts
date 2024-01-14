@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { IChapter, ICourse } from '../../models/ICourse';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { ConfirmModalService } from 'src/app/shared/services/confirm-modal.service';
+import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
 
 @Component({
   selector: 'app-edit-course',

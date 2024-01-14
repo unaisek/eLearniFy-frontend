@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { ICategory } from '../models/ICategory';
-import { environment as env } from 'src/environments/environment';
-import { IChapter, ICourse, addCourseResponse } from '../models/ICourse';
+import { environment as env } from '../../../environments/environment';
+import { ICourse, addCourseResponse } from '../models/ICourse';
 
 
 
