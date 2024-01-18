@@ -6,6 +6,7 @@ import { environment } from '../../../environments/environment';
 import { IUser } from '../../models/IUser';
 import { _isTestEnvironment } from '@angular/cdk/platform';
 import { IWallet } from '../../models/IWallet';
+import { TutorModule } from '../tutor.module';
 
 
 
@@ -13,9 +14,7 @@ import { IWallet } from '../../models/IWallet';
   providedIn: 'root',
 })
 export class TutorService {
-  private _categorySubject: BehaviorSubject<ICategory[]> = new BehaviorSubject<
-    ICategory[]
-  >([]);
+  private _categorySubject: BehaviorSubject<ICategory[]> = new BehaviorSubject<ICategory[]>([]);
   categoryList$: Observable<ICategory[]> = this._categorySubject.asObservable();
 
   constructor(private _http: HttpClient) {

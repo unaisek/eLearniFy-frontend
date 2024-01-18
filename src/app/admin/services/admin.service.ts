@@ -8,67 +8,50 @@ import { IUser } from '../models/Iusesr';
 import { BlockUserResponse } from '../models/IResponse';
 import { IAdminDashboardData } from '../models/IAdminDashboardData';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'content-Type': 'application/json'
-  })
-}
 
 
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminService {
-  apiUrl: string = 'http://localhost:3000/api';
 
+export class AdminService {
   constructor(private _http: HttpClient) {}
 
   adminLogin(user: User): Observable<LoginResponse> {
-    return this._http.post<LoginResponse>(
-      `${this.apiUrl}/admin/login`,
-      user,
-      httpOptions
-    );
+    return this._http.post<LoginResponse>(`${env.apiUrl}/admin/login`, user);
   }
 
   addCategory(category: ICategory): Observable<ICategory> {
     return this._http.post<ICategory>(
-      `${this.apiUrl}/admin/add-category`,
-      category,
-      httpOptions
+      `${env.apiUrl}/admin/add-category`,
+      category
     );
   }
 
   getAllCategory(): Observable<[ICategory]> {
-    return this._http.get<[ICategory]>(
-      `${this.apiUrl}/admin/categories`,
-      httpOptions
-    );
+    return this._http.get<[ICategory]>(`${env.apiUrl}/admin/categories`);
   }
 
   getAllUsers(): Observable<IUser[]> {
-    return this._http.get<IUser[]>(
-      `${this.apiUrl}/admin/users-list`,
-      httpOptions
+    return this._http.get<IUser[]>(`${env.apiUrl}/admin/users-list`);
+  }
+
+  blockUser(userId: string): Observable<BlockUserResponse> {
+    return this._http.patch<BlockUserResponse>(
+      `${env.apiUrl}/admin/user-block`,
+      userId
     );
   }
 
-  blockUser(id: string): Observable<BlockUserResponse> {
-    return this._http.put<BlockUserResponse>(
-      `${this.apiUrl}/admin/user-block/${id}`,
-      httpOptions
+  unBlockUser(userId: string): Observable<BlockUserResponse> {
+    return this._http.patch<BlockUserResponse>(
+      `${env.apiUrl}/admin/user-unblock`,
+      userId
     );
   }
 
-  unBlockUser(id: string): Observable<BlockUserResponse> {
-    return this._http.put<BlockUserResponse>(
-      `${this.apiUrl}/admin/user-unblock/${id}`,
-      httpOptions
-    );
-  }
-
-  getAdminDashboard(): Observable <IAdminDashboardData>{
+  getAdminDashboard(): Observable<IAdminDashboardData> {
     return this._http.get<IAdminDashboardData>(`${env.apiUrl}/admin/dashboard`);
   }
 }

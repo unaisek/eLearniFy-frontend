@@ -13,6 +13,8 @@ import { CategoriesComponent } from './components/categories/categories.componen
 import { CouponComponent } from './components/coupon/coupon.component';
 import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from '../shared/shared.module';
+import { AdminService } from './services/admin.service';
+
 
 
 
@@ -35,5 +37,8 @@ import { SharedModule } from '../shared/shared.module';
     DialogModule,
     SharedModule,
   ],
+  providers:[
+    AdminService
+  ]
 })
 export class AdminModule {}

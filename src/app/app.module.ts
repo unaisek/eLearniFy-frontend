@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { ToastrModule } from 'ngx-toastr';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { OtpComponent } from './auth/otp/otp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { UserModule } from './user/user.module';
@@ -23,6 +23,7 @@ import { GlobalErrorHandler } from './core/errorHandler/globalErrorHandler';
 import { SharedModule } from './shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { TimeagoModule } from 'ngx-timeago';
+import { MainInterceptor } from './core/interceptors/main.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,10 @@ import { TimeagoModule } from 'ngx-timeago';
     TimeagoModule.forRoot()
 
   ],
-  providers: [{provide: ErrorHandler, useClass: GlobalErrorHandler}],
+  providers: [
+    { provide:HTTP_INTERCEPTORS, useClass:MainInterceptor, multi:true },
+    { provide: ErrorHandler, useClass: GlobalErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

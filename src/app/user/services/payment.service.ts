@@ -3,6 +3,12 @@ import { Injectable } from '@angular/core';
 import { Stripe } from '@stripe/stripe-js';
 import { Observable } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
+import { IEnrolledCourse } from 'src/app/models/IEnrolledCourse';
+
+export interface IPaymentData{
+  email?:string;
+  paymentMethod?:string
+}
 
 @Injectable({
   providedIn: 'root',
@@ -30,11 +36,14 @@ export class PaymentService {
     });
   }
 
-  makePayment(courseId: string): Observable<any> {
+  makePayment(courseId: string, couponId:string, paymentData:IPaymentData ): Observable<string | IEnrolledCourse> {
     // const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const userId = localStorage.getItem('user')
-    const body = { courseId,userId }; 
-    return this._http.post(`${env.apiUrl}/user/create-checkout-session`, body);
+    const body = { courseId,userId, couponId, paymentData }; 
+    return this._http.post<string | IEnrolledCourse>(
+      `${env.apiUrl}/user/create-checkout-session`,
+      body
+    );
   }
 
   async initiateStripeCheckout(session: string): Promise<boolean> {

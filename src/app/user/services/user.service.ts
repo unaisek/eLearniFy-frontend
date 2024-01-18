@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IUser } from '../../models/IUser';
 import { IWallet } from '../../models/IWallet';
 import { environment as env } from 'src/environments/environment';
+import { ICoupon } from 'src/app/models/ICoupon';
 
 @Injectable({
   providedIn: 'root'
@@ -25,5 +26,13 @@ export class UserService {
 
   getWalletData(userId: string): Observable <IWallet>{
     return this._http.get<IWallet>(`${env.apiUrl}/user/wallet/${userId}`);
+  }
+
+  getAvailableCoupons(userId:string):Observable<ICoupon[]>{
+    return this._http.get<ICoupon[]>(`${env.apiUrl}/user/all-coupons/${userId}`)
+  }
+
+  applyCoupon(couponId:string, courseId:string,userId:string): Observable<ICoupon>{
+    return this._http.get<ICoupon>(`${env.apiUrl}/user/apply-coupon?couponId=${couponId}&courseId=${courseId}&userId=${userId}`);
   }
 }

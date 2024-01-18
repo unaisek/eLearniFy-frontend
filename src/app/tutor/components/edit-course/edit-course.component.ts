@@ -5,8 +5,9 @@ import { TutorService } from '../../services/tutor.service';
 import { ActivatedRoute } from '@angular/router';
 import { CourseService } from '../../services/course.service';
 import { IChapter, ICourse } from '../../models/ICourse';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { ConfirmModalService } from '../../../shared/services/confirm-modal.service';
+
 
 @Component({
   selector: 'app-edit-course',
@@ -30,7 +31,7 @@ export class EditCourseComponent implements OnInit {
     private _route: ActivatedRoute,
     private _courseService: CourseService,
     private _toastr: ToastrService,
-    private _dialogService: ConfirmModalService
+    private _dialogService: ConfirmModalService,
   ) {}
 
   ngOnInit(): void {

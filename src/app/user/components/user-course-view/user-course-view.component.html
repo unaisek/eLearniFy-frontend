@@ -6,8 +6,10 @@
             <p class="text-base">Created by <span class="text-blue-600">{{courseData?.tutor.name}}</span></p>
             <p *ngIf="courseData?.courseType =='paid'" class="text-lg font-semibold text-slate-800 p-2 ">₹{{courseData?.price}}</p>
             <app-button  (click)="freeEnroll(courseData?._id)" *ngIf="courseData?.courseType ==='free'" name="Enroll Now" size="large" shade="dark" animation="fade" ></app-button>
-            <app-button (click)="initiatePayment(courseData?._id)" *ngIf="courseData?.courseType ==='paid'"
-             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"></app-button> 
+            <!-- <app-button  (click)="initiatePayment(courseData?._id)" *ngIf="courseData?.courseType ==='paid'"
+             name="Pay & Enroll Now" size="large" shade="dark" animation="fade"></app-button>  -->
+            <app-button routerLink="/user/payment-checkout/{{courseData?._id}}"  *ngIf="courseData?.courseType ==='paid'" name="Pay & Enroll Now"
+                size="large" shade="dark" animation="fade"></app-button>
             <p class="pt-2 ps-2 text-emerald-400 hover:underline hover:text-blue-600">Apply Coupon</p>
         </div>   
         <div class="w-full md:w-1/2 flex justify-center items-center">

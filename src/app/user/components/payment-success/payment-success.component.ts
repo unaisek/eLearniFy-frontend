@@ -25,12 +25,14 @@ export class PaymentSuccessComponent implements OnInit {
   handleSuccessPayment(){
     const userId = localStorage.getItem('user');
     const courseId = this._route.snapshot.queryParamMap.get('courseId');
-    console.log(userId,courseId);
-    this._userCourseService.enrollCourse(userId,courseId).subscribe({
-      next:(response)=>{
-        this._toastr.success("Course enrolled successfully!")
-      }
-    })
+    const couponId = this._route.snapshot.queryParamMap.get('couponId')
+    if(courseId){
+      this._userCourseService.enrollCourse(userId,courseId,couponId).subscribe({
+        next:(response)=>{
+          this._toastr.success("Course enrolled successfully!")
+        }
+      })
+    }
     
   }
 

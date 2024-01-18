@@ -100,9 +100,9 @@ export class UserCourseViewComponent implements OnInit {
     if (!token) {
       this._router.navigate(['/login']);
     }
-
+    const couponId = ''
     const userId = localStorage.getItem('user');
-    this._userCourseService.enrollCourse(userId, courseId).subscribe({
+    this._userCourseService.enrollCourse(userId, courseId,couponId).subscribe({
       next: (res) => {
         this._toastr.success('Course enrolled successfully!');
       },
@@ -113,18 +113,18 @@ export class UserCourseViewComponent implements OnInit {
     });
   }
 
-  initiatePayment(courseId: string) {
-    const token = localStorage.getItem('userAuthToken');
-    if (!token) {
-      this._router.navigate(['/login']);
-    }
-    this._paymentService.makePayment(courseId).subscribe(
-      (session) => {
-        this._paymentService.initiateStripeCheckout(session);
-      },
-      (error) => {
-        console.log('payment error:', error);
-      }
-    );
-  }
+  // initiatePayment(courseId: string) {
+  //   const token = localStorage.getItem('userAuthToken');
+  //   if (!token) {
+  //     this._router.navigate(['/login']);
+  //   }
+  //   this._paymentService.makePayment(courseId).subscribe(
+  //     (session) => {
+  //       this._paymentService.initiateStripeCheckout(session);
+  //     },
+  //     (error) => {
+  //       console.log('payment error:', error);
+  //     }
+  //   );
+  // }
 }

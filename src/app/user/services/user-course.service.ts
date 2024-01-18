@@ -24,8 +24,8 @@ export class UserCourseService {
     );
   }
 
-  enrollCourse(userId: string, courseId: string): Observable<any> {
-    const body = { userId, courseId };
+  enrollCourse(userId: string, courseId: string,couponId:string): Observable<any> {
+    const body = { userId, courseId, couponId };
     return this._http.post(`${env.apiUrl}/user/enroll-course`, body);
   }
 

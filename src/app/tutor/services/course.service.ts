@@ -9,6 +9,7 @@ import { ICourse, addCourseResponse } from '../models/ICourse';
 @Injectable({
   providedIn: 'root',
 })
+
 export class CourseService {
   constructor(private _http: HttpClient) {}
 
@@ -18,7 +19,6 @@ export class CourseService {
     this._courseDetailsSubject.asObservable();
 
   addNewCourse(formData: FormData): Observable<addCourseResponse> {
-    // const headers = new HttpHeaders().set('Content-Type','multipart/form-data')
     return this._http.post<addCourseResponse>(
       `${env.apiUrl}/tutor/add-course`,
       formData

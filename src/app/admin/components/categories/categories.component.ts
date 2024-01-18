@@ -40,12 +40,15 @@ export class CategoriesComponent implements OnInit {
   categoryFormSubmit(){
     const category = this.categoryForm.getRawValue();
     this._adminService.addCategory(category)
-    .subscribe((res)=>{
+    .subscribe({
+      next:(res)=>{
       this._toastr.success("category added successfully..!!");
-      // window.location.reload();
-    },(err)=>{
+      this.getCategoryList();
+    },
+    error:(err)=>{
       this._toastr.error(err.error.message)
-    })
+    }
+  })
 
   }
 

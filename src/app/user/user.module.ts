@@ -22,6 +22,7 @@ import { CourseFilterComponent } from './shared/course-filter/course-filter.comp
 import { CheckboxModule } from 'primeng/checkbox';
 import { NgxStarsModule } from 'ngx-stars';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -42,6 +43,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PaymentSuccessComponent,
     EnrolledCourseViewComponent,
     CourseFilterComponent,
+    CheckoutComponent,
   ],
   imports: [
     CommonModule,

@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
       this.invalid = true;
     }else {
       this.authService.userLogin(user)
-      .subscribe((res)=>{
+      .subscribe({next:(res)=>{
         if(res.role =="student"){
           localStorage.setItem('authToken', res.token);
           localStorage.setItem('user', res.user);
@@ -59,18 +59,19 @@ export class LoginComponent implements OnInit{
           localStorage.setItem('user', res.user);
           this.router.navigate(['tutor'])
         }        
-      },(err)=>{
+      },error:(err)=>{
         if(err.error.message =="User not verified"){
           this.toastr.error("User not verified");
           this.authService.userReverification(user)
-          .subscribe((res)=>{
-            this.router.navigate(['/verify',(res as {email:string}).email]);
-            this.toastr.success("otp send to your email, please verify your email")
-          },(err)=>{
-            if(err.error.message){
-              this.toastr.error(err.error.message);
-            } else{
-              this.toastr.error("Some thing went wrong")
+          .subscribe({next:(res)=>{
+              this.router.navigate(['/verify',(res as {email:string}).email]);
+              this.toastr.success("otp send to your email, please verify your email")
+            },error:(err)=>{
+              if(err.error.message){
+                this.toastr.error(err.error.message);
+              } else{
+                this.toastr.error("Some thing went wrong")
+              }
             }
           })
         } else if(err.error.message){
@@ -78,7 +79,8 @@ export class LoginComponent implements OnInit{
         } else {
           this.toastr.error("Some thing went wrong")
         }
-      })
+      }
+    })
     }
   }
   

@@ -11,6 +11,7 @@ import { PaymentSuccessComponent } from './components/payment-success/payment-su
 import { EnrolledCourseViewComponent } from './components/enrolled-course-view/enrolled-course-view.component';
 import { AuthGuard } from '../core/guards/auth-guard.guard';
 import { studentGuard } from '../core/guards/student.guard';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -21,9 +22,10 @@ const routes: Routes = [
       { path:'', redirectTo:'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
       { path:'all-courses', component: AllCoursesComponent },
-      { path:'progress', component: ProgressComponent ,canActivate:[studentGuard]},
-      { path:'course-over-view/:id',component: UserCourseViewComponent},
-      { path:'payment-success', component: PaymentSuccessComponent,canActivate:[studentGuard]},
+      { path:'progress', component: ProgressComponent ,canActivate:[studentGuard] },
+      { path:'course-over-view/:id',component: UserCourseViewComponent },
+      { path:'payment-checkout/:id',component: CheckoutComponent },
+      { path:'payment-success', component: PaymentSuccessComponent,canActivate:[studentGuard] },
       { path:'profile', component: UserProfileComponent,canActivate:[studentGuard] },
       { path: 'enrolled-course-overView/:id', component: EnrolledCourseViewComponent,canActivate:[studentGuard]}
    ]

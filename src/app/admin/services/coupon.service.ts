@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ICoupon } from '../../models/ICoupon';
 import { environment as env } from '../../../environments/environment';
+import { AdminModule } from '../admin.module';
 
 @Injectable({
   providedIn: 'root',
