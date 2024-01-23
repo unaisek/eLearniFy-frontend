@@ -23,6 +23,9 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { NgxStarsModule } from 'ngx-stars';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { UserChatComponent } from './components/user-chat/user-chat.component';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -44,6 +47,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     EnrolledCourseViewComponent,
     CourseFilterComponent,
     CheckoutComponent,
+    UserChatComponent,
   ],
   imports: [
     CommonModule,
@@ -54,6 +58,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     CheckboxModule,
     NgxStarsModule,
     ReactiveFormsModule,
+    MatIconModule,
+    FormsModule
   ],
 })
 export class UserModule {}
