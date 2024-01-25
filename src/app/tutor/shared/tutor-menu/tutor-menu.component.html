@@ -1,11 +1,14 @@
-<ul class="lg:flex gap-5 lg:gap-10 font-medium lg:font-semibold text-slate-700">
+<ul class="lg:flex gap-5 lg:gap-14 font-medium lg:font-semibold text-slate-700">
     <li class="p-3 border-t border-gray-300 lg:border-0">
-        <a [routerLink]="['home']">Home</a>
-    </li>
-    <li class="p-3 border-t border-gray-300 lg:border-0">
-        <a [routerLink]="['dashboard']">Dashboard</a>
+        <a [routerLink]="['dashboard']" (click)="onClickMenu()">Dashboard</a>
     </li>
     <li class="p-3 border-y border-gray-300 lg:border-0">
-        <a [routerLink]="['add-course']">Add Course</a>
+        <a [routerLink]="['add-course']" (click)="onClickMenu()">Add Course</a>
+    </li>
+    <li class="block lg:hidden p-3 border-y border-gray-300 lg:border-0">
+        <a [routerLink]="['profile']" (click)="onClickMenu()">Profile</a>
+    </li>
+    <li class=" block lg:hidden p-3 border-y border-gray-300 lg:border-0">
+        <a (click)="logout()">Sign Out</a>
     </li>
 </ul>

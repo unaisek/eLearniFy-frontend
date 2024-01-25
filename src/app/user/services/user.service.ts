@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUser } from '../../models/IUser';
 import { IWallet } from '../../models/IWallet';
-import { environment as env } from 'src/environments/environment';
-import { ICoupon } from 'src/app/models/ICoupon';
+import { environment as env } from '../../../environments/environment';
+import { ICoupon } from '../../models/ICoupon';
+import { ICategory } from '../../models/ICategory';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,9 @@ export class UserService {
 
   applyCoupon(couponId:string, courseId:string,userId:string): Observable<ICoupon>{
     return this._http.get<ICoupon>(`${env.apiUrl}/user/apply-coupon?couponId=${couponId}&courseId=${courseId}&userId=${userId}`);
+  }
+
+  getAllCategories():Observable<ICategory[]>{
+    return this._http.get<ICategory[]>(`${env.apiUrl}/user/categories`);
   }
 }

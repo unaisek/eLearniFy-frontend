@@ -24,4 +24,7 @@ export class TutorHeaderComponent {
   closeSideBar() {
     this.isSideBarShow = false;
   }
+  onMenuClicked(){
+    this.closeSideBar();
+  }
 }

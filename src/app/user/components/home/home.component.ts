@@ -20,10 +20,12 @@ export class HomeComponent implements OnInit {
   }
 
   getCourseList(){
-    this._userCourseServie.getAllCoursesForStudent().subscribe({
-      next:(cousres)=>{
-        this.courseLists = cousres;
-        console.log(this.courseLists);
+    this._userCourseServie.getAllCoursesForStudentHome().subscribe({
+      next:(response)=>{
+        console.log(response);
+        
+        this.courseLists = response;
+        console.log(this.courseLists,"course");
         
       },
       error:(error)=>{

@@ -112,7 +112,7 @@ export class CheckoutComponent implements OnInit {
             this._toastr.error(errorMessage, 'Error');
                      
           } else{
-            this._toastr.error(error.erro)
+            this._toastr.error(error.error)
           }
         }
       })

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { Socket, io } from 'socket.io-client';
-import { IChat, IMessage } from 'src/app/models/IChat';
+import { IChat, IMessage } from '../../models/IChat';
+
 
 @Injectable({
   providedIn: 'root',
@@ -34,7 +35,6 @@ export class SocketioService {
     this.socket.emit('get-all-messages', { courseId });
 
     this.socket.on('get-course-response', (messages) => {
-      console.log(messages);
       this.allMessagesSubject.next(messages.messages);
       
     });

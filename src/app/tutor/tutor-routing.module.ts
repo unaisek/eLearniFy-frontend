@@ -15,8 +15,7 @@ const routes: Routes =[
   { path:'',
    component: TutorLayoutComponent,canActivate:[tutorGuard],
    children:[
-      { path:'', redirectTo:'/tutor/home', pathMatch: 'full' },
-      { path: 'home', component: TutorHomeComponent },
+      { path:'', redirectTo:'/tutor/dashboard', pathMatch: 'full' },
       { path:'dashboard', component: TutorDashboardComponent },
       { path:'add-course', component: NewCourseComponent },
       { path:'view-course/:id',component:ViewCourseComponent },

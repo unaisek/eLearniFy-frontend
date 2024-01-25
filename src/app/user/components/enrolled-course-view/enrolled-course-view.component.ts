@@ -133,10 +133,12 @@ export class EnrolledCourseViewComponent implements OnInit, OnDestroy {
 
   getAllReviews() {
     const coursId = this._route.snapshot.paramMap.get('id');
+    const userId = localStorage.getItem('user')
     this._userCourseService.getAllReview(coursId).subscribe({
       next: (reviewData) => {
         this.reviewsArray = reviewData;
-        console.log(this.reviewsArray);
+        this.checkedRate = this.reviewsArray.some((review) => review.userId._id == userId)
+        console.log(this.checkedRate,"check review");      
       },
     });
   }

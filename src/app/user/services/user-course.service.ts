@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { IEnrolledCourse } from '../../models/IEnrolledCourse';
 import { IReview } from '../../models/IReview';
 import { ICourse } from '../../tutor/models/ICourse';
 import { environment as env } from '../../../environments/environment';
+import { IFilter } from '../../models/IFilter';
 
 @Injectable({
   providedIn: 'root',
@@ -14,8 +15,17 @@ export class UserCourseService {
 
   constructor(private _http: HttpClient) {}
 
-  getAllCoursesForStudent(): Observable<ICourse[]> {
-    return this._http.get<ICourse[]>(`${env.apiUrl}/user/all-courses`);
+  getAllCoursesForStudentHome(): Observable<ICourse[]> {
+    return this._http.get<ICourse[]>(`${env.apiUrl}/user/home-courses`);
+  }
+
+  getAllCoursesForStudent(filterValues: IFilter): Observable<ICourse[]> {
+    const params = new HttpParams({ fromObject: filterValues as any });
+    console.log(params);
+    
+    return this._http.get<ICourse[]>(`${env.apiUrl}/user/all-courses`, {
+      params,
+    });
   }
 
   getCourseDetails(courseId: string): Observable<ICourse> {
@@ -24,7 +34,11 @@ export class UserCourseService {
     );
   }
 
-  enrollCourse(userId: string, courseId: string,couponId:string): Observable<any> {
+  enrollCourse(
+    userId: string,
+    courseId: string,
+    couponId: string
+  ): Observable<any> {
     const body = { userId, courseId, couponId };
     return this._http.post(`${env.apiUrl}/user/enroll-course`, body);
   }
@@ -84,12 +98,16 @@ export class UserCourseService {
     return this._http.post<IReview>(`${env.apiUrl}/user/add-review`, body);
   }
 
-  getAllReview( courseId: string): Observable<IReview[]>{
-    return this._http.get<IReview[]>(`${env.apiUrl}/user/review/${courseId}`)
+  getAllReview(courseId: string): Observable<IReview[]> {
+    return this._http.get<IReview[]>(`${env.apiUrl}/user/review/${courseId}`);
   }
 
-  addRating(courseId:string, userId:string, rating:number): Observable<IReview>{
-    const body = { courseId, userId, rating}
-    return this._http.post<IReview>(`${env.apiUrl}/user/add-rating`,body)
+  addRating(
+    courseId: string,
+    userId: string,
+    rating: number
+  ): Observable<IReview> {
+    const body = { courseId, userId, rating };
+    return this._http.post<IReview>(`${env.apiUrl}/user/add-rating`, body);
   }
 }

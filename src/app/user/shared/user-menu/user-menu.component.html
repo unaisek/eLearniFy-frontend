@@ -1,12 +1,12 @@
 <ul class="lg:flex gap-5 lg:gap-10 font-medium lg:font-semibold text-slate-700">
     <li class="p-3 border-t border-gray-300 lg:border-0 hover:text-emerald-500">
-        <a [routerLink]="['']">Home</a>
+        <a [routerLink]="['']" (click)="onClickMenu()">Home</a>
     </li>
     <li class="p-3 border-t border-gray-300 lg:border-0 hover:text-emerald-500">
-        <a [routerLink]="['all-courses']">All Courses</a>
+        <a [routerLink]="['all-courses']"  (click)="onClickMenu()">All Courses</a>
     </li>
     <li class="p-3 border-y border-gray-300 lg:border-0 hover:text-emerald-500">
-        <a [routerLink]="['progress']">My Courses</a>
+        <a [routerLink]="['progress']" (click)="onClickMenu()">My Courses</a>
     </li>
 
 </ul>

@@ -16,7 +16,7 @@
                     <vg-play-pause></vg-play-pause>
                     <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
                     <vg-scrub-bar style="pointer-events: none;"></vg-scrub-bar>
-                    <vg-track-selector></vg-track-selector>
+                    <!-- <vg-track-selector></vg-track-selector> -->
                     <vg-mute></vg-mute>
                     <vg-volume></vg-volume>
                     <vg-fullscreen></vg-fullscreen>
@@ -72,12 +72,7 @@
             </mat-tab>
             <mat-tab label="Reviews">
                 <div *ngIf="!checkedRate" class="border border-gray-400 shadow-lg ps-4">
-                    <!-- <h2>Add Your Reveiw</h2> -->
                     <form [formGroup]="reviewForm" (ngSubmit)="submitReviwCourse()" >
-                        <!-- <div class="flex flex-col">
-                            <ngx-stars color="#ffa534" [wholeStars]="true" [size]="2" formControlName="rating" (ratingOutput)="onRatingSet($event)"></ngx-stars>
-                            <textarea formControlName="comment" placeholder="Enter comment" rows="4" cols="50" class="border border-gray-400 p-2"></textarea>                         
-                        </div> -->
                         <div class="text-center flex flex-col align-middle">
                             <h2>Rate the Course</h2>
                             <div class="">
@@ -98,13 +93,13 @@
                 <div class="mt-3">
                     <h2>Reviews</h2>
                     <div *ngFor="let review of reviewsArray" class="flex border-b pt-3 border-gray-300">
-                        <div class="w-1/12">
+                        <div class="w-2/12 md:w-1/12">
                             <img *ngIf="!review?.userId.profileImage"  class="w-12 h-12 rounded-full " src="../../../../assets/default-user.webp"
                                 alt="">
                             <img *ngIf="review?.userId.profileImage" class="w-12 h-12 rounded-full " src="{{review?.userId.profileImage}}"
                                 alt="">
                         </div>
-                        <div class="w-10/12">
+                        <div class="w-10/12 ms-1 md:ms-0">
                             <div class="flex">
                                 <p class="font-semibold">{{review?.userId.name}}</p>
                                 <span class="ms-2 text-gray-500">{{review?.createdAt | timeago }}</span>

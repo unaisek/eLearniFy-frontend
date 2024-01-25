@@ -16,7 +16,7 @@ import { TimeagoModule } from 'ngx-timeago';
 import { DialogModule } from 'primeng/dialog';
 import { NgChartsModule } from 'ng2-charts';
 import { NoEmptySpacesDirective } from './directives/no-empty-spaces.directive';
-// import { ChartsModule } from 'ng2-charts';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -50,7 +50,8 @@ import { NoEmptySpacesDirective } from './directives/no-empty-spaces.directive';
     TimeagoModule,
     DialogModule,
     NgChartsModule,
-    NoEmptySpacesDirective
+    NoEmptySpacesDirective,
+    MatPaginatorModule
   ],
 })
 export class SharedModule {}
