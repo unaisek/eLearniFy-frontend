@@ -17,13 +17,14 @@ import { DialogModule } from 'primeng/dialog';
 import { NgChartsModule } from 'ng2-charts';
 import { NoEmptySpacesDirective } from './directives/no-empty-spaces.directive';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { NotfoundComponent } from './components/notfound/notfound.component';
 
 
 
 
 
 @NgModule({
-  declarations: [ConfirmModalComponent, NoEmptySpacesDirective],
+  declarations: [ConfirmModalComponent, NoEmptySpacesDirective, NotfoundComponent],
   imports: [
     CommonModule,
     MatDialogModule,
@@ -51,7 +52,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DialogModule,
     NgChartsModule,
     NoEmptySpacesDirective,
-    MatPaginatorModule
+    MatPaginatorModule,
+    NotfoundComponent
   ],
 })
 export class SharedModule {}

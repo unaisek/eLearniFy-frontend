@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CouponService } from '../../services/coupon.service';
 import { ToastrService } from 'ngx-toastr';
 import { ICoupon } from '../../../models/ICoupon';
@@ -31,7 +31,7 @@ export class CouponComponent implements OnInit {
       discountType: ['', Validators.required],
       discountAmount: [
         '',
-        [Validators.required, Validators.min(0), this.validateNumber],
+        [Validators.required, Validators.min(0), this.validateNumber,this.validateDiscountAmount ],
       ],
       maxDiscountAmount: [
         '',
@@ -65,6 +65,19 @@ export class CouponComponent implements OnInit {
     }
     return null;
   }
+  validateDiscountAmount(control: FormControl) {
+    const discountTypeControl = control.parent ? control.parent.get('discountType') : null
+    const discountAmount = control.value;
+  
+    
+
+    if ( discountTypeControl && discountTypeControl.value === 'percentage' && (isNaN(discountAmount) || discountAmount >= 90)) {
+      return { invalidDiscountAmount: true };
+    }
+
+    return null;
+  }
+
 
   addCoupon() {
     this.openModal();

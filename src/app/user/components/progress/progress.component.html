@@ -1,4 +1,8 @@
 <div class=" container pt-48">
+    <div *ngIf="courseData?.length == 0" class="text-center">
+        <app-notfound></app-notfound>
+        <p>please enroll any course</p>
+    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         <div class="border border-emerald-200 rounded-2xl p-5" *ngFor="let course of courseData">
             <img class="w-full rounded-xl" src="{{course?.courseId.thumbnail}}" alt="">

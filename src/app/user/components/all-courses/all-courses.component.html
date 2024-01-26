@@ -76,6 +76,9 @@
             </div>
         </form>
     </div>
+    <div>
+        <app-notfound *ngIf="courseList?.length == 0" class=""></app-notfound>
+    </div>
 
     <div *ngIf="!loading" class="container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3">
 

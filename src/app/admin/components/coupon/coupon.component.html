@@ -37,7 +37,7 @@
                         </select> -->
                         <div *ngIf="couponForm.get('discountType')?.errors?.['required'] && couponForm.get('discountType')?.touched "
                             class="text-red-400 mt-2 text-sm">
-                            Select any dicount type
+                            Select any discount type
                         </div>
                     </div>
                 </div>
@@ -58,6 +58,10 @@
                         <div *ngIf="couponForm.get('discountAmount')?.errors?.['notNumber']&& couponForm.get('discountAmount')?.touched"
                             class="text-red-400 mt-2 text-sm">
                             discount amount should be a number
+                        </div>
+                        <div *ngIf="couponForm.get('discountAmount')?.errors?.['invalidDiscountAmount']&& couponForm.get('discountAmount')?.touched"
+                            class="text-red-400 mt-2 text-sm">
+                            discount percentage should be less than 90%
                         </div>
                     </div>
                     <div class="w-1/2">
@@ -114,8 +118,9 @@
                     </div>
                 </div>
                 <div class="text-center mt-3">
-                    <button type="submit" [disabled]=""
+                    <button type="submit" [disabled]="!couponForm.valid"
                         class="bg-emerald-500 rounded-md px-2 py-3 hover:bg-emerald-700 text-white"
+                        [ngStyle]="{'cursor': !couponForm.valid ? 'not-allowed' : 'pointer'}"
                     >{{modalButton}}</button>
                 </div>
             </div>
