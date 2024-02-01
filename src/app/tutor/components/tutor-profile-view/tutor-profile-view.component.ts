@@ -13,6 +13,7 @@ export class TutorProfileViewComponent {
   userDetails: IUser;
   walletDetails: IWallet;
   profileImage: File = null;
+  currentContent:string = 'Account Info'
 
   constructor(
     private _tutorService: TutorService,
@@ -65,5 +66,13 @@ export class TutorProfileViewComponent {
       
       this.walletDetails = wallet;
     })
+  }
+
+  changeContent(content:string){
+    if(content == "account"){
+      this.currentContent = "Account Info"
+    }else {
+      this.currentContent = "Wallet Info"
+    }
   }
 }
