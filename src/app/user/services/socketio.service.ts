@@ -9,7 +9,7 @@ import { IChat, IMessage } from '../../models/IChat';
 })
 export class SocketioService {
   socket: Socket;
-  backendUrl = 'http://localhost:3000';
+  backendUrl = 'https://footies.online';
 
   private allMessagesSubject: Subject<[]> = new Subject<[]>();
   public allMessages$: Observable<[]> = this.allMessagesSubject.asObservable();
