@@ -89,7 +89,7 @@
             </div>
         </div>
         <div class=" w-full sm:w-3/4">
-            <div *ngIf="currentContent == 'Account Info' " class="mt-5">
+            <div *ngIf="currentContent == 'Account Info' " class="mt-5 md:mt-0 py-3 px-2 bg-[#f4f4f6]">
                 <h1>Account Information</h1>
                 <div class="bg-[#f4f4f6] px-3 pb-3">
                     <label for="userName" class="block mb-2 text-sm text-gray-800 font-medium">User Name</label>
@@ -99,7 +99,7 @@
                     <input type="text" id="title" class="w-full border border-gray-300 rounded-md px-3 py-2" value="{{userDetails?.email}}">
                 </div>
             </div>
-            <div class="mt-5" *ngIf="currentContent == 'Wallet Info' ">
+            <div class="mt-5 md:mt-0 py-3 px-2 bg-[#f4f4f6]" *ngIf="currentContent == 'Wallet Info' ">
                 <h1>Wallet</h1>
                 <div class="bg-[#f4f4f6] px-3">
                     <div class="bg-gray-50 border border-gray-300 rounded-lg  h-28 w-full md:w-1/2 shadow-md relative m-2">
