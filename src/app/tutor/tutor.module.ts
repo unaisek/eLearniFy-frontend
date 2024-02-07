@@ -16,6 +16,8 @@ import { EditCourseComponent } from './components/edit-course/edit-course.compon
 import { ChapterModalComponent } from './shared/chapter-modal/chapter-modal.component';
 import { TutorProfileViewComponent } from './components/tutor-profile-view/tutor-profile-view.component';
 import { SharedModule } from '../shared/shared.module';
+import { MatTabsModule } from '@angular/material/tabs';
+import { NgxStarsModule } from 'ngx-stars';
 
 
 
@@ -43,7 +45,9 @@ import { SharedModule } from '../shared/shared.module';
     ReactiveFormsModule,
     FormsModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    MatTabsModule,
+    NgxStarsModule
   ],
 })
 export class TutorModule {}

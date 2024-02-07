@@ -152,7 +152,7 @@
             
                             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-emerald-50 rounded-box w-24">
                                 <li><a routerLink="/tutor/edit-course/{{course._id}}">Edit</a></li>
-                                <!-- <li><a routerLink="/tutor/view-course/{{course._id}}">View</a></li> -->
+                                <li><a routerLink="/tutor/view-course/{{course._id}}">View</a></li>
                                 <li *ngIf="course.status"><a (click)="unList(course._id)">Unlist</a></li>
                                 <li *ngIf="!course.status"><a (click)="list(course._id)">List</a></li>
                             </ul>

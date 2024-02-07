@@ -115,7 +115,7 @@
                             </div>
                         </div>
                         <p class="text-emerald-500 font-bold text-2xl ps-6 pt-3">
-                            {{walletDetails?.walletAmount}}
+                            {{walletDetails?.walletAmount || '0'}}
                         </p>                       
                     </div>
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
@@ -136,6 +136,8 @@
                             </th>
                         </tr>
                     </thead>
+                    <div *ngIf="!walletDetails || walletDetails?.transactions.length == 0" class="py-2 w-full text-center">No wallet history
+                    </div>
                     <tbody>
                         <tr class="bg-white border-b" *ngFor="let history of walletDetails?.transactions">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">

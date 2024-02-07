@@ -35,14 +35,14 @@ export class CourseService {
   getCourseDetails(courseId: string): void {
     this._http
       .get<ICourse>(`${env.apiUrl}/tutor/view-course/${courseId}`)
-      .subscribe(
-        (courseData) => {
+      .subscribe({
+        next:(courseData) => {
           this._courseDetailsSubject.next(courseData);
         },
-        (err) => {
+        error:(err) => {
           console.log('error while fetching coursData', err);
         }
-      );
+      });
   }
 
   updateCourse(formData: FormData, courseId: string): Observable<ICourse> {
