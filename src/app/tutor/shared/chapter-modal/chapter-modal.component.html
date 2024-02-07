@@ -81,6 +81,9 @@
                             <button type="button" type="submit" class="px-4 py-2 bg-emerald-400 hover:bg-emerald-700  text-white rounded-md">
                                 {{buttonChange}}</button>
                         </div>
+                        <div *ngIf="loading" class="text-center items-center">
+                            <span class="mb-7">Uploading... <span class="loading loading-infinity loading-lg"></span></span>
+                        </div>
                     </form>
                 </div>
             <!-- </div> -->

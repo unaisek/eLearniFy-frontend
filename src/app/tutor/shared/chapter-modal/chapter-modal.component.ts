@@ -29,6 +29,7 @@ export class ChapterModalComponent implements OnInit, OnChanges {
   chapterForm: FormGroup;
   chapterVideoFile: File = null;
   chapterMaterialFile: File = null;
+  loading:boolean = false
 
   constructor(
     private _fb: FormBuilder,
@@ -85,6 +86,7 @@ export class ChapterModalComponent implements OnInit, OnChanges {
   }
 
   submitChapter() {
+    this.loading = true
     const formData = new FormData();
     formData.append(
       'chapterTitle',
@@ -113,17 +115,11 @@ export class ChapterModalComponent implements OnInit, OnChanges {
 
     if (this.chapterDetails) {
       const chapterId: string = this.chapterDetails.chapter._id;
-      console.log(chapterId);
 
       this._courseService.updateChapter(chapterId, formData).subscribe({
         next: (res) => {
-          console.log(res);
           this._toastr.success('chapter updated successfully');
-          // setTimeout(() => {
-          //   this.onclose.emit();
-          //   window.location.reload();
-
-          // }, 1500);
+          this.loading = false
           this.chapterUpdated.emit();
           this.onclose.emit();
         },
@@ -133,15 +129,13 @@ export class ChapterModalComponent implements OnInit, OnChanges {
       });
     } else {
       const courseId = this._route.snapshot.paramMap.get('id');
-      console.log(courseId, 'courseId');
-
       this._courseService.addNewChapter(formData, courseId).subscribe({
         next: (res) => {
           this._toastr.success('chapter Added');
-          setTimeout(() => {
-            this.onclose.emit();
-            window.location.reload();
-          }, 1500);
+          this.loading = false;
+          this.onclose.emit();
+          this.chapterUpdated.emit();
+
         },
         error: (error) => {
           console.log(error);
