@@ -64,7 +64,6 @@ export class ProgressComponent implements OnInit {
           this._userCourseService
             .cancelEnrolledCourse(courseId)
             .subscribe((res) => {
-              console.log(res);
               this._toastrService.success('Course Cancelled');
               this.getEnrolledCourses();
             });
@@ -92,8 +91,6 @@ export class ProgressComponent implements OnInit {
 
   submitReviwCourse() {
     const value = this.reviewForm.getRawValue();
-    console.log(value);
-
     const courseId = this.ratingCourseId;
     const userId = localStorage.getItem('user');
     this._userCourseService.addReview(courseId, userId, value).subscribe({

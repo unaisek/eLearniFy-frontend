@@ -126,7 +126,6 @@ export class CheckoutComponent implements OnInit {
       this._router.navigate(['/login']);
     }
     const paymentData:IPaymentData = this.checkoutForm.getRawValue();
-    console.log(paymentData);
     
     this._paymentService.makePayment(courseId,this.applyedCouponId ,paymentData).subscribe({
       next:(data) => {

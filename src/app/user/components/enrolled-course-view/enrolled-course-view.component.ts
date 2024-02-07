@@ -117,7 +117,6 @@ export class EnrolledCourseViewComponent implements OnInit, OnDestroy {
 
   submitReviwCourse() {
     const value = this.reviewForm.getRawValue();
-    console.log(value);
     const courseId = this._route.snapshot.paramMap.get('id');
     // const courseId = this.ratingCourseId;
     const userId = localStorage.getItem('user');
@@ -137,8 +136,7 @@ export class EnrolledCourseViewComponent implements OnInit, OnDestroy {
     this._userCourseService.getAllReview(coursId).subscribe({
       next: (reviewData) => {
         this.reviewsArray = reviewData;
-        this.checkedRate = this.reviewsArray.some((review) => review.userId._id == userId)
-        console.log(this.checkedRate,"check review");      
+        this.checkedRate = this.reviewsArray.some((review) => review.userId._id == userId)  
       },
     });
   }

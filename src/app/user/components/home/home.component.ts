@@ -21,12 +21,8 @@ export class HomeComponent implements OnInit {
 
   getCourseList(){
     this._userCourseServie.getAllCoursesForStudentHome().subscribe({
-      next:(response)=>{
-        console.log(response);
-        
-        this.courseLists = response;
-        console.log(this.courseLists,"course");
-        
+      next:(response)=>{        
+        this.courseLists = response;        
       },
       error:(error)=>{
         console.log(error);

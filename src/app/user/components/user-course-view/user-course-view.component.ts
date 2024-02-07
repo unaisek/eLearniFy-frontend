@@ -47,7 +47,6 @@ export class UserCourseViewComponent implements OnInit {
     this._userCourseService.getAllReview(coursId).subscribe({
       next: (reviewData) => {
         this.reviewsArray = reviewData;
-        console.log(this.reviewsArray);
       },
     });
   }
