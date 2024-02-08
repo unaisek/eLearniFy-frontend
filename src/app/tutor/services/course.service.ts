@@ -3,6 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { environment as env } from '../../../environments/environment';
 import { ICourse, addCourseResponse } from '../models/ICourse';
+import { IReview } from 'src/app/models/IReview';
 
 
 
@@ -87,5 +88,9 @@ export class CourseService {
   deleteChapter(courseId:string,chapterId:string) : Observable <ICourse>{
     const body = { courseId,chapterId}
     return this._http.put<ICourse>(`${env.apiUrl}/tutor/delete-chapter`,body);
+  }
+
+  getAllReviews(courseId:string):Observable <IReview[]>{
+    return this._http.get<IReview[]>(`${env.apiUrl}/tutor/reviews/${courseId}`)
   }
 }

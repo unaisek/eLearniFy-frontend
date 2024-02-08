@@ -21,6 +21,7 @@ export class ViewCourseComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCourseDetails();
+    this.getAllReviews()
   }
 
   getCourseDetails() {
@@ -28,7 +29,6 @@ export class ViewCourseComponent implements OnInit {
     this._courseService.getCourseDetails(courseId);
     this._courseService.courseDetails$.subscribe((res) => {
       this.courseData = res;
-      console.log(this.courseData, 'courseData');
        if (this.courseData?.chapters.length) {
          this.playChapter(this.courseData?.chapters[0].chapter);
        }
@@ -36,5 +36,17 @@ export class ViewCourseComponent implements OnInit {
   }
   playChapter(chapter: IChapter) {
     this.currentChapter = chapter;
+  }
+
+  getAllReviews(){
+    const courseId = this._route.snapshot.paramMap.get('id');
+    this._courseService.getAllReviews(courseId).subscribe({
+      next:(reviews)=>{
+        this.reviewsArray = reviews
+      },
+      error:(error)=>{
+        console.log(error);       
+      }
+    })
   }
 }
