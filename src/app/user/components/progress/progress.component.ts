@@ -42,7 +42,7 @@ export class ProgressComponent implements OnInit {
     });
   }
 
-  isCourseExpired(date: string): boolean {
+  isCourseExpired(date: Date): boolean {
     const courseCreatedDate = new Date(date);
     const currentDate = new Date();
     const differenceInTime =

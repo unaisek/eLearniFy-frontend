@@ -153,41 +153,44 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr class="bg-white border-b" *ngFor="let coupon of couponDatas">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        {{coupon?.couponCode}}
-                    </th>
-                    <td class="px-6 py-4">
-                        {{coupon?.discountType}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{coupon?.discountAmount}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{coupon?.maxDiscountAmount}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{coupon?.minPurchaseAmount}}
-                    </td>
-                    <td class="px-6 py-4">
-                        {{coupon?.expiredDate | date}}
-                    </td>
-                    <td class="px-6 py-4">
-                        <div class="flex justify-center">
-                            <a class="font-medium text-emerald-400 hover:underline flex items-center" (click)="editCoupon(coupon)">
-                                Edit</a>
-                            <button (click)="listCoupon(coupon?._id)" *ngIf="!coupon?.status" class="bg-emerald-500 text-white rounded-md hover:bg-emerald-700 ms-2 px-3 py-1">
-                                List
-                            </button>
-                            <button (click)="unlistCoupon(coupon?._id)" *ngIf="coupon?.status" class="bg-red-500 text-white rounded-md hover:bg-red-700 ms-2 px-3 py-1">
-                                Unlist
-                            </button>
-                        </div>  
-                    </td>
-                </tr>
-                
-            </tbody>
+                <tbody *ngIf="couponDatas.length !== 0 ; else noCouponData">
+                    <tr class="bg-white border-b" *ngFor="let coupon of couponDatas">
+                        <td class="px-6 py-4">
+                            {{coupon?.couponCode}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{coupon?.discountType}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{coupon?.discountAmount}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{coupon?.maxDiscountAmount}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{coupon?.minPurchaseAmount}}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{coupon?.expiredDate | date}}
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex justify-center">
+                                <a class="font-medium text-emerald-400 hover:underline flex items-center" (click)="editCoupon(coupon)">
+                                    Edit</a>
+                                <button (click)="listCoupon(coupon?._id)" *ngIf="!coupon?.status" class="bg-emerald-500 text-white rounded-md hover:bg-emerald-700 ms-2 px-3 py-1">
+                                    List
+                                </button>
+                                <button (click)="unlistCoupon(coupon?._id)" *ngIf="coupon?.status" class="bg-red-500 text-white rounded-md hover:bg-red-700 ms-2 px-3 py-1">
+                                    Unlist
+                                </button>
+                            </div>  
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            <ng-template #noCouponData >
+                <p class="text-center ps-3">No Coupon Data</p>
+            </ng-template>
         </table>
     </div>
 </div>

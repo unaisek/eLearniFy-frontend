@@ -1,0 +1,70 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10">
+    <div>
+        <form [formGroup]="salesForm" (ngSubmit)="fetchDataByYear()">
+            <label for="category" class="text-sm font-medium text-gray-700">Filter By Year</label>
+            <div class="flex gap-3">
+                <select id="category" name="category" formControlName="year" 
+                    class="mt-1 block w-36 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-emerald-500 focus:border-emerald-500">
+                    <option *ngFor="let year of yearArray" [ngValue]="year">{{year}}</option>
+                </select>
+                <button type="submit"
+                    class="bg-emerald-400 text-white rounded-md p-2 hover:bg-emerald-700 hover:transition-all duration-300 ">
+                    Apply
+                </button>
+
+            </div>
+        </form>
+    </div>
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 mt-2">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Course
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Course Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Student
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tutor
+                </th>
+            </tr>
+        </thead>
+        <tbody *ngIf="sales && sales.length>0 ;else noSalesData">
+            <tr class="bg-white border-b" *ngFor="let sale of sales">
+                <td class="px-6 py-4">
+                    {{sale?.createdAt | date}}
+                </td>
+                <td class="px-6 py-4">
+                    {{sale?.courseId?.title}}
+                </td>
+                <td class="px-6 py-4">
+                    {{sale?.price}}
+                </td>
+                <td class="px-6 py-4">
+                    {{sale?.courseId?.courseType}}
+                </td>
+                <td class="px-6 py-4">
+                    {{sale?.userId?.name}}
+                </td>
+                <td class="px-6 py-4">
+                    {{sale?.courseId?.tutor?.name}}
+                </td>
+            </tr>
+
+        </tbody>
+
+
+        <ng-template #noSalesData>
+            <p class="text-center ps-3">No Sales Data</p>
+        </ng-template>
+    </table>
+</div>

@@ -7,6 +7,7 @@ import { ICategory } from '../models/ICategory';
 import { IUser } from '../models/Iusesr';
 import { BlockUserResponse } from '../models/IResponse';
 import { IAdminDashboardData } from '../models/IAdminDashboardData';
+import { IEnrolledCourse } from '../../models/IEnrolledCourse';
 
 
 
@@ -53,5 +54,9 @@ export class AdminService {
 
   getAdminDashboard(): Observable<IAdminDashboardData> {
     return this._http.get<IAdminDashboardData>(`${env.apiUrl}/admin/dashboard`);
+  }
+
+  getAllEnrolledCourse( year: number):Observable <IEnrolledCourse[]>{
+    return this._http.get<IEnrolledCourse[]>(`${env.apiUrl}/admin/enrolled-courses/${year}`)
   }
 }

@@ -14,6 +14,7 @@ import { CouponComponent } from './components/coupon/coupon.component';
 import { DialogModule } from 'primeng/dialog';
 import { SharedModule } from '../shared/shared.module';
 import { AdminService } from './services/admin.service';
+import { SalesReportComponent } from './components/sales-report/sales-report.component';
 
 
 
@@ -28,6 +29,7 @@ import { AdminService } from './services/admin.service';
     UsersComponent,
     CategoriesComponent,
     CouponComponent,
+    SalesReportComponent,
   ],
   imports: [
     CommonModule,
