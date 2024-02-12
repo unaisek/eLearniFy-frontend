@@ -40,7 +40,7 @@ export class EditCourseComponent implements OnInit {
       category: ['', Validators.required],
       level: ['', Validators.required],
       courseType: ['', Validators.required],
-      price: ['', [Validators.required,this.validateNumber]],
+      price: ['', [Validators.required, this.validateNumber]],
       description: ['', Validators.required],
       thumbnail: [''],
       introductionVideo: [''],
@@ -55,6 +55,9 @@ export class EditCourseComponent implements OnInit {
     const isNumeric = /^-?\d+$/.test(inputValue);
     if (!isNumeric) {
       return { notNumber: true };
+    }
+    if(inputValue < 0 ){
+      return { notNumber: true }
     }
     return null;
   }

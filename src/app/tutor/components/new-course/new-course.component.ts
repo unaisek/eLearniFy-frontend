@@ -51,6 +51,9 @@ export class NewCourseComponent implements OnInit {
     if (!isNumeric) {
       return { notNumber: true };
     }
+    if(inputValue < 0){
+      return { notNumber: true }
+    }
     return null;
   }
 
